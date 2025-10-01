@@ -1,6 +1,21 @@
 ---
-title: "marietolteca00.github.io"
+title: "Marie Tolteca"
+image: Marie Totteca_MEDS Headshots 2026_0006.jpg 
+about: 
+  template: jolla
+  image-shape: round
+  image-width: 17em
+  links: 
+    - text: LinkedIn
+      href: www.linkedin.com/in/marie-t-7b398a140
+      target: _blank
+    - text: GitHub
+      href: https://github.com/marietolteca00
+      target: _blank
+
+    - text: Email
+      href: marietolteca@umail.ucsb.edu
 ---
 **Changes in real time**
 
-Hi this is Marie!
+Hi this is Marie Tolteca, a current Master's in Environmental Data Science at Bren in the University of Santa Barbara.
