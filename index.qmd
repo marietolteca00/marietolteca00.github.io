@@ -1,13 +1,13 @@
 ---
 title: "Marie Tolteca"
-image: Marie Totteca_MEDS Headshots 2026_0006.jpg 
+image: Marie_Headshots_MEDS.jpg 
 about: 
   template: jolla
   image-shape: round
   image-width: 17em
   links: 
     - text: LinkedIn
-      href: www.linkedin.com/in/marie-t-7b398a140
+      href: www.linkedin.com/in/marietolteca
       target: _blank
     - text: GitHub
       href: https://github.com/marietolteca00
@@ -15,6 +15,23 @@ about:
 
     - text: Email
       href: marietolteca@umail.ucsb.edu
+
+format: 
+  navbar: 
+    right: morph
+      href: index.qmd
+      text: Home
+    # - about.qmd
+    # - href: resources.qmd
+    # - text: Resources
+
+
+format: 
+  html: 
+    theme: morph
+    css: styles.css
+    toc: true
+    page_layout: full
 ---
 **Changes in real time**
 
