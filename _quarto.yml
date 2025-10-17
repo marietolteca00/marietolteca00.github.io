@@ -4,10 +4,10 @@ project:
 
 website:
   title: "Marie Tolteca"
-  favicon: images/MT-Logo.png
+  favicon: images/Marie Tolteca-1.png
   navbar:
     title: false
-    logo: images/MT-Logo.png
+    logo: images/Marie Tolteca-1.png
     logo-alt: the name marie tolteca with a wiener dog on top of the name
     left:
       - href: index.qmd

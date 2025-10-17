@@ -7,10 +7,12 @@
 $nunitoSans: "Nunito", sans-serif;
 
 // logo-size
-.navbar-brand img { 
-  max-height: 40px;
-  width: auto;
+.navbar-brand img {
+  height: 100px !important;  /* make this value bigger or smaller as needed */
+  width: auto !important;
+  max-height: none !important;
 }
+
 
 // colors
 $midnightgreen: #0F4C5C;
