@@ -1,0 +1,9 @@
+---
+title: "Blogger Page"
+listing: 
+  contents: blog_post
+  type: grid
+  sort: "date desc"
+  categories: true
+---
+

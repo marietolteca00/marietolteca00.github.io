@@ -1,23 +1,40 @@
 project:
   type: website
   output-dir: docs
-
+  
 website:
   title: "Marie Tolteca"
+  # favicon: images/favicon.pmg
   navbar:
-    left:
+    title: false
+    logo: 'images/Marie_Headshots_MEDS.jpg '
+    right:
       - href: index.qmd
         text: Home
-      # - about.qmd
-      # - href: resources.qmd
-      #   text: Resources
-
+      - about.qmd
+      - href: resources.qmd
+        text: Resources
+      - blogposts.qmd
+  page-footer:
+    left: Copyright 2025, Marie Tolteca
+    right:
+      - href: https://github.com/marietolteca00
+        icon: github
+        
 format:
   html:
-    theme: cosmo
+    theme: styles.scss
     css: styles.css
     toc: true
     page-layout: full
+    mainfont: Nunito
+
+
+
+
+
+
+
 
 
 
