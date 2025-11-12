@@ -1,0 +1,26 @@
+---
+title: "First Blog Post!"
+description: " A short description of this blog post."
+author: 
+  - name: Marie Tolteca
+    url: 
+    affiliation: The Bren School of Environmental Science & Management
+    affiliation-url: https://bren.ucsb.edu/
+    orcid: 
+date: 2025-11-12'
+categories: [MEDS, R-Data-viz]
+image: "buddy.jpeg"
+citation: 
+  url: https://marietolteca00.github.io/blog_post/first_blog_post/
+draft: true
+draft-mode: linked # when sending via email
+bibliography: references.bib
+---
+
+This is where the body of my blog post begins! I'm going to add a footnote here [^1]. Here's an inline footnote^\[here's my inline note\]^.
+
+[^1]: Here is some additional context that might be helpful.
+
+I'm going to be vain for a second and cite myself^[@mtolteca2025]^
+
+Let's cite a paper using it's DO[@gaynor2022] -in visual mode, click insert, DOI, insert DOI link, will automatically create citation and add to \`references.bib\` file

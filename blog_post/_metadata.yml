@@ -1,0 +1,12 @@
+# Any options specified here will apply to all post in the post/folder
+
+author: 
+  - name: Marie Tolteca
+    url: https://marietolteca00.github.io/
+    affiliation: The Bren School of Environmental Science & Management
+    affiliation-url: https://bren.ucsb.edu/
+    orcid: 
+    
+title-block-banner: true
+
+freeze: auto

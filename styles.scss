@@ -1,0 +1,56 @@
+/*--scss:defaults --*/
+
+//import google font 
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet");
+
+//fonts
+$nunitoSans: "Nunito", sans-serif;
+
+// logo-size
+.navbar-brand img {
+  height: 100px !important;  /* make this value bigger or smaller as needed */
+  width: auto !important;
+  max-height: none !important;
+}
+
+
+// colors
+$midnightgreen: #0F4C5C;
+$vanilla: #D6CE93;
+$orange: #FAAC38;
+$rosybrown: #C89F9C;
+$thistle: #CDB4DB;
+$powderblue: #93B6C6;
+
+// define Sass vars 
+
+$body-bg: $vanilla;
+$navbar-bg: $midnightgreen;
+$navbar-fg: $midnightgreen;
+$navbar-hl: $thistle;
+$link-color: $midnightgreen;
+
+/*--scss:rules --*/
+h1, h2, h3, h4 {
+  font-family: "Nunito", sans-serif;
+}
+
+
+
+h1, h2 {
+  letter-spacing: 5px;
+  font-weight: 700;
+}
+
+.title{
+  color: $powderblue;
+}
+
+center-text {
+  text-align: center;
+}
+
+.rosybrown-text {
+  color: $midnightgreen;
+}
+
