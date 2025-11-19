@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: docs
-
+  
 website:
   title: "Marie Tolteca"
   favicon: images/Marie Tolteca-1.png
@@ -17,18 +17,18 @@ website:
         text: Resources
       - icon: github
         href: https://github.com/marietolteca00/marietolteca00.github.io #how to change
-  page-footer: 
-    left: Copyright 2025, Marie Tolteca-The G
-    right: 
-      - icon: github
-      - href: https://github.com/marietolteca00/marietolteca00.github.io
+      - blog_post.qmd
+  page-footer:
+    left: Copyright 2025, Marie Tolteca
+    right:
+      - href: https://github.com/marietolteca00
+        icon: github
 
 format:
   html:
-    theme: styles.scss
+    theme: morph
     toc: true
     page-layout: full
     mainfont: Josefin Sans
-
 
 
