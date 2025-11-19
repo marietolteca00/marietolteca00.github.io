@@ -3,3 +3,24 @@ title: "Resources"
 format: html
 ---
 
+<h1> this is an h1 element </h1>
+
+<h1 class="title"> this is an h1 element with the title class </h1>
+
+<p>this paragraph is .rosybrown-text</p>
+
+<p class="center-text"> this is centered </p>
+
+<p class="center-text .rosybrown-text"> this is centered </p>
+
+---
+
+Here's where I'm describing [something fun]{.rosybrown-text} that I enjoy doing.
+
+Here's another line
+:::
+
+:::{.rosybrown-text}
+this is centered 
+:::
+

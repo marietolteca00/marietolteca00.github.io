@@ -4,37 +4,31 @@ project:
   
 website:
   title: "Marie Tolteca"
-  # favicon: images/favicon.pmg
+  favicon: images/Marie Tolteca-1.png
   navbar:
     title: false
-    logo: 'images/Marie_Headshots_MEDS.jpg '
-    right:
+    logo: images/Marie Tolteca-1.png
+    logo-alt: the name marie tolteca with a wiener dog on top of the name
+    left:
       - href: index.qmd
         text: Home
       - about.qmd
       - href: resources.qmd
         text: Resources
-      - blogposts.qmd
+      - icon: github
+        href: https://github.com/marietolteca00/marietolteca00.github.io #how to change
+      - blog_post.qmd
   page-footer:
     left: Copyright 2025, Marie Tolteca
     right:
       - href: https://github.com/marietolteca00
         icon: github
-        
+
 format:
   html:
-    theme: styles.scss
-    css: styles.css
+    theme: morph
     toc: true
     page-layout: full
-    mainfont: Nunito
-
-
-
-
-
-
-
-
+    mainfont: Josefin Sans
 
 

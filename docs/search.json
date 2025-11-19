@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "this is an h1 element\n\n\nthis is an h1 element with the title class\n\n\nthis paragraph is .rosybrown-text\n\n\nthis is centered\n\n\nthis is centered\n\n\nHere’s where I’m describing something fun that I enjoy doing.\nHere’s another line :::\n\nthis is centered"
+  },
+  {
+    "objectID": "blog_post.html",
+    "href": "blog_post.html",
+    "title": "Blogger Page",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Marie Tolteca",
@@ -11,13 +25,20 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About this site"
   },
   {
-    "objectID": "blog_post.html",
-    "href": "blog_post.html",
-    "title": "Blogger Page",
-    "section": "",
-    "text": "No matching items"
+    "objectID": "about.html#what-i-do-for-work",
+    "href": "about.html#what-i-do-for-work",
+    "title": "About",
+    "section": "What I do for work",
+    "text": "What I do for work\nThis is what i do for work…."
+  },
+  {
+    "objectID": "about.html#what-i-do-for-fun",
+    "href": "about.html#what-i-do-for-fun",
+    "title": "About",
+    "section": "What I do for fun",
+    "text": "What I do for fun\nGive the people what they want, something fun!"
   }
 ]

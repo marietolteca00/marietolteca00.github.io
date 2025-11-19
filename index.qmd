@@ -1,18 +1,21 @@
 ---
 title: "Marie Tolteca"
-image: Marie_Headshots_MEDS.jpg 
+image: images/Profile-Pic.jpg 
 about: 
   template: jolla
   image-shape: round
   image-width: 17em
   links: 
     - text: LinkedIn
+      icon: linkedin
       href: www.linkedin.com/in/marietolteca
       target: _blank
     - text: GitHub
+      icon: github
       href: https://github.com/marietolteca00
       target: _blank
     - text: Email
+      icon: envelope
       href: marietolteca@umail.ucsb.edu
 
 # format: 
