@@ -1,6 +1,6 @@
 ---
 title: "Marie Tolteca"
-image: Profile-Pic.jpg 
+image: images/Profile-Pic.jpg 
 about: 
   template: jolla
   image-shape: round
@@ -14,19 +14,26 @@ about:
       icon: github
       href: https://github.com/marietolteca00
       target: _blank
-
     - text: Email
       icon: envelope
       href: marietolteca@umail.ucsb.edu
 
-
-
-format: 
-  html: 
-    theme: morph
-    css: styles.css
-    toc: true
-    page_layout: full
+# format: 
+#   navbar: 
+#     right: morph
+#       href: index.qmd
+#       text: Home
+#     # - about.qmd
+#     # - href: resources.qmd
+#     # - text: Resources
+# 
+# 
+# format: 
+#   html: 
+#     theme: morph
+#     css: styles.css
+#     toc: true
+#     page_layout: full
 ---
 **Changes in real time**
 

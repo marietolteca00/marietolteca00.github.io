@@ -6,14 +6,6 @@
 //fonts
 $nunitoSans: "Nunito", sans-serif;
 
-// logo-size
-.navbar-brand img {
-  height: 100px !important;  /* make this value bigger or smaller as needed */
-  width: auto !important;
-  max-height: none !important;
-}
-
-
 // colors
 $midnightgreen: #0F4C5C;
 $vanilla: #D6CE93;
@@ -25,8 +17,8 @@ $powderblue: #93B6C6;
 // define Sass vars 
 
 $body-bg: $vanilla;
-$navbar-bg: $thistle;
-$navbar-fg: $midnightgreen;
+$navbar-bg: $midnightgreen;
+$navbar-fg: $powderblue;
 $navbar-hl: $thistle;
 $link-color: $midnightgreen;
 
@@ -52,5 +44,12 @@ center-text {
 
 .rosybrown-text {
   color: $rosybrown;
+}
+
+// logo-size
+.navbar-brand img {
+  height: 100px !important;  /* make this value bigger or smaller as needed */
+  width: auto !important;
+  max-height: none !important;
 }
 
