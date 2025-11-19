@@ -7,14 +7,14 @@ website:
   # favicon: images/favicon.pmg
   navbar:
     title: false
-    logo: 'images/Marie_Headshots_MEDS.jpg '
+    logo: images/Marie_Headshots_MEDS.jpg
     right:
       - href: index.qmd
         text: Home
       - about.qmd
       - href: resources.qmd
         text: Resources
-      - blogposts.qmd
+      - blog_post.qmd
   page-footer:
     left: Copyright 2025, Marie Tolteca
     right:
