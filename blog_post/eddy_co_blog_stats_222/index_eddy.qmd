@@ -1,0 +1,20 @@
+---
+title: "Eddy Covariance Blog Post"
+description: "EDS 222 Statistics for Environmental Data Science"
+format: html
+author: 
+  - name: Marie Tolteca
+    url: 
+    affiliation: The Bren School of Environmental Science & Management
+    affiliation-url: https://bren.ucsb.edu/
+    orcid: 
+date: last-modified
+categories: [MEDS, R-Data-viz]
+#image: "buddy.jpeg" # Add into folder
+citation: 
+  url: https://marietolteca00.github.io/blog_post/eddy_co_blog_stats_222/ #add current folder
+draft: true
+#draft-mode: linked # when sending via email
+#bibliography: references.bib # Is this needed?!?!?
+---
+
