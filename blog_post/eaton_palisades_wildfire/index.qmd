@@ -1,0 +1,19 @@
+---
+title: "Eaton and Palisades Wildfire Perimeter in Los Angeles"
+description: "blog post description (appears underneath the title in smaller text) which is included on the listing page"
+author:
+  - name: Marie Tolteca
+    url: https://samanthacsik.github.io/ # CHANGE
+    #orcid: 0000-0002-5300-3075
+    affiliation: Master of Environmental Data Science Program @ The Bren School (UCSB)
+    affiliation-url: https://ucsb-meds.github.io/
+date: last-modified
+categories: [Quarto, R, MEDS]
+citation:
+  url: https://samanthacsik.github.io/posts/2022-10-24-my-blog-post/ # CHANGE
+#image: preview-image.png
+draft: false
+---
+
+Here is where I will start writing my actual blog post content...
+

@@ -29,7 +29,11 @@ $$
 ET_0 = \frac{0.408 \, \Delta \, (R_n - G) + \gamma \frac{900}{T+273} \, u_2 \, (e_s - e_a)}{\Delta + \gamma (1 + 0.34 \, u_2)}
 $$
 
-In this project I will use the *Total ETo column* as my *Response Variable*. The *predictor variables* will be *Average Air Temperature (F)* as well as *Total Precipitation (in)*
+In this project I will use the *Total ETo column* as my *Response Variable*. The *predictor variables* will be *Average Air Temperature (F)* as well as *Total Precipitation (in)*. Here is a DAG of what I will try to model with a Gamma Model.
+```{r}
+#knitr::include_graphics(here::here("images/DAG.png"))
+```
+
 
 
 
