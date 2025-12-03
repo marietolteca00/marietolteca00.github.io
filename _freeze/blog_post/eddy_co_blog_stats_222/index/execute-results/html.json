@@ -1,0 +1,15 @@
+{
+  "hash": "16e60993b100c6c4c07ff7193ddee55b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Eddy Covariance Blog Post\"\ndescription: \"EDS 222 Statistics for Environmental Data Science\"\nformat: html\nauthor: \n  - name: Marie Tolteca\n    url: \n    affiliation: The Bren School of Environmental Science & Management\n    affiliation-url: https://bren.ucsb.edu/\n    orcid: \ndate: last-modified\ncategories: [MEDS, R-Data-viz]\n#image: \"buddy.jpeg\" # Add into folder\ncitation: \n  url: https://marietolteca00.github.io/blog_post/eddy_co_blog_stats_222/ #add current folder\ndraft: true\n#draft-mode: linked # when sending via email\n#bibliography: references.bib # Is this needed?!?!?\n---\n\n# What is an Eddy Covariance Flux Tower?\n\n-   An Eddy Covariance system is a tool that collects weather variables such as wind, temperature, precipitation, and more. A primary function is to measure the vertical exchange (flux) of gases, like carbon dioxide (CO2) and water vapor (H20), between an ecosystem and the atmosphere. The measurement of the water vapor flux provides the most accurate, ground-based method for determining evapotranspiration (ETo), which is the combined loss of water from soil evaporation and plant transpiration.\n\n# In this blog post - We will be looking at an Eddy covariance station located in Camarillo, California\n- Eddy Covariance Stations are placed across California. However, I am interested in this station because it is nearest to where I grew up and has been collecting data for a few years now. I will be conducting data exploration, data analysis, and fit a gamma model into my response variable of ETo and look at two predictor variables, precipitation and temperature.The Station itself has already calculated the Evapotranspiration using the Penman-Monteith (PM) equation.\n\n$$\nET_0 = \\frac{0.408 \\, \\Delta \\, (R_n - G) + \\gamma \\frac{900}{T+273} \\, u_2 \\, (e_s - e_a)}{\\Delta + \\gamma (1 + 0.34 \\, u_2)}\n$$\n\nIn this project I will use the *Total ETo column* as my *Response Variable*. The *predictor variables* will be *Average Air Temperature (F)* as well as *Total Precipitation (in)*. Here is a DAG of what I will try to model with a Gamma Model.\n\n::: {.cell}\n\n```{.r .cell-code}\n#knitr::include_graphics(here::here(\"images/DAG.png\"))\n```\n:::\n\n\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
