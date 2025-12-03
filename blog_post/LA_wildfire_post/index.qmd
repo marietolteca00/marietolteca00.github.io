@@ -1,21 +1,19 @@
 ---
 title: "Eaton and Palisades Wildfire Perimeter in Los Angeles"
-description: "blog post description (appears underneath the title in smaller text) which is included on the listing page"
+description: "Blog post mapping and analyzing the 2025 Eaton and Palisades wildfire perimeters using Landsat imagery."
 author:
   - name: Marie Tolteca
-    #url: https://samanthacsik.github.io/ # CHANGE
-    #orcid: 0000-0002-5300-3075
     affiliation: Master of Environmental Data Science Program @ The Bren School (UCSB)
     affiliation-url: https://ucsb-meds.github.io/
-date: last-modified
+date: "2025-01-01"
 categories: [Quarto, R, MEDS]
 citation:
-  #url: https://samanthacsik.github.io/posts/2022-10-24-my-blog-post/ # CHANGE
-#image: preview-image.png
+  url: https://marietolteca00.github.io/blog_post/ca_wildfire_python
+image: preview-image.png
 draft: false
 ---
 
-- Github: https://github.com/marietolteca00/eds220-hwk4.git
+Github: https://github.com/marietolteca00/eds220-hwk4.git
 
 ### Background
 The Eaton and Palisades fires were two recent major wildfires that started from strong Santa Ana winds, dry vegetation from previous wet winters, and potential issues with electrical transmission lines. Both wildfires started simultaneously in Los Angeles County on Janurary 07, 2025. These wildfires burned around 60 square miles and destroying thousands of vegetation and structures. As well as a 37,000 acres burned between the Eaton and Palisades wildfires.
@@ -97,6 +95,9 @@ fp = os.path.join('data/eaton_perimeter/Eaton_Perimeter_20250121.shp')
 eaton = gpd.read_file(fp)
 fp = os.path.join('data/palisades_perimeter/Palisades_Perimeter_20250121.shp')
 palisades = gpd.read_file(fp)
+
+california = gpd.read_file(os.path.join("data/EJI_2024_California/EJI_2024_California.gdb"))
+
 
 ```
 
@@ -198,3 +199,47 @@ ax.legend(loc = "upper left")
 ax.set_axis_off()
 plt.show()
 ```
+
+
+```{python}
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
+
+# UPDATE WITH YOU EJI VARIABLE FROM STEP 1
+eji_variable = 'E_RENTER'
+
+# Find common min/max for legend range
+vmin = min(palisades_clip[eji_variable].min(), eaton_clip[eji_variable].min())
+vmax = max(palisades_clip[eji_variable].max(), eaton_clip[eji_variable].max())
+
+# Plot census tracts within Palisades perimeter
+palisades_clip.plot(
+column= eji_variable,
+vmin=vmin, vmax=vmax,
+legend=False,
+ax=ax1,
+cmap = 'inferno')
+
+ax1.set_title('Palisades Fire')
+ax1.axis('off')
+
+# Plot census tracts within Eaton perimeter
+eaton_clip.plot(
+column=eji_variable,
+vmin=vmin, vmax=vmax,
+legend=False,
+ax=ax2,
+cmap='inferno')
+
+ax2.set_title('Eaton Fire')
+ax2.axis('off')
+
+# Add overall title
+fig.suptitle('Percentage of housing units that are renter occupied')
+
+# Add shared colorbar at the bottom
+sm = plt.cm.ScalarMappable(norm=plt.Normalize(vmin=vmin, vmax=vmax), cmap = 'inferno')
+cbar_ax = fig.add_axes([0.25, 0.08, 0.5, 0.02]) # [left, bottom, width, height]
+cbar = fig.colorbar(sm, cax=cbar_ax, orientation='horizontal')
+cbar.set_label('Percentile of Housing Units, Occupied by Renter')
+```
+
