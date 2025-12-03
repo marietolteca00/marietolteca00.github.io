@@ -1,6 +1,9 @@
 [
   {
     "listing": "/blog_post.html",
-    "items": []
+    "items": [
+      "/blog_post/first_blog_post/index.html",
+      "/blog_post/LA_wildfire_post/index.html"
+    ]
   }
 ]

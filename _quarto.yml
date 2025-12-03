@@ -28,7 +28,6 @@ format:
   html:
     theme: 
       - morph
-      - 
     toc: true
     page-layout: full
     mainfont: Josefin Sans

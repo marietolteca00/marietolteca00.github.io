@@ -12,8 +12,8 @@ categories: [MEDS, R-Data-viz]
 image: "buddy.jpeg"
 citation: 
   url: https://marietolteca00.github.io/blog_post/first_blog_post/
-draft: true
-draft-mode: linked # when sending via email
+draft: false
+#draft-mode: linked # when sending via email
 bibliography: references.bib
 ---
 
