@@ -3,13 +3,13 @@ title: "Eaton and Palisades Wildfire Perimeter in Los Angeles"
 description: "Blog post mapping and analyzing the 2025 Eaton and Palisades wildfire perimeters using Landsat imagery."
 author:
   - name: Marie Tolteca
-    affiliation: Master of Environmental Data Science Program @ The Bren School (UCSB)
+    affiliation: Master of Environmental Data Science Program at The Bren School (UCSB)
     affiliation-url: https://ucsb-meds.github.io/
-date: "2025-01-01"
+date: "2025-12-03"
 categories: [Quarto, R, MEDS]
 citation:
-  url: https://marietolteca00.github.io/blog_post/ca_wildfire_python
-image: preview-image.png
+  url: https://marietolteca00.github.io/blog_post/LA_wildfire_post
+image: satellite_image.jpeg
 draft: false
 ---
 
@@ -22,9 +22,9 @@ The Eaton and Palisades fires were two recent major wildfires that started from 
 A `nc` will be used for the raster (landsat) of Los Angeles County where two wildfires occured during the year 2025. The first is a simplified collection of bands (red, green, blue, near-infrared and shortwave infrared) from the Landsat Collection 2 Level-2 atmosperically adjusted surface reflectance data, obtained by the Landsat 8 satellite. Using the wildfire shapefiles project them onto the Landsat to view where the fires occured.
 
 ### About Data
-Microsoft Planetary Computer, 'https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2', is used in this notebook that outlines the fire perimeters for the Palisades and Eaton Fire. This was our data landsat data for the fire perimeters. `landsat8-2025-02-23-palisades-eaton.nc`
+Microsoft Planetary Computer, https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2, is used in this notebook that outlines the fire perimeters for the Palisades and Eaton Fire. This was our data landsat data for the fire perimeters. `landsat8-2025-02-23-palisades-eaton.nc`
 
-From the County of Los Angeles GIS, 'https://egis-lacounty.hub.arcgis.com/maps/ad51845ea5fb4eb483bc2a7c38b2370c/about', was retrieved for both fire perimeters of `Palisades` and `Eaton` fire as a shapefile (shp) each were added to a folder. 
+From the County of Los Angeles GIS, https://egis-lacounty.hub.arcgis.com/maps/ad51845ea5fb4eb483bc2a7c38b2370c/about, was retrieved for both fire perimeters of `Palisades` and `Eaton` fire as a shapefile (shp) each were added to a folder. 
 
 - `eaton_boundary`:` Layer contains a dissolved fire perimeter for the eaton fire. (01/21/2025)
 - `palisades_boundary`: Layer contains a dissolved fire perimeter for the palisades fire. (01/21/2025)
@@ -69,20 +69,21 @@ County [GIS Link](https://egis-lacounty.hub.arcgis.com/maps/ad51845ea5fb4eb483bc
 
 
 # Packages Used:
-This notebook uses the following Python packages: `os`, `numpy`, `matplotlib.pyplot`, `geopandas`, `xarray`, and `rioxarray`.
+This notebook uses the following Python packages: `contextily`, `os`,  `numpy`, `matplotlib.pyplot`, `matplotlib.patches`, `geopandas`, `rioxarray`, and `xarray`.
 
 
 * Code Chunk - `CMD+SHIFT+I`
 
 # Import Libraries
 ```{python}
+import contextily as ctx
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import geopandas as gpd
-import xarray as xr
 import rioxarray
-import contextily as ctx
+import xarray as xr
 ```
 
 # Import data
@@ -101,12 +102,28 @@ california = gpd.read_file(os.path.join("data/EJI_2024_California/EJI_2024_Calif
 
 ```
 
-# Data Wrangling
+# Data Wrangling 
 
 ```{python}
 # Lower column titles on dataframes
 for df in [palisades, eaton]:
     df.columns = df.columns.str.lower()
+    
+# Match CRS
+eaton.crs == palisades.crs  # False
+
+california = california.to_crs(palisades.crs) # Transform CRS
+
+california.crs == palisades.crs # True / Match
+
+# Join    
+palisadesjoin = gpd.sjoin(california,palisades)
+eatonjoin = gpd.sjoin(california, eaton)
+
+# Clipping 
+palisades_clip = gpd.clip(california, palisades)
+eaton_clip = gpd.clip(california, eaton)
+
 ```
 
 # Check Landsat.nc file
@@ -126,23 +143,19 @@ landsat = landsat.rio.write_crs(wkt, inplace=False)
 # Verify CRS is now attached
 print("\nCRS after writing:", landsat.rio.crs)
 
-```
 
 # Fill NA Values into collection of bands Red, green, and blue. This allows for `no NaN` error message to be removed.
-```{python}
 #  Substitue any NAN values as 0
 landsat_filled = landsat.fillna(0)
 
 # Add fillna() back into rgb
 rgb_filled = landsat_filled[["red", "green", "blue"]].to_array()
 
-```
-
-
-```{python}
 # Assign numpy array to a variable
 false_color = landsat[["swir22", "nir08", "red"]].to_array()
+
 ```
+
 
 # Transform CRS from Eaton and Palisades fire to match landsat
 
@@ -156,8 +169,8 @@ print("Eaton CRS:", eaton.crs) # EPSG:32611
 print("Palisades CRS:", palisades.crs) # EPSG:32611
 ```
 
-# Create Map
-
+# Create Map 1
+This map will create a False-Color imagery generated along with both fire perimeters, eaton and palisades boundary, using landsat. 
 ```{python}
 # Set up fig, ax
 fig, ax = plt.subplots(figsize=(10,10))
@@ -199,8 +212,52 @@ ax.legend(loc = "upper left")
 ax.set_axis_off()
 plt.show()
 ```
+#### Interpretation
+In this figure we are able to clearly see the areas that were affected by the wildfire that happened in Los Angeles County. With the false color imagery, it uses SWIR22 for red, NIR08 for green, and the Red band for blue. Bright green areas indicate healthy vegetation, while brown or muted areas correspond to bare ground or soil. The fire-affected regions are visible within the outlined perimeters. The fire perimeter of Palisades fire (red) and Eaton fire (pink) are identified by the colored boundary and an added text for easier identification. In this figure we are able to view both landscapes in Los Angeles and the fire perimeters that most recently occured.
 
 
+# Map 2
+```{python}
+
+fig, ax = plt.subplots(1, 1, figsize=(14, 12))
+
+# Fire Perimeter- Eaton
+eaton_clip.plot(ax=ax, color='orange', alpha=0.3)  # Inside
+eaton_clip.plot(ax=ax, color='none', edgecolor='red', linewidth=1.5)  # Border
+
+# Fire Perimeter- Palisades
+palisades_clip.plot(ax=ax, color='blue', alpha=0.3)  # Inside
+palisades_clip.plot(ax=ax, color='none', edgecolor='darkblue', linewidth=1.5)  # Border
+
+# Legend Patches
+pal_legend = mpatches.Patch(facecolor="blue", edgecolor="darkblue", alpha=0.3, label="Palisades Fire")
+eaton_legend = mpatches.Patch(facecolor="orange", edgecolor="red", alpha=0.3, label="Eaton Fire")
+
+# Legend
+ax.legend(handles=[eaton_legend, pal_legend], 
+          loc="upper left",
+          title="Fire Perimeters",
+          # Background of legend
+          frameon=True)
+
+# Title
+ax.set_title("2025 Eaton and Palisades Fire")
+
+# Axes off
+ax.axis('off')
+
+# Basemap
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)
+
+plt.show()
+
+
+```
+#### Interpretation
+In this figure, the Eaton and Palisades fire perimeters are displayed on an OpenStreetMap basemap. Unlike the earlier Landsat imagery, this basemap highlights roads, highways, and city boundaries, making it easier to understand the fires’ locations relative to surrounding communities and infrastructure.
+
+# Map 2
+Using the 2024 Environmental Justice Index data for California in the geodatabase data format, `EJI_2024_California`, plot the fire perimeters of Eaton and Palisades to showcasing Housing Units, Occupied by Renters.
 ```{python}
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
 
@@ -241,5 +298,14 @@ sm = plt.cm.ScalarMappable(norm=plt.Normalize(vmin=vmin, vmax=vmax), cmap = 'inf
 cbar_ax = fig.add_axes([0.25, 0.08, 0.5, 0.02]) # [left, bottom, width, height]
 cbar = fig.colorbar(sm, cax=cbar_ax, orientation='horizontal')
 cbar.set_label('Percentile of Housing Units, Occupied by Renter')
+plt.show()
 ```
+#### Interpretation
+In this figure we can notice in the palisades fire perimeter more homes are renter occupied units along the coast. This could be because these are more of a tourism located and can be aimed for people who look for a couple nights to stay. In the Eaton fire perimeter more homes are along the southwestern portion than renter occupied homes. Most of the fire perimeter is none occupied due to mountain ranges.
 
+
+# References
+- Assignment 4: Palisades & Eaton Fires. EDS 220 – Working with Environmental Datasets, 2025. https://meds-eds-220.github.io/EDS-eds-220-course/assignments/assignment4-palisades-eaton-fires.html. Accessed 17 Nov. 2025.
+- Microsoft Planetary Computer. Planetary Computer. (n.d.). https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2
+- NPR. Satellite image ©2025 Maxar Technologies (January 9, 2025). https://www.kpbs.org/news/national/2025/01/09/photos-see-the-california-wildfires-destructive-force-in-satellite-images
+- Palisades and Eaton dissolved fire perimeters (2025). County of Los Angeles Enterprise GIS. (2025, January 21). https://egis-lacounty.hub.arcgis.com/maps/ad51845ea5fb4eb483bc2a7c38b2370c/about
