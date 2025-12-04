@@ -11,7 +11,7 @@
     "href": "blog_post.html",
     "title": "Blogger Page",
     "section": "",
-    "text": "Eaton and Palisades Wildfire Perimeter in Los Angeles\n\n\n\nQuarto\n\nR\n\nMEDS\n\n\n\nBlog post mapping and analyzing the 2025 Eaton and Palisades wildfire perimeters using Landsat imagery.\n\n\n\nMarie Tolteca\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Blog Post!\n\n\n\nMEDS\n\nR-Data-viz\n\n\n\nA short description of this blog post.\n\n\n\nMarie Tolteca\n\n\nNov 12, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Mapping the 2025 Eaton and Palisades Wildfires in Los Angeles County\n\n\n\nQuarto\n\nR\n\nMEDS\n\n\n\nAn analysis of the 2025 Eaton and Palisades wildfires using Landsat satellite imagery and Environmental Justice Index data, visualizing fire perimeters, vegetation impacts…\n\n\n\nMarie Tolteca\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Blog Post!\n\n\n\nMEDS\n\nR-Data-viz\n\n\n\nA short description of this blog post.\n\n\n\nMarie Tolteca\n\n\nNov 12, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -65,16 +65,16 @@
   {
     "objectID": "blog_post/LA_wildfire_post/index.html",
     "href": "blog_post/LA_wildfire_post/index.html",
-    "title": "Eaton and Palisades Wildfire Perimeter in Los Angeles",
+    "title": "Mapping the 2025 Eaton and Palisades Wildfires in Los Angeles County",
     "section": "",
-    "text": "Github: https://github.com/marietolteca00/eds220-hwk4.git"
+    "text": "Link to GitHub -&gt; GitHub"
   },
   {
     "objectID": "blog_post/LA_wildfire_post/index.html#repository-structure",
     "href": "blog_post/LA_wildfire_post/index.html#repository-structure",
-    "title": "Eaton and Palisades Wildfire Perimeter in Los Angeles",
+    "title": "Mapping the 2025 Eaton and Palisades Wildfires in Los Angeles County",
     "section": "Repository Structure:",
-    "text": "Repository Structure:\n\nWhen downloading data, add the data folder to .gitignore to reduce pushing big files onto github.\n\n├── Chwk4-task2-false-color-TOLTECA.ipynb ├── README.md └── data ├── landsat8-2025-02-23-palisades-eaton.nc ├── Palisades_Perimeter_20250121.shp │ └── palisades_perimeter.md └── Eaton_Perimeter_20250121.shp └── eaton_perimeter.md"
+    "text": "Repository Structure:\n\nWhen downloading data, add the data folder to .gitignore to reduce pushing big files onto github.\n\n├── data\n│   ├── eaton_perimeter\n│   │  └── Eaton_Perimeter_20250121.shp\n│   ├── EJI_2024_California\n│   │   ├── EJI_2024_California.gdb\n│   │   ├── EJI_DATADICTIONARY_2024.csv\n│   │   └── EJI_DATADICTIONARY_2024.xlsx\n│   ├── landsat8-2025-02-23-palisades-eaton.nc\n│   └── palisades_perimeter\n│       └── Palisades_Perimeter_20250121.shp\n└── satellite_image.jpeg"
   },
   {
     "objectID": "blog_post/first_blog_post/index.html",
