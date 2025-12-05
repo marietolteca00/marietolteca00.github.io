@@ -4,11 +4,11 @@ description: "EDS 222: Statistics for Environmental Data Science"
 author:
   - name: Marie Tolteca
     affiliation: Master of Environmental Data Science Program at The Bren School (UCSB)
-    affiliation-url: https://ucsb-meds.github.io/
+    affiliation-url: ucsb-meds.github.io/
 date: "2025-12-04"
 categories: [Quarto, R, MEDS]
 citation:
-  url: https://marietolteca00.github.io/blog_post/eddy_co_blog_stats_222
+  url: marietolteca00.github.io/blog_post/eddy_co_blog_stats_222
 image: eddy.png
 draft: false
 ---
@@ -435,6 +435,11 @@ From the simulated data, ETo has a higher baseline (B0 = -3) compared to the ori
 -   EDS 222- Statistic for Data Science. Week 8. Lab 8 California Wildfire Occurrence. [Link](https://eds-222-stats-f25.github.io/course-materials/labs/lab8.html).
 -   Gamma Positive Continuous Data Part 1: Intro, Mean-Variance Relationship.RPub.[Link](https://rpubs.com/anangwe/1261395).
 -   Micheal Foley. Gamma Distribution. January 17, 2029.[Link](https://rpubs.com/mpfoley73/459051).
+
+# Citation
+- CIMIS. Cimis.water.ca.gov. [CIMIS](https://cimis.water.ca.gov/WSNReportCriteria.aspx)
+- Marie Tolteca. Eddy Covariance Station Set-Up. Eddy Covariance Station Image.
+
 
 
 
