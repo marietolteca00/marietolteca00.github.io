@@ -216,7 +216,7 @@ tm_scale_bar(position = c(-.01, 0.08)) +
 tm_compass(position = c("left", "top"))+
   tm_basemap("OpenStreetMap")
 ```
-
+In this map we can see our reclassifcation that was made in order to view the depth and location of oysters. This is more of a sanity check to view our progress.
 
 ## Rasterize, Masking, CellSize, and Zonal 
 
