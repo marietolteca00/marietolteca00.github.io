@@ -277,7 +277,9 @@ daily_eto <- left_join(eto, daily, by = "date") %>%
 
 # View first 5 rows
 head(daily_eto)
+```
 
+```{r, message=FALSE, warning=FALSE}
 # Plot it!
 ggplot(data = daily_eto, aes(x = precip_in, 
                              y = avg_air_temp_f)) +
@@ -291,6 +293,7 @@ ggplot(data = daily_eto, aes(x = precip_in,
   theme_light()
 
 ```
+
 In the figure above we can see, when there is a higher average air temperature (F) we can expect more ETo, as show in the color scale. Compared to precipitation, ETo appears lower when precipitation is higher. There also appears to be a right skewed in the data with positive values.
 
 ## Fit Gamma Model
