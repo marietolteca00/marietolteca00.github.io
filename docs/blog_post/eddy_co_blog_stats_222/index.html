@@ -266,12 +266,12 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"eddy.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"blog_post"</span>,<span class="st">"eddy_co_blog_stats_222"</span>,<span class="st">"image"</span>,<span class="st">"eddy.png"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="eddy.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="263"></p>
+<p><img src="image/eddy.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="263"></p>
 </figure>
 </div>
 </div>
@@ -302,12 +302,12 @@ ET_0 = \frac{0.408 \, \Delta \, (R_n - G) + \gamma \frac{900}{T+273} \, u_2 \, (
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Including DAG for Gamma Model</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>((<span class="st">"DAG.png"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"blog_post"</span>,<span class="st">"eddy_co_blog_stats_222"</span>,<span class="st">"image"</span>,<span class="st">"DAG.png"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DAG.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="image/DAG.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -455,7 +455,7 @@ HA : \beta_2 &gt; 0
 <p>The estimated coefficients from the simulated data closely match the values we initially specified <code>(β₀ = -3, β₁ = -2, β₂ = 0.05)</code>. This confirms that the Gamma model is appropriate for capturing the relationship between ETo, precipitation, and temperature. The simulation demonstrates that the model reliably recovers known parameter values, this gives confidence that the model can be effectively applied to the real CIMIS dataset.</p>
 <section id="importing-data" class="level4">
 <h4 class="anchored" data-anchor-id="importing-data">Importing Data</h4>
-<p>In our simulated data, we were able to recovered the true coefficients, let’s begin by loading in our data. I will be using two datasets that were retrieved from the CIMIS website, one was for daily ETo and daily data that consisted of precipitation (inches) and temperature (Fahrenheit).</p>
+<p>In our simulated data, we were able to recovered the true coefficients, let’s begin by loading in our data from the Camarillo Station. I will be using two datasets that were retrieved from the CIMIS website, one was for daily ETo and daily data that consisted of precipitation (inches) and temperature (Fahrenheit).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -866,16 +866,16 @@ HA : \beta_2 &gt; 0
 <section id="references" class="level1">
 <h1>References</h1>
 <ul>
-<li>Cross Validated. Stack Exchange. How to simulate data for a Gamma glm. <a href="https://stats.stackexchange.com/questions/623051/how-to-simulate-data-for-a-gamma-glm">Link</a>.</li>
-<li>EDS 222- Statistic for Data Science. Week 8. Lab 8 California Wildfire Occurrence. <a href="https://eds-222-stats-f25.github.io/course-materials/labs/lab8.html">Link</a>.</li>
-<li>Gamma Positive Continuous Data Part 1: Intro, Mean-Variance Relationship.RPub.<a href="https://rpubs.com/anangwe/1261395">Link</a>.</li>
-<li>Micheal Foley. Gamma Distribution. January 17, 2019.<a href="https://rpubs.com/mpfoley73/459051">Link</a>.</li>
+<li>Cross Validated. Stack Exchange. How to simulate data for a Gamma glm. <a href="https://stats.stackexchange.com/questions/623051/how-to-simulate-data-for-a-gamma-glm">Link</a>. https://stats.stackexchange.com/questions/623051/how-to-simulate-data-for-a-gamma-glm</li>
+<li>EDS 222- Statistic for Data Science. Week 8. Lab 8 California Wildfire Occurrence. <a href="https://eds-222-stats-f25.github.io/course-materials/labs/lab8.html">Link</a>. https://eds-222-stats-f25.github.io/course-materials/labs/lab8.html</li>
+<li>Gamma Positive Continuous Data Part 1: Intro, Mean-Variance Relationship.RPub.<a href="https://rpubs.com/anangwe/1261395">Link</a>.https://rpubs.com/anangwe/1261395</li>
+<li>Micheal Foley. Gamma Distribution. January 17, 2019.<a href="https://rpubs.com/mpfoley73/459051">Link</a>. https://rpubs.com/mpfoley73/459051</li>
 </ul>
 </section>
 <section id="citation" class="level1">
 <h1>Citation</h1>
 <ul>
-<li>CIMIS. Cimis.water.ca.gov. <a href="https://cimis.water.ca.gov/WSNReportCriteria.aspx">CIMIS</a></li>
+<li>CIMIS. Cimis.water.ca.gov. <a href="https://cimis.water.ca.gov/WSNReportCriteria.aspx">CIMIS</a>. https://cimis.water.ca.gov/WSNReportCriteria.aspx</li>
 <li>Tolteca, Marie. Eddy Covariance Station Set-Up. Eddy Covariance Station Image.</li>
 </ul>
 
