@@ -95,7 +95,7 @@
     "href": "blog_post/eddy_co_blog_stats_222/index.html",
     "title": "Eddy Covariance - Gamma Model and Simulation",
     "section": "",
-    "text": "Code\nknitr::include_graphics(\"eddy.png\")\n\n\n\n\n\n\n\n\n\nEddy Covariance with solar panel set-up in Soledad, California in a Broccoli Field. Credit: Marie Tolteca."
+    "text": "Code\nknitr::include_graphics(here::here(\"blog_post\",\"eddy_co_blog_stats_222\",\"image\",\"eddy.png\"))\n\n\n\n\n\n\n\n\n\nEddy Covariance with solar panel set-up in Soledad, California in a Broccoli Field. Credit: Marie Tolteca."
   },
   {
     "objectID": "blog_post/prioritizing_west_coast_aquaculture_sites/index.html",
