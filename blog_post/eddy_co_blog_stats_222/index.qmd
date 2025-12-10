@@ -5,50 +5,49 @@ author:
   - name: Marie Tolteca
     affiliation: Master of Environmental Data Science Program at The Bren School (UCSB)
     affiliation-url: ucsb-meds.github.io/
-date: "2025-12-04"
+date: "2025-12-09"
 categories: [Quarto, R, MEDS]
 citation:
   url: marietolteca00.github.io/blog_post/eddy_co_blog_stats_222
 image: eddy.png
 draft: false
+format: 
+  html: 
+    toc: true
+    code-fold: true
 ---
 
-# What is an Eddy Covariance Flux Tower?
+# Background
+
+#### What is an Eddy Covariance Flux Tower?
 
 -   An Eddy Covariance system is a tool that collects weather variables such as wind, temperature, precipitation, and more. A primary function is to measure the vertical exchange (flux) of gases, like carbon dioxide (CO2) and water vapor (H20), between an ecosystem and the atmosphere. The measurement of the water vapor flux provides the most accurate, ground-based method for determining evapotranspiration (ETo), which is the combined loss of water from soil evaporation and plant transpiration.
 
-# Eddy Covariance Station Location
-- Eddy Covariance Stations are placed across California. However, I am interested in this station because it is nearest to where I grew up and has been collecting data for a few years now. I will be conducting data exploration, data analysis, and fit a gamma model into my response variable of ETo and look at two predictor variables, precipitation and temperature. The Station itself has already calculated the Evapotranspiration using the Penman-Monteith (PM) equation.
+#### Eddy Covariance Station Location
+
+Eddy Covariance stations are located across California, but I focus on this particular station because it is closest to where I grew up and provides several years of continuous data. In this project, I conduct exploratory data analysis and fit a Gamma regression model with daily ETo as the response variable. The two predictor variables I examine are daily precipitation and average air temperature. The station computes daily ETo using the Penman–Monteith (PM) equation.
 
 $$
 ET_0 = \frac{0.408 \, \Delta \, (R_n - G) + \gamma \frac{900}{T+273} \, u_2 \, (e_s - e_a)}{\Delta + \gamma (1 + 0.34 \, u_2)}
 $$
 
-In this project I will use the *Total ETo column* as my *Response Variable*. The *predictor variables* will be *Average Air Temperature (F)* as well as *Total Precipitation (in)*. Here is a DAG of what I will try to model with a Gamma Model.
+-   My goal is to explore how ETo varies over time and to model daily ETo as a function of two environmental drivers: precipitation and air temperature. Below is a Directed Acyclic Graph (DAG) of how I plan to represent my workflow.
+
 ```{r}
 # Including DAG for Gamma Model
 knitr::include_graphics(("DAG.png"))
 ```
 
+The DAG above represents my understanding of how precipitation and temperature independently influence daily ETo. Precipitation affects surface moisture. For example, wet soil can increase evaporation, but rainy periods are often followed by cloudy, cooler conditions that reduce ETo. ETo is driven by vapor pressure deficit, radiation, and temperature. On days with higher precipitation, ETo tends to decrease due to increased humidity, cloud cover, and lower radiation. In this model, I assume that temperature and precipitation do not influence each other on a daily scale, but instead act as independent drivers of ETo.
 
-# Libraries Used
-For Reproducibility, these are the libraries used in this blog post to recreate this workflow. The `set.seed()` is set to always get the same random numbers and keep the consistency of reproducibility.
-```
-library(tidyverse)
-library(here)
-library(dplyr)
-library(patchwork)
-library(knitr)
-library(lubridate)
-library(purrr)
-library(broom)
-library(knitr)
-set.seed(42)
-```
-# Data
+#### Data Access
+
 The data was retrieved from the California Irrigation Management Information System (CIMIS) [CIMIS Link](https://cimis.water.ca.gov/Default.aspx). A profile needs to be created in order to download data. I am focused on the station located in Camarillo, CA. I downloaded the daily data and daily ETo variance for this location from September 2024 - October 2025.
 
-# Statistical Notation
+# Statistical Model
+
+The Gamma distribution is ideal for modeling positive, continuous, right-skewed data. Using a log link ensures that predicted values remain positive and allows for the effects of predictors (temperature and precipitation).
+
 $$
 \begin{align}
     {Eto} &\sim{Gamma(\mu,\phi)} 
@@ -61,15 +60,15 @@ log(\mu) = β0 + β1(Precipitation) + β2(Temperature)
 \end{align} 
 $$
 
-
-# Hypothesis
 $$
 \begin{align}
 Precipitation: 
 H0 : B1 = 0 \\
 HA : B1 < 0 \\
 \end{align}
-$$
+$$ *Null : When there is no precipitation ETo stays the same.*
+
+*Alt: When there is precipitation, ETo decreases.*
 
 $$
 \begin{align}
@@ -77,12 +76,16 @@ Temperature:
 H0 : B1 = 0 \\
 HA : B1 > 0
 \end{align}
-$$
+$$ *Null: When Temperature is the same, Eto stays the same.*
 
--   Evapotranspiration (ETo) is driven by vapor pressure deficit, radiation, and temperature. On days with higher precipitation, ETo tends to decrease because of cloud cover, lower radiation, and higher humidity.
+*Alt: When Temperature increase there is more ETo*
 
+#### Libraries Used
 
-# Import Libraries
+For Reproducibility, these are the libraries used in this blog post to recreate this workflow. The `set.seed()` is set to always get the same random numbers and keep the consistency of reproducibility. The libraries used are: `tidyverse, here, dplyr, patchwork, knitr, lubridate, broom, and purr`.
+
+#### Import Libraries
+
 ```{r, message=FALSE}
 library(tidyverse)
 library(here)
@@ -96,9 +99,56 @@ library(knitr)
 set.seed(42)
 ```
 
+# Simulation
 
+Using Rgamma (n, shape, scale). References used Cross Validate and Gamma Positive Continuous Data.
 
-# Importing Data
+```{r}
+# Number of observations
+n <- 10000
+
+# Simulate predictors
+precip <- rnorm(n, mean = 0, sd = 2)        # Precipitation
+temp   <- rnorm(n, mean = 65, sd = 10)      # Avg. Temperature 
+
+# Generate Coefficients
+beta0 <- -3   # Intercept - # ETo
+beta1 <- -2   # Precipitation decreases with Eto
+beta2 <-  0.05   # Temperature increases with Eto
+
+# Expected mean on original scale
+mu <- exp(beta0 + beta1 * precip + beta2 * temp)
+
+# Gamma Arguments
+shape_param <- 12
+scale_param <- mu / shape_param
+
+# Response variable - ETo
+y <- rgamma(n, shape = shape_param, scale = scale_param)
+
+# Make simulated data into a DF
+simulated_data <- data.frame(
+  precip = precip,
+  temp = temp,
+  eto = y
+)
+
+# Simulation by fitting a Gamma GLM
+sim_model <- glm(eto ~ precip + temp,
+                 family = Gamma(link = "log"),
+                 data = simulated_data)
+
+#Make coefficient table pretty with kable and broom
+tidy(sim_model) %>%
+  kable(digits = 3, caption = "Coefficient Estimates for Simulated Data")
+```
+
+The estimated coefficients from the simulated data closely match the values we initially specified (β₀ = -3, β₁ = -2, β₂ = 0.05). This confirms that the Gamma model is appropriate for capturing the relationship between ETo, precipitation, and temperature. The simulation demonstrates that the model reliably recovers known parameter values, this gives confidence that the model can be effectively applied to the real CIMIS dataset.
+
+#### Importing Data
+
+In our simulated data, we were able to recovered the coefficients, let's begin by loading in our data.
+
 ```{r, message=FALSE, output = FALSE}
 eto <- read_csv(here("blog_post/eddy_co_blog_stats_222/data/daily_eto_variance_CAM.csv"), 
                         show_col_types = FALSE) %>% 
@@ -113,72 +163,94 @@ daily <- read_csv(here("blog_post/eddy_co_blog_stats_222/data/daily_data_CAM.csv
 head(eto)
 ```
 
-# Data Cleaning
-```{r, message=FALSE, output = FALSE}
+#### Data Exploratory
 
-# Dropping columns that have `qc`
-# ETO Dataset
-drop <- c("qc_6", "qc_8")
-eto[ , !(names(eto) %in% drop)]
-
-# DAILY Dataset
-drops <- c("qc_")
-daily[ , !(names(daily) %in% drops)]
-```
-
-
-# Data Exploratory
-```{r, output = FALSE}
-hist(daily$e_to_in)
-
+```{r, message=FALSE}
 p1 <- ggplot(data = daily,
        aes(x = e_to_in)) +
   geom_histogram() +
   geom_vline(xintercept = mean(daily$e_to_in),
              color = "red",
              linetype = "dashed",
-             linewidth = 1)
+             linewidth = 1)+
+  labs(
+    x = "ETo",
+    y = "Count"
+  )+
+  theme_light()
 p1
+```
 
+#### Viewing columns and Changing Date Format
+
+```{r, output = FALSE}
 # Data type
 class(daily$date)
 
 summary(daily)
 names(daily)
 
+# Changing Date column- Using Lubridate
+eto$date  <- mdy(eto$date) 
+daily$date <- mdy(daily$date)
+
+
 # Check NA's
 colSums(is.na(daily))
 colSums(is.na(eto))
 ```
 
+#### Preliminary Visuals
 
-```{r}
+```{r, message=FALSE}
 map1<- ggplot(data = daily, aes(x = precip_in, y = e_to_in)) +
   geom_point() +
-  labs(title = "Camarillo, Daily ET Over A Year")+
-  theme_linedraw()
+  labs(title = "Camarillo, Daily ET Over A Year",
+       x = "Precipitation (in)",
+       y = "ETo (in)")+
+  theme_light()
 
 map2<-ggplot(data = daily, aes(x = avg_air_temp_f, y = e_to_in)) +
   geom_point() +
-  labs(title = "Camarillo, Daily ET Over A Year")+
-  theme_linedraw()
+  labs(title = "Camarillo, Daily ET Over A Year",
+       x = "Average Air Temperature (F)",
+       y = "ETo (in)")+
+  theme_light()
 
 (map1+map2)
 
 map3 <- ggplot(data = eto, aes(x = date, y = avg_e_to_in)) +
   geom_point() +
-  labs(title = "Camarillo, ET Over A Year")+
-  theme_linedraw()
-map4 <-ggplot(data = daily, aes(x = date, y = avg_air_temp_f)) +
-  geom_point() +
-  labs(title = "Camarillo, Daily Temp Over A Year")+
-  theme_linedraw()
+  labs(title = "Camarillo, ET Over A Year",
+       x = "Date",
+       y = "Average ETo (in)") +
+  scale_x_date(
+    date_breaks = "1 month",
+    date_labels = "%b") +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 40, hjust = 1))
 
-(map3+map4)
+map4 <- ggplot(data = daily, aes(x = date, y = avg_air_temp_f)) +
+  geom_point() +
+  labs(title = "Camarillo, Daily Temp Over A Year",
+       y = "Average Air Temperature (F)",
+       x = "Date") +
+  scale_x_date(
+    date_breaks = "1 month",
+    date_labels = "%b") +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 40, hjust = 1))
+
+(map3 + map4)
+
 ```
 
-# Join Data
+During preliminary data exploration, we can observe the trends in daily ETo, average temperature, and precipitation. The histograms and scatterplots help visualize the distribution and relationships of these variables over time. The next step is to combine the datasets so that all relevant variables are stored in a single dataframe for analysis.
+
+# Data Analysis
+
 Data needs to be merged, to combine Precipitation and Temperature from the same station. To combine data it will be a left join using the date column since both datasets have a date column.
+
 ```{r,output = FALSE}
 daily_eto <- left_join(eto, daily, by = "date") %>% 
   janitor::clean_names() %>% 
@@ -195,8 +267,10 @@ head(daily_eto)
 
 ```
 
-# After Joining
+### After Joining Dataframes
+
 View how all the three variables (ETo, Precipitation, and Temperature) look in a scatterplot.
+
 ```{r}
 ggplot(data = daily_eto, aes(x = precip_in, 
                              y = avg_air_temp_f)) +
@@ -206,14 +280,14 @@ ggplot(data = daily_eto, aes(x = precip_in,
        subtitle = "ETo, Prepicitation, and Temperature",
        x = "Precipitation (in)",
        y = "Average Air Temperature (F)",
-       fill = "ETo")+
-  theme_linedraw()
+       color = "ETo (in)")+
+  theme_light()
 ```
 
-In this figure we can see if there is a higher average air temperature (F) we can expect more ETo, compared to Precipitation.
+In this figure we can see if there is a higher average air temperature (F) we can expect more ETo, compared to precipitation.
 
+## Fit Gamma Model
 
-# Gamma Model
 -   Eto = evapotranspiration (inches)
 -   Precipitation = Daily Precipitation (inches)
 -   Temperature = Average Daily Air Temperature (Farenheit)
@@ -249,6 +323,7 @@ B2 <- cam_gamma$coef[3]
 tidy(cam_gamma) %>%
   kable(digits = 3, caption = "Coefficient Estimates")
 ```
+
 "B0 = `r round(B0, 2)` (β₀): The expected ETo when precipitation (in) and temperature (F) are equal to 0."
 
 "B1 = `r round(B1, 2)` (β₁): For every 1-inch increase in precipitation,e_to_in_adj (ETo) will decrease, holding temperature constant.
@@ -257,9 +332,9 @@ tidy(cam_gamma) %>%
 
 All three coefficients hold a value of \<2e-16, this implied that all three constants are highly significant. Both predictors have a strong effect on ETo. With more rain, the lower the ETo. With higher temperature the more ETo.
 
+#### Expand Grid and Prediction Grid
 
-# Expand Grid and Prediction Grid
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # A grid of predictors to generate predictions for 
 pred_grid <- expand.grid(
   precip_in = seq(min(daily_eto$precip_in), max(daily_eto$precip_in), 
@@ -278,7 +353,7 @@ plot1 <- ggplot(eto_pred, aes(x = precip_in, y = avg_air_temp_f)) +
   geom_raster(aes(fill = phi)) +
   geom_contour(aes(z = phi), color = "white", alpha = 0.6) +
   # Scale - color fill
-  scale_fill_viridis_c() +
+  scale_fill_viridis_c(option = "rainbow") +
   labs(
     #title = "Predicted Evapotranspiration",
     #subtitle = "Gamma Model Log Link",
@@ -292,7 +367,7 @@ plot1 <- ggplot(eto_pred, aes(x = precip_in, y = avg_air_temp_f)) +
 plot2<- ggplot(eto_pred, aes(x = precip_in, y = phi, color = avg_air_temp_f)) +
   geom_point(alpha = 0.5) +
   geom_line() +
-  scale_color_viridis_c() +
+  scale_color_viridis_c(option = "rainbow") +
   labs(
     #title = "Predicted ETo vs Precipitation",
     #subtitle = "Gamma GLM with log link",
@@ -305,34 +380,32 @@ plot2<- ggplot(eto_pred, aes(x = precip_in, y = phi, color = avg_air_temp_f)) +
 # Viewing Plots
 (plot1 / plot2)
 ```
-*Interp*: The contour plot (top plot) shows as temperatures increases, the predicted ETo also increases. When there is more precipitation ETo decreases. The plot on the bottom showcases the same message, as temperature increases there is more ETo present. When precipitation increases there is a lower trend of ETo present. This can also be viewed as the lines start from the top and drop when precipitation increases. In this plot the temperature would be better showcases if arranged in levels to not have a clusters group. This is better showcased in the plot 3.
 
+*Interp*: The contour plot (top plot) shows as temperatures increases, the predicted ETo also increases. When there is more precipitation ETo decreases. The plot on the bottom showcases the same message, as temperature increases there is more ETo present. When precipitation increases there is a lower trend of ETo present. This can also be viewed as the lines start from the top and drop when precipitation increases. In this plot the temperature would be better showcases if arranged in levels to not have a clusters group. This is better showcased in the following plot.
 
-# Integrating Confidence Intervals
-```{r}
+#### Integrating Confidence Intervals
+
+```{r, message=FALSE, warning=FALSE}
 # Prediction grid with selected temperature levels
 temp_levels <- c(50, 60, 70, 80)
 
 pred_grid1 <- expand.grid(
   precip_in = seq(min(daily_eto$precip_in), max(daily_eto$precip_in), length.out = 50),
-  avg_air_temp_f = temp_levels
-)
+  avg_air_temp_f = temp_levels)
 
 # Predictions on response scale
 eto_pred1 <- pred_grid1 %>% 
   mutate(lambda = predict(
     object = cam_gamma,
     newdata = pred_grid1,
-    type = "response"
-  ))
+    type = "response"))
 
 # Prediction for Standard Error- This will be used for CI
 eto_se <- predict(
   object = cam_gamma,
   newdata = pred_grid1,
   type = "link",
-  se.fit = TRUE
-)
+  se.fit = TRUE)
 
 # Inverse link function (exp for log link)
 linkinv <- family(cam_gamma)$linkinv
@@ -349,85 +422,34 @@ eto_pred <- pred_grid1 %>%
     # Back-transform to response scale
     phi       = linkinv(logit_p),
     phi_lwr   = linkinv(logit_p_lwr),
-    phi_upr   = linkinv(logit_p_upr)
-  )
+    phi_upr   = linkinv(logit_p_upr))
 
 # Plot with CI
-plot3 <- ggplot(eto_pred, aes(x = precip_in, y = phi, color = factor(avg_air_temp_f))) +
+plot3<- ggplot(eto_pred, aes(x = precip_in, y = phi, group = factor(avg_air_temp_f))) +
+  # Ribbon per temperature level
   geom_ribbon(aes(ymin = phi_lwr, ymax = phi_upr, fill = factor(avg_air_temp_f)),
               alpha = 0.2, color = NA) +
-  geom_line() +
+  # Line per temperature level
+  geom_line(aes(color = factor(avg_air_temp_f)), size = 1) +
+  # Discrete color/fill scale
+  scale_fill_viridis_d(option = "rainbow", name = "Air Temp (°F)") +
+  scale_color_viridis_d(option = "rainbow", name = "Air Temp (°F)") +
   labs(
     x = "Precipitation (in)",
-    y = "Predicted ETo (in)",
-    color = "Air Temp (°F)",
-    fill = "Air Temp (°F)"
+    y = "Predicted ETo (in)"
   ) +
   theme_light()
 
 plot3
 
 # View Plots Together
-(plot1 / plot3) 
+(plot1 / plot3)
 
 ```
+
 *Interp*: Plot 3 shows the relationship between expected daily evapotranspiration (ETo) and precipitation at various air temperature levels. Wetter days are associated with decreased atmospheric demand for water loss because ETo drops as precipitation increases across all temperatures. At any given precipitation level, higher air temperatures are associated with higher ETo because warmer air increases evaporative demand. When both temperature is low and precipitation is high, predicted ETo is lowest. The 95% confidence intervals for the model's predictions are shown by the shaded ribbons. They display the range of anticipated ETo values for every temperature and precipitation combination that would result from repeatedly gathering new data and refitting the same model. Narrower ribbons indicate higher certainty in the predicted mean ETo, while wider ribbons indicate greater uncertainty.
 
-Lastly, I combined all three plots together to demonstrate the same message shown in different ways. The main takeaway is when temperature increases drier days which hold and remove more water. When temperature decreases, minimal ETo is produced. This could be because of an increase in humidity, cloud cover, and rain events.
-
-# Simulation
-Using Rgamma (n, shape, scale). References used Cross Validate and Gamma Positive Continuous Data.
-```{r}
-# Number of observations
-n <- 10000
-
-# Simulate predictors
-precip <- rnorm(n, mean = 0, sd = 2)        # Precipitation
-temp   <- rnorm(n, mean = 65, sd = 10)      # Avg. Temperature 
-
-# Generate Coefficients
-beta0 <- -3   # Intercept - # ETo
-beta1 <- -2   # Precipitation decreases with Eto
-beta2 <-  0.05   # Temperature increases with Eto
-
-# Expected mean on original scale
-mu <- exp(beta0 + beta1 * precip + beta2 * temp)
-
-# Gamma Arguments
-shape_param <- 12
-scale_param <- mu / shape_param
-
-# Response variable - ETo
-y <- rgamma(n, shape = shape_param, scale = scale_param)
-
-# Make simulated data into a DF
-simulated_data <- data.frame(
-  precip = precip,
-  temp = temp,
-  eto = y
-)
-
-# Simulation by fitting a Gamma GLM
-sim_model <- glm(eto ~ precip + temp,
-                 family = Gamma(link = "log"),
-                 data = simulated_data)
-```
-
-
-# Compare Summary Tables from Original and Simulated Data
-```{r}
-#Make coefficient table pretty with kable and broom
-tidy(sim_model) %>%
-  kable(digits = 3, caption = "Coefficient Estimates for Simulated Data")
-
-# Using Kable and Broom Packages to display GLM Model Coefficients
-tidy(cam_gamma) %>%
-  kable(digits = 3, caption = "Coefficient Estimates")
-```
-
-### Take-Aways:
-
-From the simulated data, ETo has a higher baseline (B0 = -3) compared to the original data (B0 = -4 ). The effect of precipitation is stronger (B1 = -2) and the effect of temperature is slightly stronger (B2 = 0.05) in the simulation. The standard errors are much smaller in the simulated data, reflecting the large sample size and controlled variability, while the original data show larger standard errors due to measurement uncertainty. Overall, both models indicate that precipitation and temperature significantly influence ETo.
+Lastly, I combined all both plots together to demonstrate the same message shown in different ways. The main takeaway is when temperature increases drier days which hold and remove more water. When temperature decreases, minimal ETo is produced. This could be because of an increase in humidity, cloud cover, and rain events.
 
 # References
 
@@ -437,10 +459,6 @@ From the simulated data, ETo has a higher baseline (B0 = -3) compared to the ori
 -   Micheal Foley. Gamma Distribution. January 17, 2029.[Link](https://rpubs.com/mpfoley73/459051).
 
 # Citation
-- CIMIS. Cimis.water.ca.gov. [CIMIS](https://cimis.water.ca.gov/WSNReportCriteria.aspx)
-- Marie Tolteca. Eddy Covariance Station Set-Up. Eddy Covariance Station Image.
 
-
-
-
-
+-   CIMIS. Cimis.water.ca.gov. [CIMIS](https://cimis.water.ca.gov/WSNReportCriteria.aspx)
+-   Tolteca, Marie. Eddy Covariance Station Set-Up.Image. Eddy Covariance Station Image.
