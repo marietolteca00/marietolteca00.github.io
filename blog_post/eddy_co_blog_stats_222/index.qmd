@@ -331,11 +331,11 @@ tidy(cam_gamma) %>%
   kable(digits = 3, caption = "Coefficient Estimates")
 ```
 
-"β0 = `r round(B0, 2)` (β₀): The expected e_to_in_adj (ETo) when precipitation (in) and temperature (F) are equal to 0."
+β0 = `r round(B0, 2)` (β₀): The expected e_to_in_adj (ETo) when precipitation (in) and temperature (F) are equal to 0.
 
-"β1 = `r round(B1, 2)` (β₁): For every 1-inch increase in precipitation, ETo will decrease, holding temperature constant.
+β1 = `r round(B1, 2)` (β₁): For every 1-inch increase in precipitation, ETo will decrease, holding temperature constant.
 
-"β2 = `r round(B2, 2)` (β₂): For each 1 (F) increase in mean air temperature, ETo tends to increase, holding precipitation constant."
+β2 = `r round(B2, 2)` (β₂): For each 1 (F) increase in mean air temperature, ETo tends to increase, holding precipitation constant.
 
 All three coefficients hold a p-value of \<2e-16, this implied that all three constants are different from zero. Both predictors have a strong effect on ETo. With more rain, the lower the ETo. With higher temperature the more ETo.
 
