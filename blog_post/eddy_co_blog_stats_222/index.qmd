@@ -214,14 +214,16 @@ ggplot(data = daily,
 ```{r, message=FALSE}
 map1<- ggplot(data = daily, aes(x = precip_in, y = e_to_in)) +
   geom_point() +
-  labs(title = "Camarillo, Daily ET Over A Year",
+  labs(
+    #title = "Camarillo, Daily ETo (in) Over A Year",
        x = "Precipitation (in)",
        y = "ETo (in)")+
   theme_light()
 
 map2<-ggplot(data = daily, aes(x = avg_air_temp_f, y = e_to_in)) +
   geom_point() +
-  labs(title = "Camarillo, Daily ET Over A Year",
+  labs(
+    #title = "Camarillo, Daily ETo (in) Over A Year",
        x = "Average Air Temperature (F)",
        y = "ETo (in)")+
   theme_light()
@@ -230,7 +232,8 @@ map2<-ggplot(data = daily, aes(x = avg_air_temp_f, y = e_to_in)) +
 
 map3 <- ggplot(data = eto, aes(x = date, y = avg_e_to_in)) +
   geom_point() +
-  labs(title = "Camarillo, ET Over A Year",
+  labs(
+    #title = "Camarillo, ETo (in) Over A Year",
        x = "Date",
        y = "Average ETo (in)") +
   scale_x_date(
@@ -241,7 +244,8 @@ map3 <- ggplot(data = eto, aes(x = date, y = avg_e_to_in)) +
 
 map4 <- ggplot(data = daily, aes(x = date, y = avg_air_temp_f)) +
   geom_point() +
-  labs(title = "Camarillo, Daily Temp Over A Year",
+  labs(
+    #title = "Camarillo, Daily Temp Over A Year",
        y = "Average Air Temperature (F)",
        x = "Date") +
   scale_x_date(
