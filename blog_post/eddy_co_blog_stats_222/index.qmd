@@ -19,7 +19,7 @@ format:
 
 #### Image of Eddy Covariance Station
 ```{r, fig.align='center'}
-knitr::include_graphics("eddy.png")
+knitr::include_graphics(here::here("blog_post","eddy_co_blog_stats_222","image","eddy.png"))
 ```
 Eddy Covariance with solar panel set-up in Soledad, California in a Broccoli Field. Credit: Marie Tolteca.
 
@@ -42,7 +42,7 @@ The goal of this analysis is to examine how daily ETo responds to two key enviro
 
 ```{r, fig.align='center'}
 # Including DAG for Gamma Model
-knitr::include_graphics(("DAG.png"))
+knitr::include_graphics(here::here("blog_post","eddy_co_blog_stats_222","image","DAG.png"))
 ```
 
 The DAG above represents my understanding of how precipitation and temperature independently influence daily ETo. Precipitation affects surface moisture. For example, wet soil can increase evaporation, but rainy periods are often followed by cloudy, cooler conditions that reduce ETo. ETo is driven by vapor pressure deficit, radiation, and temperature. On days with higher precipitation, ETo tends to decrease due to increased humidity, cloud cover, and lower radiation. In this model, I assume that temperature and precipitation do not influence each other on a daily scale, but instead act as independent drivers of ETo.
@@ -157,7 +157,7 @@ The estimated coefficients from the simulated data closely match the values we i
 
 #### Importing Data
 
-In our simulated data, we were able to recovered the true coefficients, let's begin by loading in our data. I will be using two datasets that were retrieved from the CIMIS website, one was for daily ETo and daily data that consisted of precipitation (inches) and temperature (Fahrenheit). 
+In our simulated data, we were able to recovered the true coefficients, let's begin by loading in our data from the Camarillo Station. I will be using two datasets that were retrieved from the CIMIS website, one was for daily ETo and daily data that consisted of precipitation (inches) and temperature (Fahrenheit). 
 ```{r, message=FALSE, output = FALSE}
 eto <- read_csv(here("blog_post/eddy_co_blog_stats_222/data/daily_eto_variance_CAM.csv"), 
                         show_col_types = FALSE) %>% 
@@ -459,12 +459,12 @@ Lastly, I combined the plots together to provide a clear view of how ETo varies 
 
 # References
 
--   Cross Validated. Stack Exchange. How to simulate data for a Gamma glm. [Link](https://stats.stackexchange.com/questions/623051/how-to-simulate-data-for-a-gamma-glm).
--   EDS 222- Statistic for Data Science. Week 8. Lab 8 California Wildfire Occurrence. [Link](https://eds-222-stats-f25.github.io/course-materials/labs/lab8.html).
--   Gamma Positive Continuous Data Part 1: Intro, Mean-Variance Relationship.RPub.[Link](https://rpubs.com/anangwe/1261395).
--   Micheal Foley. Gamma Distribution. January 17, 2019.[Link](https://rpubs.com/mpfoley73/459051).
+-   Cross Validated. Stack Exchange. How to simulate data for a Gamma glm. [Link](https://stats.stackexchange.com/questions/623051/how-to-simulate-data-for-a-gamma-glm). https://stats.stackexchange.com/questions/623051/how-to-simulate-data-for-a-gamma-glm
+-   EDS 222- Statistic for Data Science. Week 8. Lab 8 California Wildfire Occurrence. [Link](https://eds-222-stats-f25.github.io/course-materials/labs/lab8.html). https://eds-222-stats-f25.github.io/course-materials/labs/lab8.html
+-   Gamma Positive Continuous Data Part 1: Intro, Mean-Variance Relationship.RPub.[Link](https://rpubs.com/anangwe/1261395).https://rpubs.com/anangwe/1261395
+-   Micheal Foley. Gamma Distribution. January 17, 2019.[Link](https://rpubs.com/mpfoley73/459051). https://rpubs.com/mpfoley73/459051
 
 # Citation
 
--   CIMIS. Cimis.water.ca.gov. [CIMIS](https://cimis.water.ca.gov/WSNReportCriteria.aspx)
+-   CIMIS. Cimis.water.ca.gov. [CIMIS](https://cimis.water.ca.gov/WSNReportCriteria.aspx).  https://cimis.water.ca.gov/WSNReportCriteria.aspx
 -   Tolteca, Marie. Eddy Covariance Station Set-Up. Eddy Covariance Station Image.
