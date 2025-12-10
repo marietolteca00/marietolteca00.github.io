@@ -298,16 +298,16 @@ ET_0 = \frac{0.408 \, \Delta \, (R_n - G) + \gamma \frac{900}{T+273} \, u_2 \, (
 <section id="goal" class="level4">
 <h4 class="anchored" data-anchor-id="goal">Goal</h4>
 <p>The goal of this analysis is to examine how daily ETo responds to two key environmental drivers: precipitation and air temperature. The focus is on understanding how these predictors independently influence ETo. A Gamma GLM with a log link will be used to assess whether this modeling framework is appropriate for the dataset and to explore the relationships between ETo and the environmental variables. Below is a Directed Acyclic Graph (DAG) of how I plan to represent my workflow.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Including DAG for Gamma Model</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>((<span class="st">"DAG.png"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DAG.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="DAG.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -500,7 +500,7 @@ HA : \beta_2 &gt; 0
 </section>
 <section id="preliminary-visuals" class="level4">
 <h4 class="anchored" data-anchor-id="preliminary-visuals">Preliminary Visuals</h4>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot it</span></span>
@@ -518,14 +518,14 @@ HA : \beta_2 &gt; 0
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>map1<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> daily, <span class="fu">aes</span>(<span class="at">x =</span> precip_in, <span class="at">y =</span> e_to_in)) <span class="sc">+</span></span>
@@ -547,9 +547,9 @@ HA : \beta_2 &gt; 0
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>(map1<span class="sc">+</span>map2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -582,9 +582,9 @@ HA : \beta_2 &gt; 0
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>(map3 <span class="sc">+</span> map4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -613,7 +613,7 @@ HA : \beta_2 &gt; 0
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(daily_eto)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot it!</span></span>
@@ -629,9 +629,9 @@ HA : \beta_2 &gt; 0
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -722,7 +722,7 @@ HA : \beta_2 &gt; 0
 <section id="prediction-grid-and-expand-grid" class="level4">
 <h4 class="anchored" data-anchor-id="prediction-grid-and-expand-grid">Prediction Grid and Expand Grid</h4>
 <p>To visualize how the Gamma GLM predicts ETo across the full range of observed precipitation and air temperature values, I generated a prediction grid using the sequence of precipitation and temperature within their observed ranges. The fitted Gamma model was then used to compute predicted ETo (phi) for each point in the grid.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A grid of predictors to generate predictions for </span></span>
@@ -771,9 +771,9 @@ HA : \beta_2 &gt; 0
 <span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>(plot1 <span class="sc">/</span> plot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -783,7 +783,7 @@ HA : \beta_2 &gt; 0
 <section id="integrating-confidence-intervals" class="level4">
 <h4 class="anchored" data-anchor-id="integrating-confidence-intervals">Integrating Confidence Intervals</h4>
 <p>To visualize the confidence intervals, I calculated 95% confidence intervals for predicted ETo across a range of precipitation values at selected temperature levels (50°F, 60°F, 70°F, and 80°F). A prediction grid was created at these temperature levels, and predicted values along with their standard errors were obtained on the link (log) scale. Confidence limits were constructed on the link scale and then transformed back to the response scale using the inverse link function. The resulting curves and shaded ribbons illustrate how predicted ETo varies with precipitation while showing the uncertainty associated with each temperature level.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selected temperature levels for better visualization</span></span>
@@ -839,9 +839,9 @@ HA : \beta_2 &gt; 0
 <span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>plot3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -851,9 +851,9 @@ HA : \beta_2 &gt; 0
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(plot1 <span class="sc">/</span> plot3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>

@@ -40,7 +40,7 @@ $$
 #### Goal
 The goal of this analysis is to examine how daily ETo responds to two key environmental drivers: precipitation and air temperature. The focus is on understanding how these predictors independently influence ETo. A Gamma GLM with a log link will be used to assess whether this modeling framework is appropriate for the dataset and to explore the relationships between ETo and the environmental variables. Below is a Directed Acyclic Graph (DAG) of how I plan to represent my workflow.
 
-```{r}
+```{r, fig.align='center'}
 # Including DAG for Gamma Model
 knitr::include_graphics(("DAG.png"))
 ```
@@ -195,7 +195,7 @@ daily$date <- mdy(daily$date)
 
 #### Preliminary Visuals
 
-```{r, message=FALSE}
+```{r, message=FALSE,fig.align='center'}
 # Plot it
 ggplot(data = daily,
        aes(x = e_to_in)) +
@@ -211,7 +211,7 @@ ggplot(data = daily,
   theme_light()
 ```
 
-```{r, message=FALSE}
+```{r, message=FALSE, fig.align='center'}
 map1<- ggplot(data = daily, aes(x = precip_in, y = e_to_in)) +
   geom_point() +
   labs(
@@ -279,7 +279,7 @@ daily_eto <- left_join(eto, daily, by = "date") %>%
 head(daily_eto)
 ```
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align='center'}
 # Plot it!
 ggplot(data = daily_eto, aes(x = precip_in, 
                              y = avg_air_temp_f)) +
@@ -342,7 +342,7 @@ All three coefficients hold a p-value of \<2e-16, this implied that all three co
 #### Prediction Grid and Expand Grid 
 To visualize how the Gamma GLM predicts ETo across the full range of observed precipitation and air temperature values, I generated a prediction grid using the sequence of precipitation and temperature within their observed ranges. The fitted Gamma model was then used to compute predicted ETo (phi) for each point in the grid.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align='center'}
 # A grid of predictors to generate predictions for 
 pred_grid <- expand.grid(
   precip_in = seq(min(daily_eto$precip_in), max(daily_eto$precip_in), 
@@ -394,7 +394,7 @@ plot2<- ggplot(eto_pred, aes(x = precip_in, y = phi, color = avg_air_temp_f)) +
 #### Integrating Confidence Intervals
 To visualize the confidence intervals, I calculated 95% confidence intervals for predicted ETo across a range of precipitation values at selected temperature levels (50°F, 60°F, 70°F, and 80°F). A prediction grid was created at these temperature levels, and predicted values along with their standard errors were obtained on the link (log) scale. Confidence limits were constructed on the link scale and then transformed back to the response scale using the inverse link function. The resulting curves and shaded ribbons illustrate how predicted ETo varies with precipitation while showing the uncertainty associated with each temperature level.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align='center'}
 # Selected temperature levels for better visualization
 temp_levels <- c(50, 60, 70, 80)
 
