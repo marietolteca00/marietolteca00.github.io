@@ -74,9 +74,9 @@ H0 : \beta_1 = 0 \\
 HA : \beta_1 < 0 \\
 \end{align}
 $$ 
-*Null : When there is no precipitation ETo stays the same.*
+*Null (H0) : When there is no precipitation ETo stays the same.*
 
-*Alt: When there is precipitation, ETo decreases.*
+*Alt (HA): When there is precipitation, ETo decreases.*
 
 $$
 \begin{align}
@@ -86,9 +86,9 @@ HA : \beta_2 > 0
 \end{align}
 $$ 
 
-*Null: When Temperature is the same, Eto stays the same.*
+*Null (H0): When Temperature is the same, Eto stays the same.*
 
-*Alt: When Temperature increase there is more ETo*
+*Alt (HA): When Temperature increase there is more ETo*
 
 #### Libraries Used
 
@@ -371,25 +371,11 @@ plot1 <- ggplot(eto_pred, aes(x = precip_in, y = avg_air_temp_f)) +
   ) +
   theme_light()
 
-# plot 2
-plot2<- ggplot(eto_pred, aes(x = precip_in, y = phi, color = avg_air_temp_f)) +
-  geom_point(alpha = 0.5) +
-  geom_line() +
-  scale_color_viridis_c(option = "rainbow") +
-  labs(
-    #title = "Predicted ETo vs Precipitation",
-    #subtitle = "Gamma GLM with log link",
-    x = "Precipitation (in)",
-    y = "Predicted ETo (in)",
-    color = "Temperature (°F) "
-  ) +
-  theme_light()
-
 # Viewing Plots
-(plot1 / plot2)
+(plot1)
 ```
 
-*Interp*: The contour plot (top plot) shows that predicted ETo increases with higher temperatures and decreases as precipitation increases. The scatter and line plot (bottom) conveys the same relationships: at higher temperatures, ETo is higher, and increasing precipitation corresponds to lower ETo. In the bottom plot, the effect of temperature is somewhat harder to distinguish due to overlapping points and lines, which could be improved by grouping temperature into discrete levels. These relationships are more clearly visualized in the following plot with confidence intervals added.
+*Interp*: The contour plot (top plot) shows that predicted ETo increases with higher temperatures and decreases as precipitation increases. 
 
 #### Integrating Confidence Intervals
 To visualize the confidence intervals, I calculated 95% confidence intervals for predicted ETo across a range of precipitation values at selected temperature levels (50°F, 60°F, 70°F, and 80°F). A prediction grid was created at these temperature levels, and predicted values along with their standard errors were obtained on the link (log) scale. Confidence limits were constructed on the link scale and then transformed back to the response scale using the inverse link function. The resulting curves and shaded ribbons illustrate how predicted ETo varies with precipitation while showing the uncertainty associated with each temperature level.
