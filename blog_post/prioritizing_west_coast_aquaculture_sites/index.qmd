@@ -127,9 +127,12 @@ if (crs(avg_08) == crs(regions)) {
     print("Regions coordinate reference systems match after transformation :)")
 }  
 ```
-
+# Data Processing
 ### Combine SST rasters into a raster stack
 The original SST files have temperature values in Kelvin. Here, we combine all five monthly SST rasters (avg_08-avg_12) into a stack, calculate the mean sea surface temperature, and convert the values from Kelvin to Celsius by subtracting 273.15.
+
+To identify suitable habitats for oysters, we first combined five raster (avg_08-avg_12) of sea surface temperature (SST) rasters into a single dataset and calculated the mean SST, converting the values from Kelvin to Celsius by subtracting 273.15. Depth data were cropped and resampled to align with the SST data, ensuring that all spatial layers had matching extents, resolutions, and coordinate reference systems.
+Next, we will identify areas suitable for oyster aquaculture by applying environmental thresholds: depths between 0–70 meters and SSTs between 11–30°C. Locations meeting both requirements were marked as suitable, producing a raster layer that will be mapped to highlight areas where oysters could potentially thrive from suitable areas. This processing ensures that our subsequent analysis and mapping accurately reflect the intersection of temperature and depth requirements across West Coast EEZs.
 ```{r}
 # Combining rasters
 sst_stack <- c(avg_08, avg_09, avg_10, avg_11, avg_12)
@@ -140,9 +143,8 @@ names(sst_mean) <- "sst_mean"
 
 ```
 
-# Data Processing
 ### Crop, Extent, Resolution
-For spatial analysis to work correctly, rasters must have matching extents, resolutions, and alignment. Here, I crop the depth data to match the SST extent, then resample it to ensure both rasters have identical cell sizes and positions. Finally, I verify that resolution, extent, and CRS all match between the two datasets.
+For accurate spatial analysis, all the `sst_mean` must have matching extents, resolutions, and coordinate reference systems (CRS). To achieve this, the depth raster was cropped to match the geographic extent of the mean sea surface temperature (SST) data. It was then resampled so that cell sizes and positions aligned precisely with the SST raster. Finally, the datasets were checked and confirmed to have matching resolutions, extents, and CRS, ensuring that all subsequent analyses and suitability calculations would be spatially consistent and reliable.
 ```{r}
 # Obtain geographic extent/bounding box of species occurrences
 st_bbox(sst_mean)
