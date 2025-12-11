@@ -5,7 +5,7 @@ author:
   - name: Marie Tolteca
     affiliation: Master of Environmental Data Science Program at The Bren School (UCSB)
     affiliation-url: https://ucsb-meds.github.io/
-date: "2025-12-06"
+date: "2025-12-11"
 categories: [Quarto, R, MEDS]
 citation:
   url: https://marietolteca00.github.io/blog_post/prioritizing_west_coast_aquaculture_sites
@@ -15,7 +15,6 @@ format:
   html:
     code-fold: true
     toc: true
-
 ---
 # Background
 
@@ -26,28 +25,27 @@ Along the U.S. West Coast, aquaculture includes diverse systems and species, fro
 
 This project examines West Coast EEZs to identify suitable locations for oysters and other species, using SST rasters from 2008-2012, bathymetry data, and EEZ boundaries. The analysis employs raster and vector methods, including resampling, masking, and map algebra, and develops a reusable function to map suitability by species. My personal statement is to understand how environmental constraints shape aquaculture opportunities and to create a spatial workflow that can guide sustainable and commercially feasible marine farming along the West Coast.
 
-## Data Access
+### Data Access
 All data can be downloaded via this google drive, provided by Ruth Oliver on EDS 223- Homework Assignment 4- Prioritizing potential aquaculture: https://drive.google.com/file/d/1u-iwnPDbe6ZK7wSFVMI-PpCKaRQ3RVmg/view?usp=sharing
 
 **Data Source:** Historical sea surface temperature (SST) rasters, bathymetry data, and West Coast EEZ shapefiles to identify suitable habitat for marine species aquaculture.
 
-#### Sea Surface Temperature
+### Sea Surface Temperature
 - National Environmental Satellite Data, and Information Service. Coral Reef Watch. NOAA's 5km Daily Global Satellite Sea Surface Temperature Anomaly v3.1, Data Files, SST rasters: https://coralreefwatch.noaa.gov/product/5km/index_5km_ssta.php 
-```
 `avg_08, avg_09, avg_10, avg_11, avg_12`
-```
-
-#### Bathymetry
-- General Bathymetric Chart of the Oceans (GEBCO).Depth raster:[depth](https://www.gebco.net/data-products/gridded-bathymetry-data#area) `depth.tif`
-
-#### Exclusive Economic Zones (EEZ)
-- Maritime boundaries using EEZ polygons off the west coast of the US. [regions](https://www.marineregions.org/eez.php): `wc_regions_clean.shp`. 
-
-#### Choosing a New Species - Integrate Function
-- Find information on species depth and temperature requirements from SeaLife Base for marine aquaculture, a reasonable potential for commerical consumption. [SeaLifeBase](https://www.sealifebase.ca/search.php)
 
 
-# Importing libraries
+### Bathymetry
+- General Bathymetric Chart of the Oceans (GEBCO).Depth raster,`depth.tif`. https://www.gebco.net/data-products/gridded-bathymetry-data#area
+
+### Exclusive Economic Zones (EEZ)
+- Maritime boundaries using EEZ polygons off the west coast of the US. `wc_regions_clean.shp`. https://www.marineregions.org/eez.php
+
+### Choosing a New Species - Integrate Function
+- Find information on species depth and temperature requirements from SeaLife Base for marine aquaculture, a reasonable potential for commercial consumption. https://www.sealifebase.ca/search.php
+
+# Data Preparation
+### Importing libraries
 These are the libraries that will be used throughout this document.
 ```{r, message=FALSE}
 library(tidyverse)
@@ -59,37 +57,48 @@ library(here)
 library(knitr)
 library(kableExtra)
 library(dplyr)
-
 ```
 
-# Import Data
+### Import Data
 When adding data into folder, make sure to add data folder to `.gitignore` to avoid attempting to push any large data onto your reprository.
 ```{r, message=FALSE, output=FALSE}
 # load raster dataset
 # SST Data
-avg_08 <- rast(here("blog_post/prioritizing_west_coast_aquaculture_sites/data","average_annual_sst_2008.tif"))
-avg_09 <- rast(here("blog_post/prioritizing_west_coast_aquaculture_sites/data","average_annual_sst_2009.tif"))
-avg_10 <- rast(here("blog_post/prioritizing_west_coast_aquaculture_sites/data","average_annual_sst_2010.tif"))
-avg_11 <- rast(here("blog_post/prioritizing_west_coast_aquaculture_sites/data","average_annual_sst_2011.tif"))
-avg_12 <- rast(here("blog_post/prioritizing_west_coast_aquaculture_sites/data","average_annual_sst_2012.tif"))
+avg_08 <- rast(here("blog_post","prioritizing_west_coast_aquaculture_sites","data","average_annual_sst_2008.tif"))
+avg_09 <- rast(here("blog_post","prioritizing_west_coast_aquaculture_sites","data","average_annual_sst_2009.tif"))
+avg_10 <- rast(here("blog_post","prioritizing_west_coast_aquaculture_sites","data","average_annual_sst_2010.tif"))
+avg_11 <- rast(here("blog_post","prioritizing_west_coast_aquaculture_sites","data","average_annual_sst_2011.tif"))
+avg_12 <- rast(here("blog_post","prioritizing_west_coast_aquaculture_sites","data","average_annual_sst_2012.tif"))
 
-depth <- rast(here("blog_post/prioritizing_west_coast_aquaculture_sites/data","depth.tif"))
+depth <- rast(here("blog_post","prioritizing_west_coast_aquaculture_sites","data","depth.tif"))
 
 # Reading in Shapefile- EEZ Data
-regions <- st_read(here("blog_post/prioritizing_west_coast_aquaculture_sites/data","wc_regions_clean.shp"),  quiet = TRUE)
+regions <- st_read(here("blog_post","prioritizing_west_coast_aquaculture_sites","data","wc_regions_clean.shp"),  quiet = TRUE)
 
 
 ```
 
 ### Matching CRS for Rasters
-Before proceeding with spatial analysis, an important task needed is to check the Coordinate Reference Systems (CRS) match in order to combine or plot together. If any files do not match, a transformation will be needed.
+Before proceeding with spatial analysis, it is important to check that all Coordinate Reference Systems (CRS) match in order to combine or overlay spatial data. When CRS do not match, spatial analysis and manipulation cannot be completed accurately. Here I check if all CRS match across the SST files, depth raster, and regions vector data. If any files do not match, they will be transformed to match the reference CRS (avg_08).
+In this first code chunk I will show if the CRS match it will print CRS match, and if it does not match it will give a warning and continue with a transformation. After the transformation it will print a statement that says CRS now match with.
 ```{r}
-# check and transform coordinate reference systems
+# Check CRS from SST files
 if(crs(avg_08) == crs(avg_09)) {
   print("Coordinate reference systems match:)")
 } else{
   warning("Updating coordinate reference systems to match :(")}
-
+# check and transform coordinate reference systems
+if (crs(avg_08) == crs(depth)) {
+  print("Coordinate reference systems match :)")
+} else {
+  warning("Updating coordinate reference systems to match :(")
+  # transform raster to match avg_08
+  depth <- project(depth, crs(avg_08))
+    print("Depth coordinate reference systems match after transformation :)")
+}
+```
+In this code chunk, I will do the check the CRS for the rest of the files.
+```{r, warning=FALSE,results='hide'}
 # check and transform coordinate reference systems
 if(crs(avg_08) == crs(avg_10)) {
   print("Coordinate reference systems match:)")
@@ -109,16 +118,6 @@ if(crs(avg_08) == crs(avg_12)) {
   warning("Updating coordinate reference systems to match :(")}
 
 # check and transform coordinate reference systems
-if (crs(avg_08) == crs(depth)) {
-  print("Coordinate reference systems match :)")
-} else {
-  warning("Updating coordinate reference systems to match :(")
-  # transform raster to match avg_08
-  depth <- project(depth, crs(avg_08))
-    print("Depth coordinate reference systems match after transformation :)")
-}
-
-# check and transform coordinate reference systems
 if (crs(avg_08) == crs(regions)) {
   print("Coordinate reference systems match :)")
 } else {
@@ -129,8 +128,8 @@ if (crs(avg_08) == crs(regions)) {
 }  
 ```
 
-#### Combine SST rasters into a raster stack
-We will combine all the SST data (avg_08-avg_12), after a stack is completed we will convert the temperature from Kelvin to Celsius
+### Combine SST rasters into a raster stack
+The original SST files have temperature values in Kelvin. Here, we combine all five monthly SST rasters (avg_08-avg_12) into a stack, calculate the mean sea surface temperature, and convert the values from Kelvin to Celsius by subtracting 273.15.
 ```{r}
 # Combining rasters
 sst_stack <- c(avg_08, avg_09, avg_10, avg_11, avg_12)
@@ -141,8 +140,9 @@ names(sst_mean) <- "sst_mean"
 
 ```
 
-#### Crop, Extent, Resolution
-Here we will verify if the SST and depth data have slightly different resolutions, extents, and positions.
+# Data Processing
+### Crop, Extent, Resolution
+For spatial analysis to work correctly, rasters must have matching extents, resolutions, and alignment. Here, I crop the depth data to match the SST extent, then resample it to ensure both rasters have identical cell sizes and positions. Finally, I verify that resolution, extent, and CRS all match between the two datasets.
 ```{r}
 # Obtain geographic extent/bounding box of species occurrences
 st_bbox(sst_mean)
@@ -176,12 +176,11 @@ if (crs(sst_mean) == crs(depth_resampled)) {
 ```
 
 
-# Find Suitable Locations for Depth and SST
-To find suitable locations for marine aquaculture, we’ll need to find locations that are suitable in terms of both SST and depth. This will be done by reclassifying to find suitable locations that satisfy both terms. 
-
-- Oysters have optimal growth at depths between *0-70 meters* below sea level and between *11-30°C*.
+### Find Suitable Locations for Depth and SST
+To identify suitable locations for oyster aquaculture, we need to find areas that meet both temperature and depth requirements. This is done by reclassifying each raster to indicate suitable (1) vs. unsuitable (0) conditions, then combining them to find locations where both criteria are satisfied.
+- `Oysters have optimal growth at depths between *0-70 meters* below sea level and between *11-30°C*.`
 ```{r, message =FALSE}
-# Define the reclassification matrix for SST - sea level
+# Reclassification matrix for: Suitable temperatures (11-30°C)
 rcl_sst <- matrix(c(-Inf, 11, 0, 
                         11, 30, 1,
                         30, Inf, 0), ncol = 3, byrow = TRUE)
@@ -204,17 +203,17 @@ suitable <- reclassified_sst * reclassified_depth # Min = 0, Max = 1
 # Map it
 tm_shape(suitable)+
   tm_raster()+
-  tm_title("Suitability- Depth and Location")+
+  tm_title("Suitability- Depth and Location for Oysters")+
   tm_layout(
   legend.outside.position = TRUE)+
 tm_scale_bar(position = c(-.01, 0.08)) +
 tm_compass(position = c("left", "top"))+
-  tm_basemap("OpenStreetMap")
+  tm_basemap("Esri.OceanBasemap")
 ```
-In this map we can see our reclassifcation that was made in order to view the depth and location of oysters. This is more of a sanity check to view our progress.
+This map shows areas where both temperature and depth requirements are met (shown in dark blue). This visualization serves as a check to ensure the reclassification process worked correctly before proceeding with further analysis.
 
-## Rasterize, Masking, CellSize, and Zonal 
-
+# Data Analysis
+### Rasterize, Masking, CellSize, and Zonal 
 We want to determine the total suitable area within each EEZ in order to rank zones by priority. To do so, we need to find the total area of suitable locations within each EEZ. This will be completed by select suitable cells within West Coast EEZs
 find area of grid cells and find the total suitable area within each EEZ.
 ```{r}
@@ -248,8 +247,9 @@ area_by_eez_zonal %>%
   kable_classic(full_width = FALSE, html_font = "Arial")
 
 ```
+In this table we can now see the suitable area covered by each EEZ region for Oysters. Let's go ahead and see view this in a map to visually see our results.
 
-# Viewing EEZ Regions and Suitable Areas
+### Viewing EEZ Regions and Suitable Areas
 ```{r, message=FALSE}
 
 tm_shape(regions) +
@@ -263,12 +263,12 @@ tm_layout(
   legend.outside.position = TRUE)+
 tm_scale_bar(position = c(-.01, 0.08)) +
 tm_compass(position = c("right", "top"))+
-  tm_basemap("OpenStreetMap")
+  tm_basemap("Esri.OceanBasemap")
 ```
-In this map we are able to see the different regions and suitable areas, but since they are not in the same dataframe it is plotting them as two separate layers. We do not have percentages of suitable areas, we will have to join dataframes in the following step.
+The map displays EEZ regions with suitable habitat areas overlaid. Because the suitable area raster and EEZ polygon boundaries are stored separately, they appear as distinct layers. In the following step, we will join the area calculations to the EEZ polygons to determine what percentage of each zone is suitable for oyster aquaculture.
 
-# Join Dataframes 
-Joining regions and suitable areas is necessary since we want to extract the percent of suitable areas (km²)
+### Combine Dataframes - Regions and Area Zonal 
+To understand not just the absolute area, but what proportion of each EEZ is suitable for oyster aquaculture, we join the suitable area calculations to the EEZ spatial data and calculate the percentage of each region that meets the habitat requirements.
 ```{r}
 #Set as simple features to conserve geometry
 region_sf <- st_as_sf(regions)
@@ -276,7 +276,8 @@ region_sf <- st_as_sf(regions)
 # Join zonal data and calculate percentage 
 eez_sf <- region_sf %>%
   left_join(area_by_eez_zonal, by = "rgn") %>%
-  mutate(perc_area_km2 = (area_km2 / suitable_area_km2) * 100)
+  mutate(perc_area_km2 = (suitable_area_km2/area_km2) * 100)
+
 
 # Table 
 eez_sf %>% 
@@ -296,14 +297,18 @@ eez_sf %>%
 ```
 - The table shows the suitable area for oyster aquaculture across West Coast EEZs. Central California has the largest suitable area at 4,070 km², followed by Southern California with 3,757 km². Washington and Oregon have moderate areas of 2,378 km² and 1,074 km². Northern California has the smallest at 178 km². Overall, the most favorable regions for oyster aquaculture are Central and Southern California.
 
-# Map- After joining checking for Oysters along the West Coast 
+### Oyster Aquaculture Suitability by Region
 ```{r, message=FALSE}
+# Setting color palette
+colors <- c("#a6761d","#e9c46a","#90be6d","#43aa8b","#577590", "#6a4c93") 
+# Map It
 tm_shape(eez_sf) +
   tm_polygons(
     "suitable_area_km2",
-    palette = "-mako",
+    palette = colors,
     style = "cont",
-    title = "Suitable Area (km²)"
+    title = "Suitable Area (km²)",
+    alpha = 0.9
   ) +
   tm_text(
     "rgn",
@@ -313,7 +318,7 @@ tm_shape(eez_sf) +
     bgcol = "antiquewhite",
     bgcol_alpha = 0.2) +
   tm_layout(
-    main.title = "Suitable Area for Oyster Aquaculture in California EEZs\nPercent of Total EEZ Area Meeting Preferred Temperature & Depth Criteria",
+    main.title = "Suitable Area for Oyster Aquaculture in California EEZs\nBased on Temperature & Depth Criteria",
     main.title.size = 0.8,       # Controls title + subtitle size
     main.title.fontface = "bold",
     legend.outside = TRUE,
@@ -326,13 +331,14 @@ tm_shape(eez_sf) +
     type = "arrow",
     position = c("right", "top")
   )+
-  tm_basemap("OpenStreetMap")
+  tm_basemap("Esri.OceanBasemap")
 ```
-In this figure we are able to visually see what the table above mentioned. Overall, the most favorable regions for oyster aquaculture are Central and Southern California. Northern California has the lowest oyster population.
+This map visualizes the total suitable area for oyster aquaculture within each West Coast EEZ. The color gradient indicates the magnitude of suitable habitat, with darker colors representing larger suitable areas. Central and Southern California EEZs (darker shades) contain the most extensive suitable habitat, while Northern California shows minimal suitable area. The spatial pattern reflects the combined influence of ocean temperature and bathymetry meeting oyster habitat requirements.
 
-# Generalizeable Workflow Function
-#### **Important** Load in datasets before using function:
-- CRS, Extent, Resolution, and Geometry all need to match before using function.
+# Generalizable Suitability Analysis Function
+### **Important** Load in datasets before using function:
+To view habitat suitability for multiple species, I developed a reusable function that automates the entire workflow that was ran previously: reclassification matrix, calculating suitable areas by EEZ, and generating summary outputs. This function can be applied to any marine species with known temperature and depth requirements.
+Before continuing,`CRS, Extent, Resolution, and Geometry` all need to match before using function.
 ```{r}
 suit_func <- function(
   sst_raster,
@@ -344,8 +350,8 @@ suit_func <- function(
   max_depth,
   species_name
 ) {
- 
-  
+
+
   # Reclassify Depth
   rcl_depth <- matrix(c(
     -Inf, min_depth, 0,
@@ -354,7 +360,7 @@ suit_func <- function(
   ), byrow = TRUE, ncol = 3)
 
   depth_suit <- classify(depth_raster, rcl_depth)
-  
+
   # Reclassify SST
   rcl_sst <- matrix(c(
     -Inf, min_sst, 0,
@@ -363,28 +369,28 @@ suit_func <- function(
   ), byrow = TRUE, ncol = 3)
 
   sst_suit <- classify(sst_raster, rcl_sst)
-  
+
   # Combine Stack
   suit_env <- depth_suit * sst_suit
-  
+
   # Mask
   suit_mask <- mask(suit_env,regions)
-  
+
   # Rasterize EEZ polygons to match raster grid
   eez_rast <- terra::rasterize(eez_sf, suit_mask, field = "rgn")
-  
+
   # Zonal area (km^2)
   cell_area <- cellSize(suit_mask, unit = "km")
 
-  area_table <- zonal(cell_area * suit_mask, eez_rast, fun = "sum", na.rm = TRUE) %>% 
-  rename("suitable_area_km2_new" = area) %>% 
-  mutate(suitable_area_km2 = as.numeric(suitable_area_km2_new)) %>% 
-  as_tibble() %>% 
+  area_table <- zonal(cell_area * suit_mask, eez_rast, fun = "sum", na.rm = TRUE) %>%
+  rename("suitable_area_km2_new" = area) %>%
+  mutate(suitable_area_km2 = as.numeric(suitable_area_km2_new)) %>%
+  as_tibble() %>%
   arrange(desc(suitable_area_km2))
-  
+
   # Join back to EEZ polygons for mapping
   eez_joined <- left_join(eez_sf, area_table, by = "rgn")
-  
+
     # Create table
   eez_table <- eez_joined %>%
     st_drop_geometry() %>%
@@ -393,16 +399,14 @@ suit_func <- function(
     # select columns to show in figure
     dplyr::select(rgn, suitable_area_km2_new) %>%
     # rename column
-    rename(Region = rgn) %>% 
+    rename(Region = rgn) %>%
     # new column
-    mutate(suitable_area_km2_new = round(suitable_area_km2_new, 2)) %>% 
+    mutate(suitable_area_km2_new = round(suitable_area_km2_new, 2)) %>%
     rename("Suitable Area(km²)" = suitable_area_km2_new)
-  # print
-  print(eez_table)
 
-  
+
   # Plot It!
-  suit_func_map <- 
+  suit_func_map <-
     tm_shape(eez_joined) +
       tm_polygons(
         "suitable_area_km2_new",
@@ -410,9 +414,9 @@ suit_func <- function(
         style = "cont",
         title = "Suitable Area (km²)"
       ) +
-      tm_text("rgn", 
-              size = 0.45, 
-              col = "black", 
+      tm_text("rgn",
+              size = 0.45,
+              col = "black",
               fontface = "bold",
               bgcol = "antiquewhite",
               bgcol_alpha = 0.2) +
@@ -431,15 +435,23 @@ suit_func <- function(
       tm_scale_bar(position = c(-.02, 0.08)) +
       tm_compass(type = "arrow", position = c("right", "top"))+
       tm_basemap("OpenStreetMap")
-  
+
+  table_eez<- eez_table %>%
+  # Add a cleaned up table
+  kable(digits = 2, caption = paste("Suitable Area for", species_name)) %>% 
+    kable_styling()
+
+# This will return Map and Table
+  return(table_eez)
   return(suit_func_map)
 }
 
+
 ```
 
-# Use Function with a New Species
-#### *Aplysia californica*, California sea hare -
-I was personally interested in the California sea hare, using the [SeaLifeBase](https://www.sealifebase.ca/search.php) [^3], I was able to find the depth range and the sea level range, which are the parameters needed for the function above. A map and a table will be produced.
+### Use Function with New Species:
+### *Aplysia californica*, California sea hare -
+I was personally interested in the California sea hare, becuase they are considered algae cleaners and are used for their biomedical usage for aquacultures. Using the [SeaLifeBase](https://www.sealifebase.ca/search.php) [^3], I was able to find the depth range and the sea level range, which are the parameters needed for the function above. The function will create a table and a map to visually see the suitable areas for the California sea hare.
 - Depth range: 0 - 22 m
 - Sea Level: 13.4 - 27.1 
 ```{r, message=FALSE}
@@ -453,12 +465,13 @@ suit_func(
   max_sst = 27.1,
   min_depth = -22,
   max_depth = 0,
-  species_name = "California Sea Hare (Aplysia californica)"
+  species_name = "California Sea Hare (<i>Aplysia californica</i>)"
 )
 ```
+
 - The California sea hare *Aplysia californica* has suitable habitat primarily in Central California (118.79 km²) and Southern California (499.63 km²). No suitable habitat was identified in Oregon, Northern California, or Washington.
 
-#### Another Species: California spiny lobster (*Panulirus Interruptus*)
+### California spiny lobster (*Panulirus Interruptus*)
 Here I am testing another marine species, `California spiny lobster`, [^4] to test the function and insure it works for another species with the parameters, which occupies habitat between 0-150 meters below sea level and between 12-24°C.
 ```{r, message=FALSE}
 suit_func(
@@ -469,13 +482,15 @@ suit_func(
   max_sst = 24,
   min_depth = -150,
   max_depth = 0,
-  species_name = "California spiny lobster (Panulirus Interruptus)"
+  species_name = "California spiny lobster (<i>Panulirus Interruptus</i>)"
 )
 ```
 
 - The California spiny lobster (*Panulirus Interruptus*) has suitable habitat primarily in Southern California (8093.85 km²), Central California (3992.41 km²), Oregon (585.03 km²), and Washington (175.57 km²). No suitable habitat was identified in Northern California.
 
-- Overall, we are able to see another species with the function created. We are able to view a map and table that explains the suitable areas along the West Coast of California.
+# Conclusion
+
+Overall, this workflow successfully identified suitable habitat areas for marine species, with the ability to map suitability for any species available through SeaLifeBase. However, the analysis is limited by the use of average SST data from 2008–2012 and the exclusion of other important environmental and human driven factors such as habitat type, food resources, and coastal activities. Future work should incorporate more recent or seasonal temperature datasets, additional environmental predictors, and potentially other spatial layers to improve accuracy and support real world management or aquaculture planning.
 
 [^1]: Hall, S. J., Delaporte, A., Phillips, M. J., Beveridge, M. & O’Keefe, M. 
       Blue Frontiers: Managing the Environmental Costs of Aquaculture 
@@ -486,10 +501,6 @@ suit_func(
 [^3]: https://www.sealifebase.ca/summary/Aplysia-californica
 
 [^4]: https://www.sealifebase.ca/summary/Panulirus-interruptus
-
-
-
-
 
 # References
 - Assignment 4: Prioritizing potential aquaculture. EDS 223 – Geospatial Analysis & Remote Sensing, 2025. https://eds-223-geospatial.github.io/assignments/HW4.html. Accessed 13 Nov. 2025.
