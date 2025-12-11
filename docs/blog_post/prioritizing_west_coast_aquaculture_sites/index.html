@@ -245,8 +245,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#generalizable-suitability-analysis-function" id="toc-generalizable-suitability-analysis-function" class="nav-link" data-scroll-target="#generalizable-suitability-analysis-function">Generalizable Suitability Analysis Function</a>
   <ul class="collapse">
   <li><a href="#important-load-in-datasets-before-using-function" id="toc-important-load-in-datasets-before-using-function" class="nav-link" data-scroll-target="#important-load-in-datasets-before-using-function"><strong>Important</strong> Load in datasets before using function:</a></li>
-  <li><a href="#use-function-with-new-species" id="toc-use-function-with-new-species" class="nav-link" data-scroll-target="#use-function-with-new-species">Use Function with New Species:</a></li>
-  <li><a href="#aplysia-californica-california-sea-hare--" id="toc-aplysia-californica-california-sea-hare--" class="nav-link" data-scroll-target="#aplysia-californica-california-sea-hare--"><em>Aplysia californica</em>, California sea hare -</a></li>
+  <li><a href="#use-function-with-new-species" id="toc-use-function-with-new-species" class="nav-link" data-scroll-target="#use-function-with-new-species">Use Function with New Species</a></li>
+  <li><a href="#california-sea-hare-aplysia-californica" id="toc-california-sea-hare-aplysia-californica" class="nav-link" data-scroll-target="#california-sea-hare-aplysia-californica">California sea hare (<em>Aplysia californica</em>)</a></li>
   <li><a href="#california-spiny-lobster-panulirus-interruptus" id="toc-california-spiny-lobster-panulirus-interruptus" class="nav-link" data-scroll-target="#california-spiny-lobster-panulirus-interruptus">California spiny lobster (<em>Panulirus Interruptus</em>)</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "Depth coordinate reference systems match after transformation :)"</code></pre>
 </div>
 </div>
-<p>In this code chunk, I will do the check the CRS for the rest of the files.</p>
+<p>In this code chunk, I will do the same process to check the CRS’s of the rest of the files.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -446,37 +446,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Resolution</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">res</span>(sst_mean) <span class="sc">==</span> <span class="fu">res</span>(depth_resampled))) {</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Resolutions matche :)"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Resolutions match :)"</span>)</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Fix resolution :("</span>)</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Resolutions matche :)"</code></pre>
+<pre><code>[1] "Resolutions match :)"</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Extent</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">ext</span>(sst_mean) <span class="sc">==</span> <span class="fu">ext</span>(depth_resampled))) {</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Extent matches :)"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Extent match :)"</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Fix Extent :("</span>)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Extent matches :)"</code></pre>
+<pre><code>[1] "Extent match :)"</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRS</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">crs</span>(sst_mean) <span class="sc">==</span> <span class="fu">crs</span>(depth_resampled)) {</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"CRS matches :)"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"CRS match :)"</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Fix CRS :("</span>)</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "CRS matches :)"</code></pre>
+<pre><code>[1] "CRS match :)"</code></pre>
 </div>
 </div>
 </section>
@@ -869,11 +869,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="use-function-with-new-species" class="level3">
-<h3 class="anchored" data-anchor-id="use-function-with-new-species">Use Function with New Species:</h3>
+<h3 class="anchored" data-anchor-id="use-function-with-new-species">Use Function with New Species</h3>
 </section>
-<section id="aplysia-californica-california-sea-hare--" class="level3">
-<h3 class="anchored" data-anchor-id="aplysia-californica-california-sea-hare--"><em>Aplysia californica</em>, California sea hare -</h3>
-<p>I was personally interested in the California sea hare, becuase they are considered algae cleaners and are used for their biomedical usage for aquacultures. Using the <a href="https://www.sealifebase.ca/search.php">SeaLifeBase</a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, I was able to find the depth range and the sea level range, which are the parameters needed for the function above. The function will create a table and a map to visually see the suitable areas for the California sea hare. - Depth range: 0 - 22 m - Sea Level: 13.4 - 27.1</p>
+<section id="california-sea-hare-aplysia-californica" class="level3">
+<h3 class="anchored" data-anchor-id="california-sea-hare-aplysia-californica">California sea hare (<em>Aplysia californica</em>)</h3>
+<p>I was personally interested in the California sea hare, becuase they are considered algae cleaners and are used for their biomedical usage for aquacultures. Using the <a href="https://www.sealifebase.ca/search.php">SeaLifeBase</a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, I was able to find the depth range and the sea level range, which are the parameters needed for the function above. The function will create a table and a map to visually see the suitable areas for the California sea hare. The depth range: 0 - 22 m, and the sea level temperatures between 13.4 - 27.1 °C.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -924,12 +924,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>The California sea hare <em>Aplysia californica</em> has suitable habitat primarily in Central California (118.79 km²) and Southern California (499.63 km²). No suitable habitat was identified in Oregon, Northern California, or Washington.</li>
+<li>The California sea hare, <em>Aplysia californica</em>, has suitable habitat primarily in Central California (118.79 km²) and Southern California (499.63 km²). No suitable habitat was identified in Oregon, Northern California, or Washington.</li>
 </ul>
 </section>
 <section id="california-spiny-lobster-panulirus-interruptus" class="level3">
 <h3 class="anchored" data-anchor-id="california-spiny-lobster-panulirus-interruptus">California spiny lobster (<em>Panulirus Interruptus</em>)</h3>
-<p>Here I am testing another marine species, <code>California spiny lobster</code>, <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> to test the function and insure it works for another species with the parameters, which occupies habitat between 0-150 meters below sea level and between 12-24°C.</p>
+<p>Here I am testing another marine species, <code>California spiny lobster</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, to test the function and insure it works for another species with the parameters, which occupies habitat between 0-150 meters below sea level and between 12-24°C.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>

@@ -97,7 +97,7 @@ if (crs(avg_08) == crs(depth)) {
     print("Depth coordinate reference systems match after transformation :)")
 }
 ```
-In this code chunk, I will do the check the CRS for the rest of the files.
+In this code chunk, I will do the same process to check the CRS's of the rest of the files.
 ```{r, warning=FALSE,results='hide'}
 # check and transform coordinate reference systems
 if(crs(avg_08) == crs(avg_10)) {
@@ -155,21 +155,21 @@ depth_resampled <- resample(depth_crop, sst_mean, method = "near")
 
 # Check Resolution
 if (all(res(sst_mean) == res(depth_resampled))) {
-  print("Resolutions matche :)")
+  print("Resolutions match :)")
 } else {
   print("Fix resolution :(")
 }
 
 # Check Extent
 if (all(ext(sst_mean) == ext(depth_resampled))) {
-  print("Extent matches :)")
+  print("Extent match :)")
 } else {
   print("Fix Extent :(")
 }
 
 # Check CRS
 if (crs(sst_mean) == crs(depth_resampled)) {
-  print("CRS matches :)")
+  print("CRS match :)")
 } else {
   print("Fix CRS :(")
 }
@@ -449,11 +449,9 @@ suit_func <- function(
 
 ```
 
-### Use Function with New Species:
-### *Aplysia californica*, California sea hare -
-I was personally interested in the California sea hare, becuase they are considered algae cleaners and are used for their biomedical usage for aquacultures. Using the [SeaLifeBase](https://www.sealifebase.ca/search.php) [^3], I was able to find the depth range and the sea level range, which are the parameters needed for the function above. The function will create a table and a map to visually see the suitable areas for the California sea hare.
-- Depth range: 0 - 22 m
-- Sea Level: 13.4 - 27.1 
+### Use Function with New Species
+### California sea hare (*Aplysia californica*)
+I was personally interested in the California sea hare, becuase they are considered algae cleaners and are used for their biomedical usage for aquacultures. Using the [SeaLifeBase](https://www.sealifebase.ca/search.php) [^3], I was able to find the depth range and the sea level range, which are the parameters needed for the function above. The function will create a table and a map to visually see the suitable areas for the California sea hare. The depth range: 0 - 22 m, and the sea level temperatures between 13.4 - 27.1 °C.
 ```{r, message=FALSE}
 
 # California sea hare
@@ -469,10 +467,10 @@ suit_func(
 )
 ```
 
-- The California sea hare *Aplysia californica* has suitable habitat primarily in Central California (118.79 km²) and Southern California (499.63 km²). No suitable habitat was identified in Oregon, Northern California, or Washington.
+- The California sea hare, *Aplysia californica*, has suitable habitat primarily in Central California (118.79 km²) and Southern California (499.63 km²). No suitable habitat was identified in Oregon, Northern California, or Washington.
 
 ### California spiny lobster (*Panulirus Interruptus*)
-Here I am testing another marine species, `California spiny lobster`, [^4] to test the function and insure it works for another species with the parameters, which occupies habitat between 0-150 meters below sea level and between 12-24°C.
+Here I am testing another marine species, `California spiny lobster`[^4], to test the function and insure it works for another species with the parameters, which occupies habitat between 0-150 meters below sea level and between 12-24°C.
 ```{r, message=FALSE}
 suit_func(
   sst_raster = sst_mean,
