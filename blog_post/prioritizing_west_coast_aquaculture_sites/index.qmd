@@ -11,21 +11,30 @@ citation:
   url: https://marietolteca00.github.io/blog_post/prioritizing_west_coast_aquaculture_sites
 image: oceanfarming.jpg
 draft: false
+format: 
+  html:
+    code-fold: true
+    toc: true
+
 ---
 # Background
-As a more sustainable source of protein than land-based meat production, marine aquaculture has the potential to significantly contribute to the world's food supply[2](https://www.nature.com/articles/s41559-017-0257-9).One Based on a number of limitations, such as ship traffic, dissolved oxygen, and bottom depth, Gentry et al. projected the potential for marine aquaculture worldwide. They discovered that less than 0.015% of the world's ocean area could be used to meet the demand for seafood.[3](Gentry, R. R., Froehlich, H. E., Grimm, D., Kareiva, P., Parke, M., Rust, M., Gaines, S. D., & Halpern, B. S. Mapping the global potential for marine aquaculture. Nature Ecology & Evolution, 1, 1317-1324 (2017))
+
+
+There is a growing global need to sustainably feed expanding human populations, and one promising solution is marine aquaculture[^2]. Aquaculture involves the organized cultivation, feeding, propagation, and production of aquatic organisms for commercial, recreational, or public use. The industry can support food security while contributing to conservation and economic development. Globally, [Gentry et al](https://www.nature.com/articles/s41559-017-0257-9), found environmental and logistical constraints, such as seafloor depth, dissolved oxygen, and ship traffic limit the area suitable for marine aquaculture to less than 0.015% of the world’s oceans. This highlights the importance of carefully identifying viable locations.
+
+Along the U.S. West Coast, aquaculture includes diverse systems and species, from shellfish to finfish, each with unique environmental requirements. As research has shown, oysters represent one of the most commercially significant mollusk species, thriving at depths of 0–70 meters and sea surface temperatures (SSTs) between 11–30°C. Another species of personal interest in this analysis, the California sea hare (Aplysia californica), occurs at depths of 0–22 meters and SSTs of 13.4–27.1°C, making it a candidate for evaluation using similar environmental criteria. Understanding where the suitable ranges of these species overlap within Exclusive Economic Zones (EEZs) is critical for identifying areas where aquaculture can be both sustainable and commercially feasible.
+
+This project examines West Coast EEZs to identify suitable locations for oysters and other species, using SST rasters from 2008-2012, bathymetry data, and EEZ boundaries. The analysis employs raster and vector methods, including resampling, masking, and map algebra, and develops a reusable function to map suitability by species. My personal statement is to understand how environmental constraints shape aquaculture opportunities and to create a spatial workflow that can guide sustainable and commercially feasible marine farming along the West Coast.
 
 ## Data Access
-All data can be downloaded via this google drive, provided by Ruth Oliver on EDS 223- Homework Assignment 4- Prioritizing potential aquaculture:
-[Link](https://drive.google.com/file/d/1u-iwnPDbe6ZK7wSFVMI-PpCKaRQ3RVmg/view?usp=sharing)
+All data can be downloaded via this google drive, provided by Ruth Oliver on EDS 223- Homework Assignment 4- Prioritizing potential aquaculture: https://drive.google.com/file/d/1u-iwnPDbe6ZK7wSFVMI-PpCKaRQ3RVmg/view?usp=sharing
 
 **Data Source:** Historical sea surface temperature (SST) rasters, bathymetry data, and West Coast EEZ shapefiles to identify suitable habitat for marine species aquaculture.
 
 #### Sea Surface Temperature
-- National Environmental Satellite Data, and Information Service. Coral Reef Watch. NOAA's 5km Daily Global Satellite Sea Surface Temperature Anomaly v3.1 [SST](https://coralreefwatch.noaa.gov/product/5km/index_5km_ssta.php). Data Files, SST rasters: 
+- National Environmental Satellite Data, and Information Service. Coral Reef Watch. NOAA's 5km Daily Global Satellite Sea Surface Temperature Anomaly v3.1, Data Files, SST rasters: https://coralreefwatch.noaa.gov/product/5km/index_5km_ssta.php 
 ```
-`average_annual_sst_2008.tif`,`average_annual_sst_2009.tif`,
-`average_annual_sst_2010.tif`, `average_annual_sst_2011.tif`, `average_annual_sst_2012.tif`
+`avg_08, avg_09, avg_10, avg_11, avg_12`
 ```
 
 #### Bathymetry
@@ -37,20 +46,6 @@ All data can be downloaded via this google drive, provided by Ruth Oliver on EDS
 #### Choosing a New Species - Integrate Function
 - Find information on species depth and temperature requirements from SeaLife Base for marine aquaculture, a reasonable potential for commerical consumption. [SeaLifeBase](https://www.sealifebase.ca/search.php)
 
-## Reprository Structure
-```
-├── data
-│   ├── average_annual_sst_2008.tif
-│   ├── average_annual_sst_2009.tif
-│   ├── average_annual_sst_2010.tif
-│   ├── average_annual_sst_2011.tif
-│   ├── average_annual_sst_2012.tif
-│   ├── depth.tif
-│   └── wc_regions_clean.shp
-├── Marine-Aquaculture-West-Coast-EEZ-for-Oysters.Rproj
-├── aquaculture-wc-eez.qmd
-└── README.md
-```
 
 # Importing libraries
 These are the libraries that will be used throughout this document.
@@ -443,8 +438,8 @@ suit_func <- function(
 ```
 
 # Use Function with a New Species
-#### **Aplysia californica**, California sea hare -
-I was personally interested in the California sea hare, using the [SeaLifeBase](https://www.sealifebase.ca/search.php), I was able to find the depth range and the sea level range, which are the parameters needed for the function above. A map and a table will be produced.
+#### *Aplysia californica*, California sea hare -
+I was personally interested in the California sea hare, using the [SeaLifeBase](https://www.sealifebase.ca/search.php) [^3], I was able to find the depth range and the sea level range, which are the parameters needed for the function above. A map and a table will be produced.
 - Depth range: 0 - 22 m
 - Sea Level: 13.4 - 27.1 
 ```{r, message=FALSE}
@@ -463,8 +458,8 @@ suit_func(
 ```
 - The California sea hare *Aplysia californica* has suitable habitat primarily in Central California (118.79 km²) and Southern California (499.63 km²). No suitable habitat was identified in Oregon, Northern California, or Washington.
 
-#### Another Species: California spiny lobster (Panulirus Interruptus)
-Here I am testing another marine species, `California spiny lobster`, to test the function and insure it works for another species with the parameters, which occupies habitat between 0-150 meters below sea level and between 12-24°C.
+#### Another Species: California spiny lobster (*Panulirus Interruptus*)
+Here I am testing another marine species, `California spiny lobster`, [^4] to test the function and insure it works for another species with the parameters, which occupies habitat between 0-150 meters below sea level and between 12-24°C.
 ```{r, message=FALSE}
 suit_func(
   sst_raster = sst_mean,
@@ -482,13 +477,25 @@ suit_func(
 
 - Overall, we are able to see another species with the function created. We are able to view a map and table that explains the suitable areas along the West Coast of California.
 
+[^1]: Hall, S. J., Delaporte, A., Phillips, M. J., Beveridge, M. & O’Keefe, M. 
+      Blue Frontiers: Managing the Environmental Costs of Aquaculture 
+      (The WorldFish Center, Penang, Malaysia, 2011)
+
+[^2]: https://www.nature.com/articles/s41559-017-0257-9
+
+[^3]: https://www.sealifebase.ca/summary/Aplysia-californica
+
+[^4]: https://www.sealifebase.ca/summary/Panulirus-interruptus
+
+
+
+
+
 # References
-1. Assignment 4: Prioritizing potential aquaculture. EDS 223 – Geospatial Analysis & Remote Sensing, 2025. https://eds-223-geospatial.github.io/assignments/HW4.html. Accessed 13 Nov. 2025.
-2. Hall, S. J., Delaporte, A., Phillips, M. J., Beveridge, M. & O’Keefe, M. Blue Frontiers: Managing the Environmental Costs of Aquaculture (The WorldFish Center, Penang, Malaysia, 2011).︎
-
-3. Gentry, R. R., Froehlich, H. E., Grimm, D., Kareiva, P., Parke, M., Rust, M., Gaines, S. D., & Halpern, B. S. Mapping the global potential for marine aquaculture. Nature Ecology & Evolution, 1, 1317-1324 (2017).
-
-4. GEBCO Compilation Group (2022) GEBCO_2022 Grid (doi:10.5285/e0f0bb80-ab44-2739-e053-6c86abc0289c).
-5. Sealifebase. (2025). Aplysia californica (California sea hare). https://www.sealifebase.ca/summary/Aplysia-californica 
-6. Sealifebase. (2025). Panulirus interruptus (California spiny lobster). https://www.sealifebase.ca/summary/Panulirus-interruptus
-7. The Water Brothers. (n.d.). Still from an animation of GreenWave’s regenerative ocean farming system [Image]. The Water Brothers. https://thewaterbrothers.ca/
+- Assignment 4: Prioritizing potential aquaculture. EDS 223 – Geospatial Analysis & Remote Sensing, 2025. https://eds-223-geospatial.github.io/assignments/HW4.html. Accessed 13 Nov. 2025.
+- Hall, S. J., Delaporte, A., Phillips, M. J., Beveridge, M. & O’Keefe, M. Blue Frontiers: Managing the Environmental Costs of   Aquaculture (The WorldFish Center, Penang, Malaysia, 2011).︎
+- Gentry, R. R., Froehlich, H. E., Grimm, D., Kareiva, P., Parke, M., Rust, M., Gaines, S. D., & Halpern, B. S. Mapping the global potential for marine aquaculture. Nature Ecology & Evolution, 1, 1317-1324 (2017).
+- GEBCO Compilation Group (2022) GEBCO_2022 Grid (doi:10.5285/e0f0bb80-ab44-2739-e053-6c86abc0289c).
+- Sealifebase. (2025). Aplysia californica (California sea hare). https://www.sealifebase.ca/summary/Aplysia-californica 
+- Sealifebase. (2025). Panulirus interruptus (California spiny lobster). https://www.sealifebase.ca/summary/Panulirus-interruptus
+- The Water Brothers. (n.d.). Still from an animation of GreenWave’s regenerative ocean farming system [Image]. The Water Brothers. https://thewaterbrothers.ca/
