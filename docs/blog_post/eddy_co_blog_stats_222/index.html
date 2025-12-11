@@ -338,8 +338,8 @@ Precipitation:
 H0 : \beta_1 = 0 \\
 HA : \beta_1 &lt; 0 \\
 \end{align}
-\]</span> <em>Null : When there is no precipitation ETo stays the same.</em></p>
-<p><em>Alt: When there is precipitation, ETo decreases.</em></p>
+\]</span> <em>Null (H0) : When there is no precipitation ETo stays the same.</em></p>
+<p><em>Alt (HA): When there is precipitation, ETo decreases.</em></p>
 <p><span class="math display">\[
 \begin{align}
 Temperature:
@@ -347,8 +347,8 @@ H0 : \beta_2 = 0 \\
 HA : \beta_2 &gt; 0
 \end{align}
 \]</span></p>
-<p><em>Null: When Temperature is the same, Eto stays the same.</em></p>
-<p><em>Alt: When Temperature increase there is more ETo</em></p>
+<p><em>Null (H0): When Temperature is the same, Eto stays the same.</em></p>
+<p><em>Alt (HA): When Temperature increase there is more ETo</em></p>
 <section id="libraries-used" class="level4">
 <h4 class="anchored" data-anchor-id="libraries-used">Libraries Used</h4>
 <p>For Reproducibility, these are the libraries used in this blog post to recreate this workflow. The <code>set.seed()</code> is set to always get the same random numbers and keep the consistency of reproducibility. The libraries used are: <code>tidyverse, here, dplyr, patchwork, knitr, lubridate, andbroom</code>.</p>
@@ -753,22 +753,8 @@ HA : \beta_2 &gt; 0
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co"># plot 2</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>plot2<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(eto_pred, <span class="fu">aes</span>(<span class="at">x =</span> precip_in, <span class="at">y =</span> phi, <span class="at">color =</span> avg_air_temp_f)) <span class="sc">+</span></span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"rainbow"</span>) <span class="sc">+</span></span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">#title = "Predicted ETo vs Precipitation",</span></span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">#subtitle = "Gamma GLM with log link",</span></span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Precipitation (in)"</span>,</span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted ETo (in)"</span>,</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Temperature (°F) "</span></span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing Plots</span></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>(plot1 <span class="sc">/</span> plot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing Plots</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>(plot1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -778,7 +764,7 @@ HA : \beta_2 &gt; 0
 </div>
 </div>
 </div>
-<p><em>Interp</em>: The contour plot (top plot) shows that predicted ETo increases with higher temperatures and decreases as precipitation increases. The scatter and line plot (bottom) conveys the same relationships: at higher temperatures, ETo is higher, and increasing precipitation corresponds to lower ETo. In the bottom plot, the effect of temperature is somewhat harder to distinguish due to overlapping points and lines, which could be improved by grouping temperature into discrete levels. These relationships are more clearly visualized in the following plot with confidence intervals added.</p>
+<p><em>Interp</em>: The contour plot (top plot) shows that predicted ETo increases with higher temperatures and decreases as precipitation increases.</p>
 </section>
 <section id="integrating-confidence-intervals" class="level4">
 <h4 class="anchored" data-anchor-id="integrating-confidence-intervals">Integrating Confidence Intervals</h4>
