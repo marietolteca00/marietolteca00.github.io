@@ -129,10 +129,7 @@ if (crs(avg_08) == crs(regions)) {
 ```
 # Data Processing
 ### Combine SST rasters into a raster stack
-The original SST files have temperature values in Kelvin. Here, we combine all five monthly SST rasters (avg_08-avg_12) into a stack, calculate the mean sea surface temperature, and convert the values from Kelvin to Celsius by subtracting 273.15.
-
-To identify suitable habitats for oysters, we first combined five raster (avg_08-avg_12) of sea surface temperature (SST) rasters into a single dataset and calculated the mean SST, converting the values from Kelvin to Celsius by subtracting 273.15. Depth data were cropped and resampled to align with the SST data, ensuring that all spatial layers had matching extents, resolutions, and coordinate reference systems.
-Next, we will identify areas suitable for oyster aquaculture by applying environmental thresholds: depths between 0–70 meters and SSTs between 11–30°C. Locations meeting both requirements were marked as suitable, producing a raster layer that will be mapped to highlight areas where oysters could potentially thrive from suitable areas. This processing ensures that our subsequent analysis and mapping accurately reflect the intersection of temperature and depth requirements across West Coast EEZs.
+To identify suitable habitats for oysters, we first combined five SST rasters (avg_08–avg_12) into a single dataset and calculated the mean SST, converting values from Kelvin to Celsius by subtracting 273.15. Depth data were then cropped and resampled to align with the SST raster, ensuring that all spatial layers had matching extents, resolutions, and coordinate reference systems. Next, we applied environmental thresholds depths between 0–70 meters and SSTs between 11–30°C to identify areas suitable for oyster aquaculture. Locations meeting both criteria were marked as suitable, producing a raster layer that will be mapped to highlight potential oyster habitats. This processing ensures that subsequent analysis and mapping accurately reflect the intersection of temperature and depth requirements across West Coast EEZs, as demonstrated in the following code chunks.
 ```{r}
 # Combining rasters
 sst_stack <- c(avg_08, avg_09, avg_10, avg_11, avg_12)
@@ -144,7 +141,6 @@ names(sst_mean) <- "sst_mean"
 ```
 
 ### Crop, Extent, Resolution
-For accurate spatial analysis, all the `sst_mean` must have matching extents, resolutions, and coordinate reference systems (CRS). To achieve this, the depth raster was cropped to match the geographic extent of the mean sea surface temperature (SST) data. It was then resampled so that cell sizes and positions aligned precisely with the SST raster. Finally, the datasets were checked and confirmed to have matching resolutions, extents, and CRS, ensuring that all subsequent analyses and suitability calculations would be spatially consistent and reliable.
 ```{r}
 # Obtain geographic extent/bounding box of species occurrences
 st_bbox(sst_mean)
@@ -180,7 +176,6 @@ if (crs(sst_mean) == crs(depth_resampled)) {
 
 ### Find Suitable Locations for Depth and SST
 To identify suitable locations for oyster aquaculture, we need to find areas that meet both temperature and depth requirements. This is done by reclassifying each raster to indicate suitable (1) vs. unsuitable (0) conditions, then combining them to find locations where both criteria are satisfied.
-- `Oysters have optimal growth at depths between *0-70 meters* below sea level and between *11-30°C*.`
 ```{r, message =FALSE}
 # Reclassification matrix for: Suitable temperatures (11-30°C)
 rcl_sst <- matrix(c(-Inf, 11, 0, 
@@ -202,15 +197,15 @@ reclassified_depth <- classify(depth_resampled, rcl_depth)
 # Combine Oyster and Depth for suitability
 suitable <- reclassified_sst * reclassified_depth # Min = 0, Max = 1
 
-# Map it
-tm_shape(suitable)+
-  tm_raster()+
-  tm_title("Suitability- Depth and Location for Oysters")+
-  tm_layout(
-  legend.outside.position = TRUE)+
-tm_scale_bar(position = c(-.01, 0.08)) +
-tm_compass(position = c("left", "top"))+
+#Map it
+tm_shape(suitable) +
+  tm_raster(title = "Habitat Suitability") +   # short legend title
+  tm_title("Suitability - Depth and Location for Oysters\n1 = Suitable, 0 = Unsuitable") +  # subtitle with explanation
+  tm_layout(legend.outside.position = TRUE) +
+  tm_scale_bar(position = c(-.01, 0.08)) +
+  tm_compass(position = c("left", "top")) +
   tm_basemap("Esri.OceanBasemap")
+
 ```
 This map shows areas where both temperature and depth requirements are met (shown in dark blue). This visualization serves as a check to ensure the reclassification process worked correctly before proceeding with further analysis.
 
@@ -257,7 +252,7 @@ In this table we can now see the suitable area covered by each EEZ region for Oy
 tm_shape(regions) +
   tm_polygons("rgn", palette = "Set3", title = "EEZ Regions", alpha = 1) +
 tm_shape(suitable_mask) +
-  tm_raster(alpha = 0.6, title = "Suitable Area") +
+  tm_raster(alpha = 0.6, title = "Suitable Area (km²)") +
 tm_shape(regions) +
   # Adding labels
   tm_text("rgn", size = 0.5) +   
@@ -338,11 +333,13 @@ tm_shape(eez_sf) +
 This map visualizes the total suitable area for oyster aquaculture within each West Coast EEZ. The color gradient indicates the magnitude of suitable habitat, with darker colors representing larger suitable areas. Central and Southern California EEZs (darker shades) contain the most extensive suitable habitat, while Northern California shows minimal suitable area. The spatial pattern reflects the combined influence of ocean temperature and bathymetry meeting oyster habitat requirements.
 
 # Generalizable Suitability Analysis Function
-### **Important** Load in datasets before using function:
 To view habitat suitability for multiple species, I developed a reusable function that automates the entire workflow that was ran previously: reclassification matrix, calculating suitable areas by EEZ, and generating summary outputs. This function can be applied to any marine species with known temperature and depth requirements.
-Before continuing,`CRS, Extent, Resolution, and Geometry` all need to match before using function.
+
+### *Note*:
+Before running the function, make sure the datasets are loaded and that their coordinate reference systems (CRS), spatial extents, resolutions, and geometries match.
 ```{r}
 suit_func <- function(
+  # Parameters
   sst_raster,
   depth_raster,
   eez_sf,
