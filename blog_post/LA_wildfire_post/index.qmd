@@ -5,12 +5,15 @@ author:
   - name: Marie Tolteca
     affiliation: Master of Environmental Data Science Program at The Bren School (UCSB)
     affiliation-url: https://ucsb-meds.github.io/
-date: "2025-12-03"
-categories: [Quarto, R, MEDS]
+date: "2025-12-12"
+categories: [Python, R, MEDS]
 citation:
   url: https://marietolteca00.github.io/blog_post/LA_wildfire_post
 image: satellite_image.jpeg
 draft: false
+format: 
+  html: 
+    code-fold: true
 ---
 
 Link to GitHub -> [GitHub](https://github.com/marietolteca00/eds220-hwk4.git)
@@ -89,46 +92,94 @@ import xarray as xr
 
 # Import data
 ```{python}
-# Import landsat `nc` file
-landsat = xr.open_dataset('data/landsat8-2025-02-23-palisades-eaton.nc')
+# Import Landsat `nc` file with os
+landsat = xr.open_dataset(os.path.join('data', 'landsat8-2025-02-23-palisades-eaton.nc'))
 
 # Import fire shapefile data
-fp = os.path.join('data/eaton_perimeter/Eaton_Perimeter_20250121.shp')
+fp = os.path.join('data','eaton_perimeter','Eaton_Perimeter_20250121.shp')
 eaton = gpd.read_file(fp)
-fp = os.path.join('data/palisades_perimeter/Palisades_Perimeter_20250121.shp')
+fp = os.path.join('data','palisades_perimeter','Palisades_Perimeter_20250121.shp')
 palisades = gpd.read_file(fp)
 
-california = gpd.read_file(os.path.join("data/EJI_2024_California/EJI_2024_California.gdb"))
-
+eji = gpd.read_file(os.path.join("data","EJI_2024_California","EJI_2024_California.gdb"))
 
 ```
+
+# Data Exploration
+### Fire Perimeters and EJI
+Let's go ahead and conduct some exploration analysis in our fire paramteres, Eaton and Palisades fire. The first thing I wanted to check was the Coordinate Reprojection System (CRS), the bounding box's, and plot both shapefiles to see how they looked liked and what will have to be done when cleaning up the dataframes.
+```{python}
+# View landsat
+landsat.head()
+
+# Check CRSs
+print(f"The CRS for Palisades is: {palisades.crs}")
+print(f"The CRS for Eaton is: {eaton.crs}")
+print(f"The CRS for EJI is: {eji.crs}")
+
+# Check bounds
+print(f'The bounding box of the Palisades fire is : {palisades.total_bounds}')
+print(f'The bounding box of the Eaton fire is: {eaton.total_bounds}')
+print(f'The bounding box of the EJI fire is: {eaton.total_bounds}')
+
+# Check if projected or geographic for fire perimeters
+print(f"{'Is the CRS geographic for Palisades?' : <25} {palisades.crs.is_geographic}")
+print(f"{'Is the CRS projected for Palisades?' : <25} {palisades.crs.is_projected}")
+
+print(f"{'Is the CRS geographic for Eaton?' : <25} {eaton.crs.is_geographic}")
+print(f"{'Is the CRS projected for Eaton?' : <25} {eaton.crs.is_projected}")
+
+print(f"{'Is the CRS geographic for EJI?' : <25} {eji.crs.is_geographic}")
+print(f"{'Is the CRS projected for EJI?' : <25} {eji.crs.is_projected}")
+
+# View DF's map
+palisades.plot()
+plt.title('Palisades Fire Perimeter')
+
+eaton.plot()
+plt.title('Eaton Fire Perimeter')
+
+eji.plot()
+plt.title('EJI')
+```
+From the data exploration analysis, all of our files have the CRS projected. The CRS for EJI is different compared to both fire perimeters. We can also visually see our the fire perimeters and EJI of California.
 
 # Data Wrangling 
+Here I wanted to make both Palisades and Eaton dataframes have lowercased headers to reduce errors when calling columns. Next, I wanted to make sure the CRS for both fire perimaters matched, more of a sanity check. In the code chunk before, I noticed the EJI dataframe had a different CRS than the fire perimeters. I will conduct a tranformation and will have a print statement to let me know that the transformation was confirmed. We will have to combine and clip the EJI and fire perimeters to get the information needed from EJI only on the eaton and palisades fire perimeters and not have all of California.
 ```{python}
-# Lower column titles on dataframes
+# Lowercase column headers on both eaton and palisades dataframes
 for df in [palisades, eaton]:
     df.columns = df.columns.str.lower()
-    
+
 # Match CRS
 eaton.crs == palisades.crs  # False
+print(f' The CRS for Eaton is: {eaton.crs} and the crs for palisades is: {palisades.crs}')
 
-california = california.to_crs(palisades.crs) # Transform CRS
+# Transform CRS
+eji = eji.to_crs(palisades.crs)
 
-california.crs == palisades.crs # True / Match
+
+# Check CRS match
+assert eji.crs == palisades.crs
+print("The EJI CRS match with Palisades CRS, after transformation :)")
 
 # Join    
-palisadesjoin = gpd.sjoin(california,palisades)
-eatonjoin = gpd.sjoin(california, eaton)
+palisadesjoin = gpd.sjoin(eji,palisades)
+eatonjoin = gpd.sjoin(eji, eaton)
 
 # Clipping 
-palisades_clip = gpd.clip(california, palisades)
-eaton_clip = gpd.clip(california, eaton)
+palisades_clip = gpd.clip(eji, palisades)
+eaton_clip = gpd.clip(eji, eaton)
 
 ```
-For both the Eaton and Palisades dataframes, all column names were converted to lowercase to ensure consistency and prevent errors when referencing columns later. The code then checks whether the datasets share the same Coordinate Reference System (CRS) and transforms the California layer to match the CRS of the fire perimeter datasets. After aligning the CRS, spatial joins are performed between California and each fire perimeter to identify overlapping features. Finally, the California layer is clipped to each fire perimeter boundary to produce area-specific subsets.
+For both the Eaton and Palisades dataframes, all column names were converted to lowercase to ensure consistency and prevent errors when referencing columns later. The code then checks whether the datasets share the same Coordinate Reference System (CRS) and transforms the EJI layer to match the CRS of the fire perimeter datasets. After aligning the CRS, spatial joins are performed between EJI and each fire perimeter to identify overlapping features. Finally, the EJI layer is clipped to each fire perimeter boundary to produce area-specific subsets.
 
 
-# Landsat.nc file
+### Landsat Exploration and Wrangling
+- For the landsat file, I will conduct exploratory analysis similar to the previous code chunks. Since the Landsat is a different file we will be using `rioxarray` to view the CRS. Following this we will extract the CRS using `spatial_ref`, from this we will overwrite the CRS to the dataset using geospatial information and spatial reference.
+
+- The code begins by checking the CRS of the Landsat dataset using both the `rio.crs` attribute and the `spatial_ref` metadata field. It extracts the CRS in WKT format from the `spatial_ref` attribute and writes it back into the dataset to ensure the raster has an explicitly defined CRS.
+
 ```{python}
 # Check CRS of Landsat
 print(f"CRS:, {landsat.rio.crs}")
@@ -143,9 +194,11 @@ landsat = landsat.rio.write_crs(wkt, inplace=False)
 
 # Verify CRS is now attached
 print("\nCRS after writing:", landsat.rio.crs)
+```
 
 
-# Fill NA Values into collection of bands Red, green, and blue. This allows for `no NaN` error message to be removed.
+In the Landsat file we will fill NA Values into collection of bands Red, green, and blue. This allows for `no NaN` error message to be removed. We will also assign it to an array.
+```{python}
 #  Substitute any NaN values with 0
 landsat_filled = landsat.fillna(0)
 
@@ -156,22 +209,26 @@ rgb_filled = landsat_filled[["red", "green", "blue"]].to_array()
 false_color = landsat[["swir22", "nir08", "red"]].to_array()
 
 ```
-The code begins by checking the CRS of the Landsat dataset using both the `rio.crs` attribute and the `spatial_ref` metadata field. It extracts the CRS in WKT format from the `spatial_ref` attribute and writes it back into the dataset to ensure the raster has an explicitly defined CRS. After confirming that the CRS is properly attached, the code fills all NaN values in the dataset with zeros to prevent errors during later processing or visualization. The filled dataset is then used to create RGB and false-color composites by selecting the appropriate spectral bands and converting them into NumPy arrays.
+After confirming that the CRS is properly attached, the code fills all NaN values in the dataset with zeros to prevent errors during later processing or visualization. The filled dataset is then used to create RGB and false-color composites by selecting the appropriate spectral bands and converting them into NumPy arrays.
 
-# Transform CRS from Eaton and Palisades fire to match landsat
+# Transform CRS from Eaton and Palisades fire to match Landsat
 ```{python}
 # Transform Fire Perimeters to match landsat
 eaton = eaton.to_crs(landsat.rio.crs)
 palisades = palisades.to_crs(landsat.rio.crs)
 
 # Check transformation
-print("Eaton CRS:", eaton.crs) # EPSG:32611
-print("Palisades CRS:", palisades.crs) # EPSG:32611
+assert landsat.rio.crs == eaton.crs
+assert landsat.rio.crs == palisades.crs
 ```
 Since, Landsat dataset will be used as the base imagery, the Eaton and Palisades fire perimeter datasets must be reprojected to match the CRS of the Landsat file. The code transforms both fire perimeter layers to the Landsat CRS and then prints their CRS values to verify that the transformation was successful.
 
-# Map 1 - False-Color Landsat Imagery with Fire Perimeters
-This map will create a False-Color imagery generated along with both fire perimeters, eaton and palisades boundary, using landsat. 
+# False-Color Landsat Imagery
+### Eaton and Palisades Fire Perimeters
+- explain false color image is and why it is useful.
+Without creating any new variables, create a false color image by plotting the short-wave infrared (swir22), near-infrared, and red variables (in that order).
+A false color imagery, creates a figure that alludes to incorrect band match and projects false color imagery. Colors may be saturated to exaggerate or incorrectly labeling objects.
+This map will create a False-Color imagery generated along with both fire perimeters, Eaton and Palisades boundary, using Landsat. 
 ```{python}
 # Set up fig, ax
 fig, ax = plt.subplots(figsize=(10,10))
@@ -183,17 +240,9 @@ false_color.plot.imshow(robust=True)
 eaton.boundary.plot(ax=ax, color="hotpink", linewidth=2, label="Eaton Fire", facecolor = "lightpink", alpha = 0.6)
 palisades.boundary.plot(ax=ax, color="red", linewidth=2, label="Palisades Fire", facecolor = "indianred", alpha = 0.6)
 
-
-# Add label for Eaton fire perimeter
-ax.text(eaton.geometry.centroid.iloc[0].x,
-        eaton.geometry.centroid.iloc[0].y,
-        "Eaton Fire", color="black", fontsize=10, weight="bold", bbox=dict(facecolor='lightgrey', alpha=0.5, pad=5))
-
-# Add labels for Palisades fire perimeter
-ax.text(palisades.geometry.centroid.iloc[0].x,
-        palisades.geometry.centroid.iloc[0].y,
-        "Palisades Fire", color="black", fontsize=10, weight="bold", bbox=dict(facecolor='lightgrey', alpha=0.5, pad=5))
-
+# Legend Patches
+pal_legend = mpatches.Patch(facecolor="indianred", edgecolor="red", alpha=0.6, label="Palisades Fire")
+eaton_legend = mpatches.Patch(facecolor="lightpink", edgecolor="hotpink", alpha=0.6, label="Eaton Fire")
 
 # Zoom to fire extents - This is for the bound limits
 xmin = min(eaton.total_bounds[0], palisades.total_bounds[0]) - 500
@@ -209,7 +258,11 @@ ax.set_ylim(ymin, ymax)
 ax.set_title("SWIR-NIR-Red False Color Composite with Fire Perimeters")
 
 # Legend
-ax.legend(loc = "upper left")
+ax.legend(handles=[eaton_legend, pal_legend], 
+          loc="upper left",
+          title="Fire Perimeters",
+          # Background of legend
+          frameon=True)
 ax.set_axis_off()
 plt.show()
 ```
@@ -217,7 +270,7 @@ plt.show()
 In this figure we are able to clearly see the areas that were affected by the wildfire that happened in Los Angeles County. With the false color imagery, it uses SWIR22 for red, NIR08 for green, and the Red band for blue. Bright green areas indicate healthy vegetation, while brown or muted areas correspond to bare ground or soil. The fire-affected regions are visible within the outlined perimeters. The fire perimeter of Palisades fire (red) and Eaton fire (pink) are identified by the colored boundary and an added text for easier identification. In this figure we are able to view both landscapes in Los Angeles and the fire perimeters that most recently occured.
 
 
-# Map 2 - Fire Perimeters with Basemap
+# Eaton and Palisades Fire Perimeters with Basemap
 ```{python}
 
 fig, ax = plt.subplots(1, 1, figsize=(14, 12))
@@ -257,8 +310,9 @@ plt.show()
 #### Interpretation
 In this figure, the Eaton and Palisades fire perimeters are displayed on an OpenStreetMap basemap. Compared to the earlier Landsat imagery, this basemap provides clearer visual context by highlighting roads, highways, and city boundaries. This makes it easier to interpret where each fire occurred in relation to nearby communities and surrounding infrastructure.
 
-# Map 3 - Renter Occupancy Across Fire Perimeters
-Using the 2024 Environmental Justice Index data for California in the geodatabase data format, `EJI_2024_California`, plot the fire perimeters of Eaton and Palisades to showcasing Housing Units, Occupied by Renters.
+# Community’s Response To A Wildfire
+### Renter Occupancy Across Fire Perimeters
+Using the 2024 Environmental Justice Index data for California in the geodatabase data format, `EJI_2024_California`, I will plot the fire perimeters of Eaton and Palisades to showcase Housing Units, Occupied by Renters. In the Palisades area it is more common for more homeowners to own homes and rent them out since it is near a beach and often added to vacation rentals. In the Eaton area, 
 ```{python}
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
 
@@ -292,7 +346,7 @@ ax2.set_title('Eaton Fire')
 ax2.axis('off')
 
 # Add overall title
-fig.suptitle('Percentage of housing units that are renter occupied')
+fig.suptitle('Percentile of housing units that are renter occupied')
 
 # Add shared colorbar at the bottom
 sm = plt.cm.ScalarMappable(norm=plt.Normalize(vmin=vmin, vmax=vmax), cmap = 'inferno')
