@@ -215,29 +215,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
   <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
-  <li><a href="#about-data" id="toc-about-data" class="nav-link" data-scroll-target="#about-data">About Data</a></li>
-  <li><a href="#highlights" id="toc-highlights" class="nav-link" data-scroll-target="#highlights">Highlights:</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <li><a href="#about-data" id="toc-about-data" class="nav-link" data-scroll-target="#about-data">About Data</a>
   <ul class="collapse">
-  <li><a href="#repository-structure" id="toc-repository-structure" class="nav-link" data-scroll-target="#repository-structure">Repository Structure:</a></li>
-  </ul></li>
+  <li><a href="#highlights" id="toc-highlights" class="nav-link" data-scroll-target="#highlights">Highlights:</a></li>
+  <li><a href="#data-access" id="toc-data-access" class="nav-link" data-scroll-target="#data-access">Data Access</a></li>
   <li><a href="#packages-used" id="toc-packages-used" class="nav-link" data-scroll-target="#packages-used">Packages Used:</a></li>
+  </ul></li>
   <li><a href="#import-libraries" id="toc-import-libraries" class="nav-link" data-scroll-target="#import-libraries">Import Libraries</a></li>
   <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import data</a></li>
   <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data Exploration</a>
   <ul class="collapse">
   <li><a href="#fire-perimeters-and-eji" id="toc-fire-perimeters-and-eji" class="nav-link" data-scroll-target="#fire-perimeters-and-eji">Fire Perimeters and EJI</a></li>
   </ul></li>
-  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  <li><a href="#landsat-exploration-and-wrangling" id="toc-landsat-exploration-and-wrangling" class="nav-link" data-scroll-target="#landsat-exploration-and-wrangling">Landsat Exploration and Wrangling</a>
   <ul class="collapse">
-  <li><a href="#landsat-exploration-and-wrangling" id="toc-landsat-exploration-and-wrangling" class="nav-link" data-scroll-target="#landsat-exploration-and-wrangling">Landsat Exploration and Wrangling</a></li>
-  </ul></li>
   <li><a href="#transform-crs-from-eaton-and-palisades-fire-to-match-landsat" id="toc-transform-crs-from-eaton-and-palisades-fire-to-match-landsat" class="nav-link" data-scroll-target="#transform-crs-from-eaton-and-palisades-fire-to-match-landsat">Transform CRS from Eaton and Palisades fire to match Landsat</a></li>
-  <li><a href="#false-color-landsat-imagery" id="toc-false-color-landsat-imagery" class="nav-link" data-scroll-target="#false-color-landsat-imagery">False-Color Landsat Imagery</a>
-  <ul class="collapse">
-  <li><a href="#eaton-and-palisades-fire-perimeters" id="toc-eaton-and-palisades-fire-perimeters" class="nav-link" data-scroll-target="#eaton-and-palisades-fire-perimeters">Eaton and Palisades Fire Perimeters</a></li>
+  <li><a href="#false-color-landsat-imagery" id="toc-false-color-landsat-imagery" class="nav-link" data-scroll-target="#false-color-landsat-imagery">False-Color Landsat Imagery</a></li>
   </ul></li>
-  <li><a href="#eaton-and-palisades-fire-perimeters-with-basemap" id="toc-eaton-and-palisades-fire-perimeters-with-basemap" class="nav-link" data-scroll-target="#eaton-and-palisades-fire-perimeters-with-basemap">Eaton and Palisades Fire Perimeters with Basemap</a></li>
+  <li><a href="#eaton-and-palisades-fire-perimeters-basemap" id="toc-eaton-and-palisades-fire-perimeters-basemap" class="nav-link" data-scroll-target="#eaton-and-palisades-fire-perimeters-basemap">Eaton and Palisades Fire Perimeters (Basemap)</a></li>
+  <li><a href="#eji-spatial-join-and-clip" id="toc-eji-spatial-join-and-clip" class="nav-link" data-scroll-target="#eji-spatial-join-and-clip">EJI Spatial Join and Clip</a>
+  <ul class="collapse">
+  <li><a href="#eji-u.s.-census-tracts-with-eaton-and-palisades-fire-perimeters" id="toc-eji-u.s.-census-tracts-with-eaton-and-palisades-fire-perimeters" class="nav-link" data-scroll-target="#eji-u.s.-census-tracts-with-eaton-and-palisades-fire-perimeters">EJI U.S. Census Tracts with Eaton and Palisades Fire Perimeters</a></li>
+  <li><a href="#reprojection" id="toc-reprojection" class="nav-link" data-scroll-target="#reprojection">Reprojection</a></li>
+  <li><a href="#spatial-join" id="toc-spatial-join" class="nav-link" data-scroll-target="#spatial-join">Spatial Join</a></li>
+  <li><a href="#visualize-eaton-and-palisades-joined-eji" id="toc-visualize-eaton-and-palisades-joined-eji" class="nav-link" data-scroll-target="#visualize-eaton-and-palisades-joined-eji">Visualize Eaton and Palisades (Joined EJI)</a></li>
+  <li><a href="#clip-eji-with-fire-perimeters" id="toc-clip-eji-with-fire-perimeters" class="nav-link" data-scroll-target="#clip-eji-with-fire-perimeters">Clip EJI with Fire Perimeters</a></li>
+  <li><a href="#visualize-clip-of-eji-and-fire-perimeters" id="toc-visualize-clip-of-eji-and-fire-perimeters" class="nav-link" data-scroll-target="#visualize-clip-of-eji-and-fire-perimeters">Visualize Clip of EJI and Fire Perimeters</a></li>
+  </ul></li>
   <li><a href="#communitys-response-to-a-wildfire" id="toc-communitys-response-to-a-wildfire" class="nav-link" data-scroll-target="#communitys-response-to-a-wildfire">Community’s Response To A Wildfire</a>
   <ul class="collapse">
   <li><a href="#renter-occupancy-across-fire-perimeters" id="toc-renter-occupancy-across-fire-perimeters" class="nav-link" data-scroll-target="#renter-occupancy-across-fire-perimeters">Renter Occupancy Across Fire Perimeters</a></li>
@@ -253,28 +258,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Link to GitHub -&gt; <a href="https://github.com/marietolteca00/eds220-hwk4.git">GitHub</a></p>
+<p>Link to GitHub -&gt; <a href="https://github.com/marietolteca00/la_wildfire_and_social_impacts.git">GitHub</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="satellite_image.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Eaton and Palisades Wildfire. NPR. Satellite image ©2025 Maxar Technologies (January 9, 2025)</figcaption>
+</figure>
+</div>
 <section id="background" class="level3">
 <h3 class="anchored" data-anchor-id="background">Background</h3>
-<p>The Eaton and Palisades fires were two recent major wildfires that started from strong Santa Ana winds, dry vegetation from previous wet winters, and potential issues with electrical transmission lines. Both wildfires started simultaneously in Los Angeles County on January 07, 2025. These wildfires burned around 60 square miles and destroying thousands of structures and vegetation. A total of 37,000 acres burned across the Eaton and Palisades wildfires.</p>
+<p>The Eaton and Palisades fires were two recent major wildfires that started from strong Santa Ana winds, dry vegetation from previous wet winters, and potential issues with electrical transmission lines. Both wildfires started simultaneously in Los Angeles County on January 07, 2025. These wildfires burned around 60 square miles and destroying thousands of structures and vegetation<a href="https://www.cnn.com/2025/01/14/climate/los-angeles-fires-worse-global-warming/index.html">(Fritz and Park)</a>. A total of 37,000 acres burned across the Eaton and Palisades wildfires <a href="https://abcnews.go.com/US/la-wildfires-aftermath-insurance-housing-rebuild-update/story?id=119209482">(Hoffman, et. al.,2025)</a>.</p>
 </section>
 <section id="purpose" class="level3">
 <h3 class="anchored" data-anchor-id="purpose">Purpose</h3>
-<p>A NetCDF (<code>.nc</code>) file will be used for the Landsat raster covering Los Angeles County where two wildfires occurred during the year 2025. The first is a simplified collection of bands (red, green, blue, near-infrared and shortwave infrared) from the Landsat Collection 2 Level-2 atmospherically adjusted surface reflectance data, obtained by the Landsat 8 satellite. Using the wildfire shapefiles project them onto the Landsat to view where the fires occurred. An Environmental Justice Index (EJI) dataset for California is used to explore potential social factors influencing wildfire impacts.</p>
+<p>A NetCDF (.nc) file containing Landsat raster data for Los Angeles County will be used, covering the areas affected by two wildfires in 2025. The file includes a simplified collection of bands: red, green, blue, near-infrared, and shortwave infrared, from Landsat Collection 2 Level-2 atmospherically corrected surface reflectance data, obtained by the Landsat 8 satellite. The Eaton and Palisades fire perimeter shapefiles will be projected onto the Landsat imagery, which will be visualized using false-color composites to highlight burned and vegetated areas. Additionally, potential social factors influencing wildfire impacts are investigated using the California Environmental Justice Index (EJI) dataset.</p>
 </section>
-<section id="about-data" class="level3">
-<h3 class="anchored" data-anchor-id="about-data">About Data</h3>
-<p>Microsoft Planetary Computer, <a href="https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2">Link</a>, is used in this notebook that outlines the fire perimeters for the Palisades and Eaton Fire. This was our data landsat data for the fire perimeters. <code>landsat8-2025-02-23-palisades-eaton.nc</code></p>
+<section id="about-data" class="level1">
+<h1>About Data</h1>
+<p>Microsoft Planetary Computer, https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2, is used in this notebook that outlines the fire perimeters for the Palisades and Eaton Fire. This was our data landsat data for the fire perimeters. <code>landsat8-2025-02-23-palisades-eaton.nc</code></p>
 <p>From the County of Los Angeles GIS, was retrieved for both fire perimeters of <code>Palisades</code> and <code>Eaton</code> fire as a shapefile (shp) each were added to a folder.</p>
 <ul>
-<li><code>california</code>: Is a geodatabase folder, that has rankings of geographic levels that represent comparison to all other census tracts.</li>
+<li><code>eji</code>: Is a geodatabase folder, that has rankings of geographic levels that represent comparison to all other census tracts.</li>
 <li><code>eaton_boundary</code>:` Layer contains a dissolved fire perimeter for the eaton fire. (01/21/2025)</li>
 <li><code>palisades_boundary</code>: Layer contains a dissolved fire perimeter for the palisades fire. (01/21/2025)</li>
 <li><code>landsat</code>: This <code>nc</code> file contains a collection of bands (red, blue, green, near-infrared, and shortwave infrared) from the Landsat Collection 2 Level-2 atmosperically adjusted surface reflectance data, obtained by the Landsat 8 satellite. This data has been clipped to an area of Los Angeles County to include both fire perimeters.</li>
 </ul>
 <p>This repository contains code and materials for analyzing Landsat imagery and mapping wildfire perimeters in Los Angeles County. It demonstrates how to: - Work with NetCDF (.nc) Landsat data - Create true-color (RGB) and false-color composites - Overlay geospatial data to visualize fire boundaries - Develop clear and reproducible geospatial workflows - Identify a social dimension using EJI to explore potential vulnerability patterns within fire perimeters</p>
 <p>The focus is on the Eaton and Palisades Fires, combining satellite imagery with official fire perimeter shapefiles to explore fire-affected areas.</p>
-</section>
 <section id="highlights" class="level3">
 <h3 class="anchored" data-anchor-id="highlights">Highlights:</h3>
 <ul>
@@ -284,68 +294,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>EJI Social Variable</li>
 </ul>
 </section>
-<section id="data" class="level1">
-<h1>Data</h1>
+<section id="data-access" class="level3">
+<h3 class="anchored" data-anchor-id="data-access">Data Access</h3>
 <ul>
-<li>The Landsat .nc file can be downloaded from a shared Google Drive folder provided by the instructor for the course EDS 220 – Working with Environmental Datasets: <a href="https://drive.google.com/drive/folders/1USqhiMLyN8GE05B8WJmHabviJGnmAsLP">Google Drive Link</a></li>
-<li>Fire perimeter shapefiles for the Palisades and Eaton fires were obtained from the County of Los Angeles GIS: County <a href="https://egis-lacounty.hub.arcgis.com/maps/ad51845ea5fb4eb483bc2a7c38b2370c/about">GIS Link</a></li>
+<li>The Landsat .nc file can be downloaded from a shared Google Drive folder provided by the instructor for the course EDS 220 – Working with Environmental Datasets: https://drive.google.com/drive/folders/1USqhiMLyN8GE05B8WJmHabviJGnmAsLP</li>
+<li>Fire perimeter shapefiles for the Palisades and Eaton fires were obtained from the County of Los Angeles GIS: County. https://egis-lacounty.hub.arcgis.com/maps/ad51845ea5fb4eb483bc2a7c38b2370c/about</li>
 <li>Each shapefile contains a dissolved fire perimeter for its respective fire and has been added to the data folder in this repository.</li>
-<li>Centers for Disease Control and Prevention and Agency for Toxic Substances Disease Registry. [2024] Environmental Justice Index. Accessed [2024, December 2]. <a href="https://atsdr.cdc.gov/place-health/php/eji/eji-data-download.html">EJI Link</a></li>
+<li>Centers for Disease Control and Prevention and Agency for Toxic Substances Disease Registry. [2024] Environmental Justice Index. Accessed [2024, December 2]. https://atsdr.cdc.gov/place-health/php/eji/eji-data-download.html</li>
 </ul>
-<section id="repository-structure" class="level2">
-<h2 class="anchored" data-anchor-id="repository-structure">Repository Structure:</h2>
-<ul>
-<li><strong>When downloading data, add the data folder to <code>.gitignore</code> to reduce pushing big files onto github.</strong></li>
-</ul>
-<pre><code>├── data
-│   ├── eaton_perimeter
-│   │  └── Eaton_Perimeter_20250121.shp
-│   ├── EJI_2024_California
-│   │   ├── EJI_2024_California.gdb
-│   │   ├── EJI_DATADICTIONARY_2024.csv
-│   │   └── EJI_DATADICTIONARY_2024.xlsx
-│   ├── landsat8-2025-02-23-palisades-eaton.nc
-│   └── palisades_perimeter
-│       └── Palisades_Perimeter_20250121.shp
-└── satellite_image.jpeg</code></pre>
 </section>
-</section>
-<section id="packages-used" class="level1">
-<h1>Packages Used:</h1>
+<section id="packages-used" class="level3">
+<h3 class="anchored" data-anchor-id="packages-used">Packages Used:</h3>
 <p>This notebook uses the following Python packages: <code>contextily</code>, <code>os</code>, <code>numpy</code>, <code>matplotlib.pyplot</code>, <code>matplotlib.patches</code>, <code>geopandas</code>, <code>rioxarray</code>, and <code>xarray</code>.</p>
+</section>
 </section>
 <section id="import-libraries" class="level1">
 <h1>Import Libraries</h1>
-<div id="1d6afcd0" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> ctx</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div id="0d7ec168" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> ctx</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="import-data" class="level1">
 <h1>Import data</h1>
-<div id="90ce6ee3" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Landsat `nc` file with os</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>landsat <span class="op">=</span> xr.open_dataset(os.path.join(<span class="st">'data'</span>, <span class="st">'landsat8-2025-02-23-palisades-eaton.nc'</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import fire shapefile data</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> os.path.join(<span class="st">'data'</span>,<span class="st">'eaton_perimeter'</span>,<span class="st">'Eaton_Perimeter_20250121.shp'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>eaton <span class="op">=</span> gpd.read_file(fp)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> os.path.join(<span class="st">'data'</span>,<span class="st">'palisades_perimeter'</span>,<span class="st">'Palisades_Perimeter_20250121.shp'</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>palisades <span class="op">=</span> gpd.read_file(fp)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>eji <span class="op">=</span> gpd.read_file(os.path.join(<span class="st">"data"</span>,<span class="st">"EJI_2024_California"</span>,<span class="st">"EJI_2024_California.gdb"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div id="d4146f23" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Landsat `nc` file with os</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>landsat <span class="op">=</span> xr.open_dataset(os.path.join(<span class="st">'data'</span>, <span class="st">'landsat8-2025-02-23-palisades-eaton.nc'</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import fire shapefile data</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> os.path.join(<span class="st">'data'</span>,<span class="st">'eaton_perimeter'</span>,<span class="st">'Eaton_Perimeter_20250121.shp'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>eaton <span class="op">=</span> gpd.read_file(fp)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> os.path.join(<span class="st">'data'</span>,<span class="st">'palisades_perimeter'</span>,<span class="st">'Palisades_Perimeter_20250121.shp'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>palisades <span class="op">=</span> gpd.read_file(fp)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>eji <span class="op">=</span> gpd.read_file(os.path.join(<span class="st">"data"</span>,<span class="st">"EJI_2024_California"</span>,<span class="st">"EJI_2024_California.gdb"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="data-exploration" class="level1">
@@ -353,61 +341,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fire-perimeters-and-eji" class="level3">
 <h3 class="anchored" data-anchor-id="fire-perimeters-and-eji">Fire Perimeters and EJI</h3>
 <p>Let’s go ahead and conduct some exploration analysis in our fire paramteres, Eaton and Palisades fire. The first thing I wanted to check was the Coordinate Reprojection System (CRS), the bounding box’s, and plot both shapefiles to see how they looked liked and what will have to be done when cleaning up the dataframes.</p>
-<div id="de2a7864" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View landsat</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>landsat.head()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRSs</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The CRS for Palisades is: </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The CRS for Eaton is: </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The CRS for EJI is: </span><span class="sc">{</span>eji<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Check bounds</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The bounding box of the Palisades fire is : </span><span class="sc">{</span>palisades<span class="sc">.</span>total_bounds<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The bounding box of the Eaton fire is: </span><span class="sc">{</span>eaton<span class="sc">.</span>total_bounds<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The bounding box of the EJI fire is: </span><span class="sc">{</span>eaton<span class="sc">.</span>total_bounds<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if projected or geographic for fire perimeters</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS geographic for Palisades?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">.</span>is_geographic<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS projected for Palisades?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">.</span>is_projected<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS geographic for Eaton?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">.</span>is_geographic<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS projected for Eaton?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">.</span>is_projected<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS geographic for EJI?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>eji<span class="sc">.</span>crs<span class="sc">.</span>is_geographic<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS projected for EJI?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>eji<span class="sc">.</span>crs<span class="sc">.</span>is_projected<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># View DF's map</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>palisades.plot()</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Palisades Fire Perimeter'</span>)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>eaton.plot()</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Eaton Fire Perimeter'</span>)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>eji.plot()</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'EJI'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div id="fbccbecb" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View landsat</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>landsat.head()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRSs</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The CRS for Palisades is: </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The CRS for Eaton is: </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> eji.crs <span class="op">!=</span> eaton.crs:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"The EJI CRS and Eaton CRS Do Not Match ! "</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Check bounds</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f'The bounding box of the Palisades fire is : {palisades.total_bounds}')</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f'The bounding box of the Eaton fire is: {eaton.total_bounds}')</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if projected or geographic for fire perimeters</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS geographic for Palisades?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">.</span>is_geographic<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS geographic for Eaton?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">.</span>is_geographic<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS projected for Palisades?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">.</span>is_projected<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Is the CRS projected for Eaton?'</span> <span class="sc">: &lt;25}</span><span class="ss"> </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">.</span>is_projected<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># View DF's map</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>palisades.plot()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Palisades Fire Perimeter'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>eaton.plot()</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Eaton Fire Perimeter'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>eji.plot()</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'EJI of California'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The CRS for Palisades is: EPSG:3857
 The CRS for Eaton is: EPSG:3857
-The CRS for EJI is: PROJCS["USA_Contiguous_Albers_Equal_Area_Conic",GEOGCS["NAD83",DATUM["North_American_Datum_1983",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],AUTHORITY["EPSG","6269"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4269"]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["latitude_of_center",37.5],PARAMETER["longitude_of_center",-96],PARAMETER["standard_parallel_1",29.5],PARAMETER["standard_parallel_2",45.5],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH],AUTHORITY["ESRI","102003"]]
-The bounding box of the Palisades fire is : [-13212082.926963     4032822.81114236 -13191297.3200706
-   4046185.03346286]
-The bounding box of the Eaton fire is: [-13153741.463466     4050560.93661453 -13137152.8556185
-   4060781.94401591]
-The bounding box of the EJI fire is: [-13153741.463466     4050560.93661453 -13137152.8556185
-   4060781.94401591]
+The EJI CRS and Eaton CRS Do Not Match ! 
 Is the CRS geographic for Palisades? False
-Is the CRS projected for Palisades? True
 Is the CRS geographic for Eaton? False
-Is the CRS projected for Eaton? True
-Is the CRS geographic for EJI? False
-Is the CRS projected for EJI? True</code></pre>
+Is the CRS projected for Palisades? True
+Is the CRS projected for Eaton? True</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>Text(0.5, 1.0, 'EJI')</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="66">
+<pre><code>Text(0.5, 1.0, 'EJI of California')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -436,63 +411,54 @@ Is the CRS projected for EJI? True</code></pre>
 </section>
 <section id="data-wrangling" class="level1">
 <h1>Data Wrangling</h1>
-<p>Here I wanted to make both Palisades and Eaton dataframes have lowercased headers to reduce errors when calling columns. Next, I wanted to make sure the CRS for both fire perimaters matched, more of a sanity check. In the code chunk before, I noticed the EJI dataframe had a different CRS than the fire perimeters. I will conduct a tranformation and will have a print statement to let me know that the transformation was confirmed. We will have to combine and clip the EJI and fire perimeters to get the information needed from EJI only on the eaton and palisades fire perimeters and not have all of California.</p>
-<div id="5e5834b7" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lowercase column headers on both eaton and palisades dataframes</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> df <span class="kw">in</span> [palisades, eaton]:</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.lower()</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Match CRS</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>eaton.crs <span class="op">==</span> palisades.crs  <span class="co"># False</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f' The CRS for Eaton is: </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">}</span><span class="ss"> and the crs for palisades is: </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform CRS</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>eji <span class="op">=</span> eji.to_crs(palisades.crs)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRS match</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> eji.crs <span class="op">==</span> palisades.crs</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The EJI CRS match with Palisades CRS, after transformation :)"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Join    </span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>palisadesjoin <span class="op">=</span> gpd.sjoin(eji,palisades)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>eatonjoin <span class="op">=</span> gpd.sjoin(eji, eaton)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Clipping </span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>palisades_clip <span class="op">=</span> gpd.clip(eji, palisades)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>eaton_clip <span class="op">=</span> gpd.clip(eji, eaton)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<p>For both the Eaton and Palisades dataframes, all column names were converted to lowercase to ensure consistency and prevent errors when referencing columns later. The code then checks whether the datasets share the same Coordinate Reference System (CRS) and transforms the EJI layer to match the CRS of the fire perimeter datasets. After aligning the CRS, spatial joins are performed between EJI and each fire perimeter to identify overlapping features. Finally, the EJI layer is clipped to each fire perimeter boundary for specific data in each fire perimeter (Eaton and Palisades).</p>
+<div id="2deeaafd" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lowercase column headers on both eaton and palisades dataframes</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> df <span class="kw">in</span> [palisades, eaton]:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.lower()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Match CRS</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>eaton.crs <span class="op">==</span> palisades.crs  <span class="co"># False</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f' The CRS for Eaton is: </span><span class="sc">{</span>eaton<span class="sc">.</span>crs<span class="sc">}</span><span class="ss"> and the crs for palisades is: </span><span class="sc">{</span>palisades<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform CRS</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>eji <span class="op">=</span> eji.to_crs(palisades.crs)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRS match</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> eji.crs <span class="op">==</span> palisades.crs</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The EJI CRS match with Palisades CRS, after transformation :)"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial Join    </span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>palisadesjoin <span class="op">=</span> gpd.sjoin(eji,palisades)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>eatonjoin <span class="op">=</span> gpd.sjoin(eji, eaton)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Clipping </span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>palisades_clip <span class="op">=</span> gpd.clip(eji, palisades)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>eaton_clip <span class="op">=</span> gpd.clip(eji, eaton)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> The CRS for Eaton is: EPSG:3857 and the crs for palisades is: EPSG:3857
 The EJI CRS match with Palisades CRS, after transformation :)</code></pre>
 </div>
 </div>
-<p>For both the Eaton and Palisades dataframes, all column names were converted to lowercase to ensure consistency and prevent errors when referencing columns later. The code then checks whether the datasets share the same Coordinate Reference System (CRS) and transforms the EJI layer to match the CRS of the fire perimeter datasets. After aligning the CRS, spatial joins are performed between EJI and each fire perimeter to identify overlapping features. Finally, the EJI layer is clipped to each fire perimeter boundary to produce area-specific subsets.</p>
-<section id="landsat-exploration-and-wrangling" class="level3">
-<h3 class="anchored" data-anchor-id="landsat-exploration-and-wrangling">Landsat Exploration and Wrangling</h3>
-<ul>
-<li><p>For the landsat file, I will conduct exploratory analysis similar to the previous code chunks. Since the Landsat is a different file we will be using <code>rioxarray</code> to view the CRS. Following this we will extract the CRS using <code>spatial_ref</code>, from this we will overwrite the CRS to the dataset using geospatial information and spatial reference.</p></li>
-<li><p>The code begins by checking the CRS of the Landsat dataset using both the <code>rio.crs</code> attribute and the <code>spatial_ref</code> metadata field. It extracts the CRS in WKT format from the <code>spatial_ref</code> attribute and writes it back into the dataset to ensure the raster has an explicitly defined CRS.</p></li>
-</ul>
-<div id="a27b8508" class="cell" data-execution_count="5">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRS of Landsat</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CRS:, </span><span class="sc">{</span>landsat<span class="sc">.</span>rio<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract CRS using spatial_ref variable</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>wkt <span class="op">=</span> landsat.spatial_ref.crs_wkt</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">CRS WKT from spatial_ref:"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wkt)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the CRS to the dataset - geospatial information and spatial reference</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>landsat <span class="op">=</span> landsat.rio.write_crs(wkt, inplace<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify CRS is now attached</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">CRS after writing:"</span>, landsat.rio.crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+</section>
+<section id="landsat-exploration-and-wrangling" class="level1">
+<h1>Landsat Exploration and Wrangling</h1>
+<p>The Landsat file is first examined using rioxarray to inspect its Coordinate Reference System (CRS). The CRS is then extracted from the spatial_ref metadata in WKT format and written back to the dataset to ensure it is explicitly defined and properly attached for subsequent geospatial analysis. Before processing, any missing values (NaN) in the Landsat bands will be filled to prevent errors, RGB and false-color composites will be created for visualization, and the Eaton and Palisades fire perimeter shapefiles will be reprojected to match the Landsat CRS. A visualization will be made to view False-Color Imagery.</p>
+<div id="08ec126b" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRS of Landsat</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CRS:, </span><span class="sc">{</span>landsat<span class="sc">.</span>rio<span class="sc">.</span>crs<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract CRS using spatial_ref variable</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>wkt <span class="op">=</span> landsat.spatial_ref.crs_wkt</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">CRS WKT from spatial_ref:"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wkt)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the CRS to the dataset - geospatial information and spatial reference</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>landsat <span class="op">=</span> landsat.rio.write_crs(wkt, inplace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify CRS is now attached</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">CRS after writing:"</span>, landsat.rio.crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CRS:, None
 
@@ -503,84 +469,71 @@ CRS after writing: EPSG:32611</code></pre>
 </div>
 </div>
 <p>In the Landsat file we will fill NA Values into collection of bands Red, green, and blue. This allows for <code>no NaN</code> error message to be removed. We will also assign it to an array.</p>
-<div id="c2ab7692" class="cell" data-execution_count="6">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Substitute any NaN values with 0</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>landsat_filled <span class="op">=</span> landsat.fillna(<span class="dv">0</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add fillna() back into rgb</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>rgb_filled <span class="op">=</span> landsat_filled[[<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>]].to_array()</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign numpy array to a variable</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>false_color <span class="op">=</span> landsat[[<span class="st">"swir22"</span>, <span class="st">"nir08"</span>, <span class="st">"red"</span>]].to_array()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div id="72ef6030" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Substitute any NaN values with 0</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>landsat_filled <span class="op">=</span> landsat.fillna(<span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add fillna() back into rgb</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>rgb_filled <span class="op">=</span> landsat_filled[[<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>]].to_array()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign numpy array to a variable</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>false_color <span class="op">=</span> landsat[[<span class="st">"swir22"</span>, <span class="st">"nir08"</span>, <span class="st">"red"</span>]].to_array()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>After confirming that the CRS is properly attached, the code fills all NaN values in the dataset with zeros to prevent errors during later processing or visualization. The filled dataset is then used to create RGB and false-color composites by selecting the appropriate spectral bands and converting them into NumPy arrays.</p>
-</section>
-</section>
-<section id="transform-crs-from-eaton-and-palisades-fire-to-match-landsat" class="level1">
-<h1>Transform CRS from Eaton and Palisades fire to match Landsat</h1>
-<div id="2fc39e67" class="cell" data-execution_count="7">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform Fire Perimeters to match landsat</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>eaton <span class="op">=</span> eaton.to_crs(landsat.rio.crs)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>palisades <span class="op">=</span> palisades.to_crs(landsat.rio.crs)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check transformation</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> landsat.rio.crs <span class="op">==</span> eaton.crs</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> landsat.rio.crs <span class="op">==</span> palisades.crs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<section id="transform-crs-from-eaton-and-palisades-fire-to-match-landsat" class="level3">
+<h3 class="anchored" data-anchor-id="transform-crs-from-eaton-and-palisades-fire-to-match-landsat">Transform CRS from Eaton and Palisades fire to match Landsat</h3>
+<div id="9a9adb4d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform Fire Perimeters to match landsat</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>eaton <span class="op">=</span> eaton.to_crs(landsat.rio.crs)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>palisades <span class="op">=</span> palisades.to_crs(landsat.rio.crs)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check transformation</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> landsat.rio.crs <span class="op">==</span> eaton.crs</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> landsat.rio.crs <span class="op">==</span> palisades.crs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Since, Landsat dataset will be used as the base imagery, the Eaton and Palisades fire perimeter datasets must be reprojected to match the CRS of the Landsat file. The code transforms both fire perimeter layers to the Landsat CRS and then prints their CRS values to verify that the transformation was successful.</p>
 </section>
-<section id="false-color-landsat-imagery" class="level1">
-<h1>False-Color Landsat Imagery</h1>
-<section id="eaton-and-palisades-fire-perimeters" class="level3">
-<h3 class="anchored" data-anchor-id="eaton-and-palisades-fire-perimeters">Eaton and Palisades Fire Perimeters</h3>
-<ul>
-<li>explain false color image is and why it is useful. Without creating any new variables, create a false color image by plotting the short-wave infrared (swir22), near-infrared, and red variables (in that order). A false color imagery, creates a figure that alludes to incorrect band match and projects false color imagery. Colors may be saturated to exaggerate or incorrectly labeling objects. This map will create a False-Color imagery generated along with both fire perimeters, Eaton and Palisades boundary, using Landsat.</li>
-</ul>
-<div id="be3175da" class="cell" data-execution_count="8">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up fig, ax</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot false-color background first</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>false_color.plot.imshow(robust<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay fire perimeters</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>eaton.boundary.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"hotpink"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Eaton Fire"</span>, facecolor <span class="op">=</span> <span class="st">"lightpink"</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>palisades.boundary.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"red"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Palisades Fire"</span>, facecolor <span class="op">=</span> <span class="st">"indianred"</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend Patches</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>pal_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"indianred"</span>, edgecolor<span class="op">=</span><span class="st">"red"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"Palisades Fire"</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>eaton_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"lightpink"</span>, edgecolor<span class="op">=</span><span class="st">"hotpink"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"Eaton Fire"</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Zoom to fire extents - This is for the bound limits</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="bu">min</span>(eaton.total_bounds[<span class="dv">0</span>], palisades.total_bounds[<span class="dv">0</span>]) <span class="op">-</span> <span class="dv">500</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="bu">max</span>(eaton.total_bounds[<span class="dv">2</span>], palisades.total_bounds[<span class="dv">2</span>]) <span class="op">+</span> <span class="dv">500</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> <span class="bu">min</span>(eaton.total_bounds[<span class="dv">1</span>], palisades.total_bounds[<span class="dv">1</span>]) <span class="op">-</span> <span class="dv">500</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> <span class="bu">max</span>(eaton.total_bounds[<span class="dv">3</span>], palisades.total_bounds[<span class="dv">3</span>]) <span class="op">+</span> <span class="dv">500</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Set limits</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(xmin, xmax)</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(ymin, ymax) </span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Title</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"SWIR-NIR-Red False Color Composite with Fire Perimeters"</span>)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>[eaton_legend, pal_legend], </span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>          loc<span class="op">=</span><span class="st">"upper left"</span>,</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">"Fire Perimeters"</span>,</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Background of legend</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>          frameon<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<section id="false-color-landsat-imagery" class="level3">
+<h3 class="anchored" data-anchor-id="false-color-landsat-imagery">False-Color Landsat Imagery</h3>
+<section id="eaton-and-palisades-fire-perimeters" class="level4">
+<h4 class="anchored" data-anchor-id="eaton-and-palisades-fire-perimeters">Eaton and Palisades Fire Perimeters</h4>
+<p>False-color imagery assigns non-visible wavelengths (like infrared) to the red, green, and blue color channels to reveal features not apparent in natural color images. This analysis uses a SWIR, NIR, and Red composite where short-wave infrared (SWIR), near-infrared (NIR), and red bands are displayed, making it particularly effective for assessing wildfire damage. In the false-color imagery composite, healthy vegetation appears bright green due to high near-infrared reflectance, while burned areas show as dark brown. The following visualization overlays the Eaton and Palisades fire perimeters on this false-color composite to assess fire extent and severity.</p>
+<div id="4d1c4e33" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up fig, ax</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot false-color background first</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>false_color.plot.imshow(robust<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay fire perimeters</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>eaton.boundary.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"hotpink"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Eaton Fire"</span>, facecolor <span class="op">=</span> <span class="st">"lightpink"</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>palisades.boundary.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"red"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Palisades Fire"</span>, facecolor <span class="op">=</span> <span class="st">"indianred"</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend Patches</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>pal_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"indianred"</span>, edgecolor<span class="op">=</span><span class="st">"red"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"Palisades Fire"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>eaton_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"lightpink"</span>, edgecolor<span class="op">=</span><span class="st">"hotpink"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"Eaton Fire"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Zoom to fire extents - This is for the bound limits</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="bu">min</span>(eaton.total_bounds[<span class="dv">0</span>], palisades.total_bounds[<span class="dv">0</span>]) <span class="op">-</span> <span class="dv">500</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="bu">max</span>(eaton.total_bounds[<span class="dv">2</span>], palisades.total_bounds[<span class="dv">2</span>]) <span class="op">+</span> <span class="dv">500</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> <span class="bu">min</span>(eaton.total_bounds[<span class="dv">1</span>], palisades.total_bounds[<span class="dv">1</span>]) <span class="op">-</span> <span class="dv">500</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> <span class="bu">max</span>(eaton.total_bounds[<span class="dv">3</span>], palisades.total_bounds[<span class="dv">3</span>]) <span class="op">+</span> <span class="dv">500</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Set limits</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(xmin, xmax)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(ymin, ymax) </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Title</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"SWIR-NIR-Red False Color Composite with Fire Perimeters"</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>[eaton_legend, pal_legend], </span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>          loc<span class="op">=</span><span class="st">"upper left"</span>,</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">"Fire Perimeters"</span>,</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Background of legend</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>          frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -589,49 +542,48 @@ CRS after writing: EPSG:32611</code></pre>
 </div>
 </div>
 </div>
+</section>
 <section id="interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="interpretation">Interpretation</h4>
-<p>In this figure we are able to clearly see the areas that were affected by the wildfire that happened in Los Angeles County. With the false color imagery, it uses SWIR22 for red, NIR08 for green, and the Red band for blue. Bright green areas indicate healthy vegetation, while brown or muted areas correspond to bare ground or soil. The fire-affected regions are visible within the outlined perimeters. The fire perimeter of Palisades fire (red) and Eaton fire (pink) are identified by the colored boundary and an added text for easier identification. In this figure we are able to view both landscapes in Los Angeles and the fire perimeters that most recently occured.</p>
+<p>The false-color composite effectively reveals the wildfire impact across Los Angeles County. Bright green areas indicate healthy vegetation with high near-infrared reflectance, while dark brown areas within the fire perimeters show where vegetation has been destroyed. The Palisades Fire (red boundary) and Eaton Fire (pink boundary) extents are clearly visible, with burned areas appearing as distinctly darker patches compared to surrounding unburned landscape.</p>
 </section>
 </section>
 </section>
-<section id="eaton-and-palisades-fire-perimeters-with-basemap" class="level1">
-<h1>Eaton and Palisades Fire Perimeters with Basemap</h1>
-<div id="a3a7e8c0" class="cell" data-execution_count="9">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fire Perimeter- Eaton</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>eaton_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'orange'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)  <span class="co"># Inside</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>eaton_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)  <span class="co"># Border</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fire Perimeter- Palisades</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>palisades_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)  <span class="co"># Inside</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>palisades_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'darkblue'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)  <span class="co"># Border</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend Patches</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>pal_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"blue"</span>, edgecolor<span class="op">=</span><span class="st">"darkblue"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"Palisades Fire"</span>)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>eaton_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"orange"</span>, edgecolor<span class="op">=</span><span class="st">"red"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"Eaton Fire"</span>)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>[eaton_legend, pal_legend], </span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>          loc<span class="op">=</span><span class="st">"upper left"</span>,</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">"Fire Perimeters"</span>,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Background of legend</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>          frameon<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Title</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"2025 Eaton and Palisades Fire"</span>)</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes off</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'off'</span>)</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Basemap</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>ctx.add_basemap(ax, source<span class="op">=</span>ctx.providers.OpenStreetMap.Mapnik)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<section id="eaton-and-palisades-fire-perimeters-basemap" class="level1">
+<h1>Eaton and Palisades Fire Perimeters (Basemap)</h1>
+<p>To better understand the spatial extent and location of the Eaton and Palisades fires relative to surrounding communities and infrastructure, we will use <code>OpenStreeMap</code> basemap. With the OpenStreetMap, it will overlay the fire perimeters, which provides roads, highways, and city boundaries for geographic context. The Eaton and Palisades clipped version will be used here.</p>
+<div id="6a9299f0" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fire Perimeter- Eaton</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>eaton_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'orange'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)  <span class="co"># Inside</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>eaton_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)  <span class="co"># Border</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fire Perimeter- Palisades</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>palisades_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)  <span class="co"># Inside</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>palisades_clip.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'darkblue'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)  <span class="co"># Border</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend Patches</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>pal_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"blue"</span>, edgecolor<span class="op">=</span><span class="st">"darkblue"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"Palisades Fire"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>eaton_legend <span class="op">=</span> mpatches.Patch(facecolor<span class="op">=</span><span class="st">"orange"</span>, edgecolor<span class="op">=</span><span class="st">"red"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"Eaton Fire"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>[eaton_legend, pal_legend], </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>          loc<span class="op">=</span><span class="st">"upper left"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">"Fire Perimeters"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Background of legend</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>          frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Title</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"2025 Eaton and Palisades Fire"</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Axes off</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'off'</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Basemap</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>ctx.add_basemap(ax, source<span class="op">=</span>ctx.providers.OpenStreetMap.Mapnik)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -642,69 +594,234 @@ CRS after writing: EPSG:32611</code></pre>
 </div>
 <section id="interpretation-1" class="level4">
 <h4 class="anchored" data-anchor-id="interpretation-1">Interpretation</h4>
-<p>In this figure, the Eaton and Palisades fire perimeters are displayed on an OpenStreetMap basemap. Compared to the earlier Landsat imagery, this basemap provides clearer visual context by highlighting roads, highways, and city boundaries. This makes it easier to interpret where each fire occurred in relation to nearby communities and surrounding infrastructure.</p>
+<p>This map shows the Eaton and Palisades fire perimeters overlaid on an OpenStreetMap basemap, providing crucial geographic context. Compared to the earlier Landsat false-color imagery, this visualization makes it much easier to identify which specific communities, roads, and infrastructure were affected by each fire. The basemap reveals that both fires occurred in densely populated areas of Los Angeles County, with major highways and residential neighborhoods clearly visible within and adjacent to the fire boundaries. The semi-transparent fire perimeters allow viewers to see underlying street networks and topography, helping to understand how terrain and urban development may have influenced fire spread patterns.</p>
+</section>
+</section>
+<section id="eji-spatial-join-and-clip" class="level1">
+<h1>EJI Spatial Join and Clip</h1>
+<section id="eji-u.s.-census-tracts-with-eaton-and-palisades-fire-perimeters" class="level3">
+<h3 class="anchored" data-anchor-id="eji-u.s.-census-tracts-with-eaton-and-palisades-fire-perimeters">EJI U.S. Census Tracts with Eaton and Palisades Fire Perimeters</h3>
+<p>Before performing any spatial analysis, the EJI census tract dataset was reprojected to match the CRS of the Eaton and Palisades fire perimeter datasets to ensure consistent spatial alignment across all layers. Although spatial joins and clipping were performed earlier, reprojection had not been performed, making this step necessary to enable valid spatial overlay operations. In this section, spatial joins are used to identify U.S. census tracts that intersect with the Eaton and Palisades fire perimeters, helping determine which communities were impacted by each fire. The EJI census tract data are then clipped to the fire perimeter boundaries to extract only the portions of tracts located within the burned areas.</p>
+</section>
+<section id="reprojection" class="level3">
+<h3 class="anchored" data-anchor-id="reprojection">Reprojection</h3>
+<p>Reproject EJI to match Palisades and Eaton CRS, before spatial join. These steps are repeated from data wrangling section since now reprojection was made in order to clip the EJI census tracts.</p>
+<div id="c5859b01" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject EJI to match Palisades CRS</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> eji.crs <span class="op">!=</span> palisades.crs:</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Transform if CRS are different</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    eji <span class="op">=</span> eji.to_crs(palisades.crs)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> eji.crs <span class="op">!=</span> eaton.crs:</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Transform if CRS are different</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    eji <span class="op">=</span> eji.to_crs(eaton.crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="spatial-join" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-join">Spatial Join</h3>
+<p>In this section, the information in EJI will be joined with the fire perimeter of Eaton and Palisades, using intersects. A spatial join identifies ALL census tracts that have ANY overlap with the fire perimeters, even if only partially affected. This allows to view a complete list of potentially impacted communities. A visual plot will be shown to visually see the spatial joins.</p>
+<div id="de66f93a" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatially join EJI and Palisades</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>eji_palisades <span class="op">=</span> gpd.sjoin(eji,palisades,predicate<span class="op">=</span><span class="st">"intersects"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="e4f71adc" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatially join EJI and Eaton</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>eji_eaton <span class="op">=</span> gpd.sjoin(eji,eaton,predicate<span class="op">=</span><span class="st">"intersects"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualize-eaton-and-palisades-joined-eji" class="level3">
+<h3 class="anchored" data-anchor-id="visualize-eaton-and-palisades-joined-eji">Visualize Eaton and Palisades (Joined EJI)</h3>
+<div id="77542a84" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define figure and axis dimensions</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Joined with EJI</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>eji_palisades.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"black"</span>, facecolor<span class="op">=</span> <span class="st">"grey"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Palisades Reprojected</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>palisades.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"hotpink"</span>, color<span class="op">=</span> <span class="st">"none"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Set title</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"U.S Census Tracts Affected by Palisades Wildfire"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn off axis ticks</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-1.png" width="763" height="559" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="6c8eda32" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define figure and axis dimensions</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Joined with EJI</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>eji_eaton.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"black"</span>, facecolor<span class="op">=</span> <span class="st">"grey"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eaton Reprojected</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>eaton.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"hotpink"</span>, color<span class="op">=</span> <span class="st">"none"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Set title</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"U.S Census Tracts Affected by Eaton Wildfire"</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn off axis ticks</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-1.png" width="763" height="345" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The spatial join identified all census tracts that intersect the fires, but included areas outside the fire boundaries.</p>
+</section>
+<section id="clip-eji-with-fire-perimeters" class="level3">
+<h3 class="anchored" data-anchor-id="clip-eji-with-fire-perimeters">Clip EJI with Fire Perimeters</h3>
+<p>As shown in the spatial join visualizations above, the census tracts extend beyond the fire perimeters, meaning we’re including areas that were not actually burned. Since we’re only interested in analyzing communities directly impacted within the fire boundaries, we’ll use clipping (<code>gpd.clip()</code>) to extract only the portions of census tracts that fall within the fire perimeters. A visualization will be provided for both Eaton and Palisades fire perimeteres</p>
+<div id="5976c1de" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip EJI onto Palisades Perimeter</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>eji_palisades_clip <span class="op">=</span> gpd.clip(eji,palisades)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="fc74c0ac" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip EJI onto Palisades Perimeter</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>eji_eaton_clip <span class="op">=</span> gpd.clip(eji,eaton)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualize-clip-of-eji-and-fire-perimeters" class="level3">
+<h3 class="anchored" data-anchor-id="visualize-clip-of-eji-and-fire-perimeters">Visualize Clip of EJI and Fire Perimeters</h3>
+<div id="eb8f2f17" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define figure and axis dimensions</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Joined with EJI</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>eji_palisades_clip.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"black"</span>, facecolor<span class="op">=</span> <span class="st">"grey"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Palisades Reprojected</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>palisades.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"hotpink"</span>, color<span class="op">=</span> <span class="st">"none"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Set title</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Clipped - U.S Census Tracts Affected by Palisades Wildfire"</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn off axis ticks</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-18-output-1.png" width="763" height="516" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="712a9e9b" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define figure and axis dimensions</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Joined with EJI</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>eji_eaton_clip.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"black"</span>, facecolor<span class="op">=</span> <span class="st">"grey"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eaton Reprojected</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>eaton.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span> <span class="st">"hotpink"</span>, color<span class="op">=</span> <span class="st">"none"</span>, linewidth <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Set title</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Clipped - U.S Census Tracts Affected by Eaton Wildfire"</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn off axis ticks</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-19-output-1.png" width="763" height="496" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now that we have the clipped EJI data within fire boundaries, we can analyze specific vulnerability metrics for affected communities. I am interested in the percentile of <strong>housing units occupied by renters</strong>, as renters often face unique challenges.</p>
 </section>
 </section>
 <section id="communitys-response-to-a-wildfire" class="level1">
 <h1>Community’s Response To A Wildfire</h1>
 <section id="renter-occupancy-across-fire-perimeters" class="level3">
 <h3 class="anchored" data-anchor-id="renter-occupancy-across-fire-perimeters">Renter Occupancy Across Fire Perimeters</h3>
-<p>Using the 2024 Environmental Justice Index data for California in the geodatabase data format, <code>EJI_2024_California</code>, I will plot the fire perimeters of Eaton and Palisades to showcase Housing Units, Occupied by Renters. In the Palisades area it is more common for more homeowners to own homes and rent them out since it is near a beach and often added to vacation rentals. In the Eaton area,</p>
-<div id="d3f02266" class="cell" data-execution_count="10">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">10</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Add EJI Variable - Using Metadata</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>eji_variable <span class="op">=</span> <span class="st">'E_RENTER'</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Find common min/max for legend range</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>vmin <span class="op">=</span> <span class="bu">min</span>(palisades_clip[eji_variable].<span class="bu">min</span>(), eaton_clip[eji_variable].<span class="bu">min</span>())</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>vmax <span class="op">=</span> <span class="bu">max</span>(palisades_clip[eji_variable].<span class="bu">max</span>(), eaton_clip[eji_variable].<span class="bu">max</span>())</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot census tracts within Palisades perimeter</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>palisades_clip.plot(</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>column<span class="op">=</span> eji_variable,</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax,</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>ax1,</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> <span class="st">'inferno'</span>)</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Palisades Fire'</span>)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>ax1.axis(<span class="st">'off'</span>)</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot census tracts within Eaton perimeter</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>eaton_clip.plot(</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>column<span class="op">=</span>eji_variable,</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax,</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>ax2,</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>cmap<span class="op">=</span><span class="st">'inferno'</span>)</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Eaton Fire'</span>)</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>ax2.axis(<span class="st">'off'</span>)</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Add overall title</span></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Percentile of housing units that are renter occupied'</span>)</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Add shared colorbar at the bottom</span></span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>sm <span class="op">=</span> plt.cm.ScalarMappable(norm<span class="op">=</span>plt.Normalize(vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax), cmap <span class="op">=</span> <span class="st">'inferno'</span>)</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>cbar_ax <span class="op">=</span> fig.add_axes([<span class="fl">0.25</span>, <span class="fl">0.08</span>, <span class="fl">0.5</span>, <span class="fl">0.02</span>]) <span class="co"># [left, bottom, width, height]</span></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(sm, cax<span class="op">=</span>cbar_ax, orientation<span class="op">=</span><span class="st">'horizontal'</span>)</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">'Percentile of Housing Units, Occupied by Renter'</span>)</span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<section id="eaton-and-palisades" class="level4">
+<h4 class="anchored" data-anchor-id="eaton-and-palisades">Eaton and Palisades</h4>
+<p>Using the 2024 Environmental Justice Index data for California in the geodatabase data format, <code>EJI_2024_California</code>, I will plot the fire perimeters of Eaton and Palisades to showcase Housing Units, Occupied by Renters. In the Palisades area it is more common for more homeowners to own homes and rent them out since it is near a beach and often added to vacation rentals. The Eaton area is located in the foothills and canyons of the San Gabriel Mountains, near the cities of Altadena and Pasadena mountain ranges.</p>
+<div id="c217e966" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Add EJI Variable - Using Metadata</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>eji_variable <span class="op">=</span> <span class="st">'E_RENTER'</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Find common min/max for legend range</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>vmin <span class="op">=</span> <span class="bu">min</span>(eji_palisades_clip[eji_variable].<span class="bu">min</span>(), eji_palisades_clip[eji_variable].<span class="bu">min</span>())</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>vmax <span class="op">=</span> <span class="bu">max</span>(eji_eaton_clip[eji_variable].<span class="bu">max</span>(), eji_eaton_clip[eji_variable].<span class="bu">max</span>())</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot census tracts within Palisades perimeter</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>eji_palisades_clip.plot(</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>column<span class="op">=</span> eji_variable,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>ax1,</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>cmap<span class="op">=</span><span class="st">'viridis'</span>,</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>edgecolor<span class="op">=</span><span class="st">"grey"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Palisades Fire'</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>ax1.axis(<span class="st">'off'</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot census tracts within Eaton perimeter</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>eji_eaton_clip.plot(</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>column<span class="op">=</span>eji_variable,</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax,</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>ax2,</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>cmap<span class="op">=</span><span class="st">'viridis'</span>,</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>edgecolor<span class="op">=</span><span class="st">"grey"</span>)</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Eaton Fire'</span>)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>ax2.axis(<span class="st">'off'</span>)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Add overall title</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Renter-Occupied Housing</span><span class="ch">\n</span><span class="st">Percentile within Fire Perimeters'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Add shared colorbar at the bottom</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>sm <span class="op">=</span> plt.cm.ScalarMappable(norm<span class="op">=</span>plt.Normalize(vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax), cmap <span class="op">=</span> <span class="st">'viridis'</span>)</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>cbar_ax <span class="op">=</span> fig.add_axes([<span class="fl">0.25</span>, <span class="fl">0.08</span>, <span class="fl">0.5</span>, <span class="fl">0.02</span>]) <span class="co"># [left, bottom, width, height]</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(sm, cax<span class="op">=</span>cbar_ax, orientation<span class="op">=</span><span class="st">'horizontal'</span>)</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">'Percentile of Housing Units, Occupied by Renter'</span>)</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-11-output-1.png" width="1507" height="924" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-20-output-1.png" width="763" height="924" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
 <section id="interpretation-2" class="level4">
 <h4 class="anchored" data-anchor-id="interpretation-2">Interpretation</h4>
-<p>In the Palisades fire area, renter occupied housing units appear more concentrated along the coastal tracts. These coastal zones often contain higher density housing and short term rental activity, which may contribute to higher renter occupancy rates. Compared to the Eaton fire perimeter, renter occupied units are primarily concentrated in the southwestern portion, where residential development is present. Much of the remaining area within the Eaton perimeter covers mountainous terrain with little or no housing, resulting in low or zero values for renter occupancy.</p>
+<p>The spatial distribution of renter occupied housing reveals important differences between the two fire perimeter areas. In the Palisades fire perimeter, the western coastal tract shows the highest renter occupancy at approximately the 40th percentile, meaning this area has more renters than 40% of California census tracts likely reflecting the concentration of apartments and vacation rentals near the beach. The remaining Palisades tracts show lower percentile rankings (10-25th), indicating these inland areas are predominantly owner occupied.</p>
+<p>The Eaton fire perimeter displays greater variation, with some residential tracts reaching the 35-40th percentile range while large portions show minimal values corresponding to mountain terrain with little to no housing. These patterns indicate that both fires affected communities with notable renter populations, particularly in the Palisades coastal zone and Eaton’s southwestern residential areas, suggesting these populations may face heightened vulnerability to displacement during the recovery process.</p>
 </section>
 </section>
 </section>
@@ -712,6 +829,8 @@ CRS after writing: EPSG:32611</code></pre>
 <h1>References</h1>
 <ul>
 <li>Assignment 4: Palisades &amp; Eaton Fires. EDS 220 – Working with Environmental Datasets, 2025. https://meds-eds-220.github.io/EDS-eds-220-course/assignments/assignment4-palisades-eaton-fires.html. Accessed 17 Nov.&nbsp;2025.</li>
+<li>Fritz, A., &amp; Park, H. (2025, January 14). LA wildfires were larger and more intense due to planet-warming pollution, scientists report. CNN. https://www.cnn.com/2025/01/14/climate/los-angeles-fires-worse-global-warming/index.html</li>
+<li>Hoffman, R., Sarnoff, L., Kekatos, M., &amp; Mansell, W. (2025, March 7). LA fires aftermath: How people are rebuilding after losing almost everything. ABC News. https://abcnews.go.com/US/la-wildfires-aftermath-insurance-housing-rebuild-update/story?id=119209482</li>
 <li>Microsoft Planetary Computer. Planetary Computer. (n.d.). https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2</li>
 <li>NPR. Satellite image ©2025 Maxar Technologies (January 9, 2025). https://www.kpbs.org/news/national/2025/01/09/photos-see-the-california-wildfires-destructive-force-in-satellite-images</li>
 <li>Palisades and Eaton dissolved fire perimeters (2025). County of Los Angeles Enterprise GIS. (2025, January 21). https://egis-lacounty.hub.arcgis.com/maps/ad51845ea5fb4eb483bc2a7c38b2370c/about</li>
