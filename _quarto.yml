@@ -16,7 +16,7 @@ website:
       - href: resources.qmd
         text: Resources
       - icon: github
-        href: https://github.com/marietolteca00/marietolteca00.github.io #how to change
+        href: https://github.com/marietolteca00 #how to change
       - blog_post.qmd
   page-footer:
     left: Copyright 2025, Marie Tolteca
