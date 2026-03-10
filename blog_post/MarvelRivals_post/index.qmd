@@ -6,13 +6,6 @@ categories: [Quarto, R, MEDS, Affinity]
 code-fold: true
 toc: true
 ---
-
-#### Marvel Rivals Display
-
-The top image is a map called Yggsgard, known from the stories of Thor, Loki, and Asgard. The bottom image is a map called Shin-Shibuya, inspired by technology and cyberpunk aesthetics often associated with the Marvel hero Spider-Man Island storyline. While the middle highlights four playable heroes. From left to right: Cloak, Invisible Woman, Moon Knight, and The Punisher. On the background we can see a skyline and buildings from the cities.
-
-![](MarvelRivals_BG.png)
-
 # What is so good about Marvel Rivals
 
 Do you like or `LOVE` Marvel superheroes? Have you ever wondered if there was a game where you could actually use the powers of your favorite heroes? Look no further. Marvel has created a free video game, Marvel Rivals, that can be played across multiple platforms including PlayStation, Xbox, and PC.
@@ -29,7 +22,13 @@ Marvel Rivals is played in 5 vs. 5 team matches, and there are three main game m
 ```
 Convoy and Convergence can be played in two formats: Quick Match or Competitive. Quick Match is more casual with lower stakes, while Competitive matches have higher stakes and allow players to rank up their heroes. Reaching higher ranks eventually achieving the title of Lord, it can be both exciting and challenging.
 
-Using the website \[Marvel Rivals Tracker\]\['https://rivalsmeta.com/'\], I set up an API to download my personal gameplay statistics from Seasons 3–6. Below, I show how I retrieved my data using my gamer tag.
+Using the website [Marvel Rivals Tracker](https://rivalsmeta.com/), I set up an API to download my personal gameplay statistics from Seasons 3–6. Below, I show how I retrieved my data using my gamer tag.
+
+#### Marvel Rivals Display
+
+The top image is a map called Yggsgard, known from the stories of Thor, Loki, and Asgard. The bottom image is a map called Shin-Shibuya, inspired by technology and cyberpunk aesthetics often associated with the Marvel hero Spider-Man Island storyline. While the middle highlights four playable heroes. From left to right: Cloak, Invisible Woman, Moon Knight, and The Punisher. On the background we can see a skyline and buildings from the cities.
+
+![](MarvelRivals_BG.png)
 
 
 # Main Question:
