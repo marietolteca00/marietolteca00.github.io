@@ -5,6 +5,7 @@ format: html
 categories: [Quarto, R, MEDS, Affinity]
 code-fold: true
 toc: true
+
 ---
 # What is so good about Marvel Rivals
 
@@ -22,7 +23,7 @@ Marvel Rivals is played in 5 vs. 5 team matches, and there are three main game m
 ```
 Convoy and Convergence can be played in two formats: Quick Match or Competitive. Quick Match is more casual with lower stakes, while Competitive matches have higher stakes and allow players to rank up their heroes. Reaching higher ranks eventually achieving the title of Lord, it can be both exciting and challenging.
 
-Using the website [Marvel Rivals Tracker](https://rivalsmeta.com/), I set up an API to download my personal gameplay statistics from Seasons 3–6. Below, I show how I retrieved my data using my gamer tag.
+Using the website [Marvel Rivals Tracker](https://rivalsmeta.com/), I set up an API to download my personal gameplay statistics from Seasons 3–6. Below, I show how I retrieved my data using my gamer tag. I will only be looking into my hero usage and roles, yet I did not look into the game modes.
 
 #### Marvel Rivals Display
 
@@ -33,11 +34,11 @@ The top image is a map called Yggsgard, known from the stories of Thor, Loki, an
 
 # Main Question:
 ## Am I optimizing my Marvel Rivals gameplay?
-To explore this question, I will combine data from both Competitive and Quick Match games to analyze my performance across different heroes and roles.
+- To explore this question, I will combine data from both Competitive and Quick Match games to analyze my performance across different heroes and roles.
 
 # Libraries Used
 
-```{r, warning=FALSE, message=FALSE, eval=TRUE, echo=FALSE}
+```{r, warning=FALSE, message=FALSE, eval=TRUE, echo=TRUE}
 
 library(tidyverse)
 library(here)
@@ -229,14 +230,20 @@ hero_polar <- hero_kd_summary %>%
   )
 ```
 
-# Hero Duration
+# Type of Visualizations:
+### Hero Duration
 This visualization explores which heroes I spend the most time playing. By grouping heroes by role, I can see whether I tend to favor certain characters or roles more during matches.
-```{r,warning=FALSE, message=FALSE ,eval=TRUE, echo=TRUE}
+
+### Kill v Death Hero Comparison
+For this plot, I want to compare the number of kills and deaths across the heroes I play. This helps identify which heroes I perform best with in terms of securing kills while staying alive. I also include each hero’s role to see if performance varies between roles.
+
+### Win Rate per Hero Role
+This plot looks at my average win rate across the different roles. It also shows which roles I have played the most games in, helping me understand whether playtime or role choice influences my success in matches.
+```{r,warning=FALSE, message=FALSE ,eval=FALSE, echo=TRUE}
 #| fig-width: 15
 #| fig-height: 10
 #| out-width: "100%"
 #| fig-alt: "Scatter plot showing hours played for each hero, with portrait icons indicating the proportion of total playtime used. Moon Knight has the highest playtime at approximately 9.4 hours, followed by Phoenix at about 6.1 hours. Several heroes such as Angela, Gambit, and Squirrel Girl show minimal playtime of around 0.3 hours."
-#| fig-cap: "Playtime distribution across heroes. The chart shows the number of hours played for each hero, with portrait fill indicating the proportion of maximum playtime. Moon Knight and Phoenix represent the most frequently played heroes, while several others have significantly lower playtime. This uneven distribution suggests player preference for specific characters during matches."
 
 
 hero_usage <- clean_season %>%
@@ -429,90 +436,128 @@ duration <- ggplot(plot_df, aes(x = hero_name, y = total_duration_hours)) +
   )
 
 duration
-
-
 showtext_auto(enable = FALSE)
-```
 
-# Kill v Death Hero Comparison
-For this plot, I want to compare the number of kills and deaths across the heroes I play. This helps identify which heroes I perform best with in terms of securing kills while staying alive. I also include each hero’s role to see if performance varies between roles.
-```{r, message = FALSE, warning=FALSE, eval=FALSE, echo=TRUE}
-#..........................create title..........................
+
+# Kill/ Death Percent Ratio  Hero Comparison
+##| fig-width: 13
+##| fig-height: 14
+##| out-width: "100%"
+
+##| fig-alt: "Grid of donut charts comparing the percentage of kills versus deaths for multiple heroes across Duelist, Strategist, and Vanguard roles. Most heroes show a higher percentage of kills than deaths. Duelists such as Squirrel Girl, Moon Knight, Iron Man, Phoenix, and Star-Lord have kill percentages between roughly 64–73%. Strategists and Vanguards show slightly more balanced ratios, with heroes like Winter Soldier and The Punisher close to 50/50."
+##| fig-cap: "Kill to death ratios across heroes. Donut charts show the proportion of kills (orange) and deaths (gray) for each hero. Most heroes achieve more kills than deaths, particularly Duelists who are designed for damage output. Some characters such as Winter Soldier and The Punisher have more balanced ratios, suggesting higher risk or frontline engagement during matches."
+
+#showtext.auto(enable = TRUE)
+
 title <- glue::glue("<span style='color:#99381E;'>Kill</span>
                     <span style='color:#000000;'>vs</span>
                     <span style='color:#4E5472;'>Death</span>
                     <span style='color:#000000;'>Hero Comparison</span>")
 
-#.........................create caption.........................
-
 github_icon <- "\uf09b"
-github_username <- "marietolteca00"
+github_username <- "Marietolteca00"
 
 caption <- glue::glue(
   "Data Source: ©2026 MARVEL <br>
   <span style='font-family:fa-brands;'>{github_icon}</span>
-  {github_username}")
+  {github_username}"
+)
 
-# Plot 
-kd_plot <- hero_polar %>%
+#.........................data prep.........................
+hero_polar <- hero_kd_summary %>%
+  # Remove Angela
+  filter(str_to_title(hero_name) != "Angela") %>% 
+  mutate(
+    hero_name   = str_to_title(hero_name),
+    death_ratio = avg_deaths / (avg_kills + avg_deaths),
+    hero_name   = fct_reorder(hero_name, death_ratio, .desc = FALSE),
+    role_color  = case_when(
+      role == "Duelist"    ~ "#E69F00",
+      role == "Strategist" ~ "#56B4E9",
+      role == "Vanguard"   ~ "#D55E00"
+    )
+  ) %>%
+  select(hero_name, avg_kills, avg_deaths, role, role_color, image_url) %>%
+  pivot_longer(cols = c(avg_kills, avg_deaths),
+               names_to = "stat", values_to = "value") %>%
+  mutate(stat_label = ifelse(stat == "avg_kills", "Kills", "Deaths")) %>%
+  group_by(hero_name) %>%
+  mutate(
+    pct   = value / sum(value),
+    y_pos = cumsum(pct) - 0.5 * pct
+  )
+
+# Recreate bg_data AFTER filtering
+bg_data <- hero_polar %>%
+  distinct(hero_name, role_color)
+
+#.........................plot.........................
+kd_plot1 <- hero_polar %>%
   ggplot() +
+  geom_rect(
+    data = bg_data,
+    aes(fill = role_color),
+    xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf
+  ) +
+  scale_fill_identity() +
+  # Images for Heroes
   geom_from_path(
     data = hero_polar %>% distinct(hero_name, .keep_all = TRUE),
     aes(x = 0, y = 0, path = image_url),
-    width = 0.50) +
-  geom_col(aes(x = 5, y = pct, fill = stat_label), width = 2, alpha = 0.8) +
-  
-  # Percentage Number
+    width = 0.36,
+    vjust = 0.54
+  ) +
+  # Size of Columns
+  geom_col(
+    aes(x = 5, y = pct,
+        fill = ifelse(stat_label == "Kills", "#99381E", "#4E5472")),
+    width = 4.2, alpha = 0.8,
+    color = "#4D4E40", linewidth = 0.6    # outline
+  ) +
+  # Percent Ratios
   geom_text(
-  data = . %>% filter(value > 0),
-  aes(
-    x = 5.1,
-    y = y_pos,
-    label = paste0(round(pct * 100, 1), "%")),
-  size = 3.3,
-  fontface = "bold",
-  color = "#0A0A0A"
-) +
-  
-  facet_wrap(~role + hero_name, ncol = 5) +
-  scale_fill_manual(values = c("Kills" = "#99381E", "Deaths" = "#4E5472")) +
+    data = . %>% filter(value > 0),
+    aes(x = 4.8, y = y_pos, label = paste0(round(pct * 100, 1), "%")),
+    size = 4.5, fontface = "bold", color = "black"
+  ) +
+  geom_text(
+    data = hero_polar %>% distinct(hero_name, role, .keep_all = TRUE),
+    aes(x = 0, y = 0, label = hero_name),
+    color = "black", size = 6, fontface = "bold", vjust = -7
+  ) +
+  facet_wrap(~hero_name, ncol = 4) +
+  scale_fill_identity() +
   coord_polar("y") +
-  xlim(0, 6) +
-  labs(fill = "",
-       title = title,
-       #subtitle = "Kill to Death Comparison",
-       caption = caption) +
+  # Background of heroes
+  xlim(-1, 8) +
+  labs(title = title, caption = caption) +
   theme_void() +
   theme(
-    plot.background = element_rect(fill = "lightgrey", color = "aliceblue", linewidth = 3),
-    panel.background = element_rect(fill = "azure2"),
-    # Role and Hero Names
-    strip.text = element_text(size = 14, face = "bold", margin = margin(b = 5)),
-    legend.position = "none",
-    #legend.text = element_text(size = 15),
-    plot.margin = margin(t = 0.5, r = 0.5, b = 0.5, l = 0.5, unit = "cm"),
-    panel.spacing = unit(1.5, "lines"),
-    plot.title = ggtext::element_markdown(
+    plot.background  = element_rect(fill = "lightgrey", color = "aliceblue", linewidth = 3),
+    panel.background = element_blank(),
+    strip.text       = element_blank(),
+    strip.background = element_blank(),
+    legend.position  = "none",
+    plot.margin      = margin(t = 0.5, r = 0.5, b = 0.5, l = 0.5, unit = "cm"),
+    panel.spacing    = unit(1.5, "lines"),
+    plot.title       = ggtext::element_markdown(
       family = "noto-sans", face = "bold", size = 25,
-      hjust = 0.5, color = "#ACAB97", margin = margin(b = 10)),
-    plot.subtitle = element_text(hjust = 0.5, margin = margin(b = 20)),
+      hjust = 0.5, color = "#ACAB97", margin = margin(b = 10)
+    ),
     plot.caption = ggtext::element_markdown(
-      face = "italic", size = 12, margin = margin(t = 15), lineheight = 1.5)
+      face = "italic", size = 12, margin = margin(t = 15), lineheight = 1.5
+    )
   )
-```
 
-###  Edits were made on Affinity
-```{r}
-#| fig-alt: "Grid of donut charts comparing the percentage of kills versus deaths for multiple heroes across Duelist, Strategist, and Vanguard roles. Most heroes show a higher percentage of kills than deaths. Duelists such as Squirrel Girl, Moon Knight, Iron Man, Phoenix, and Star-Lord have kill percentages between roughly 64–73%. Strategists and Vanguards show slightly more balanced ratios, with heroes like Winter Soldier and The Punisher close to 50/50."
-#| fig-cap: "Kill to death ratios across heroes. Donut charts show the proportion of kills (orange) and deaths (gray) for each hero. Most heroes achieve more kills than deaths, particularly Duelists who are designed for damage output. Some characters such as Winter Soldier and The Punisher have more balanced ratios, suggesting higher risk or frontline engagement during matches."
+kd_plot1
+#showtext.auto(enable = FALSE)
 
-knitr::include_graphics(here::here("blog_post","MarvelRivals_post","K_D_Comparison_Heroes.png"))
-```
-
-
-# Win Rate per Hero Role
-This plot looks at my average win rate across the different roles. It also shows which roles I have played the most games in, helping me understand whether playtime or role choice influences my success in matches.
-```{r,warning=FALSE, message=FALSE ,eval=FALSE, echo=TRUE}
+# Win Rate Plot
+### Edits Were made on Affinity
+##| fig-alt: "Bubble chart showing win rate across three roles: Vanguard, Duelist, and Strategist. Bubble size represents the number of games played. Strategists appear to have the highest win rate (around the mid-70% range), Duelists show moderate win rates around 50%, and Vanguards have lower win rates near 30%."
+##| fig-cap: "Win rate differences across roles. The chart compares average win rate for Vanguard, Duelist, and Strategist roles, with bubble size representing the number of matches played. Strategists show the highest win rates, while Duelists have moderate success and Vanguards show lower win rates overall. These patterns suggest that team support roles may have stronger influence on match outcomes."
+# Edits were made on Affinity
+#knitr::include_graphics(here::here("blog_post","MarvelRivals_post","NEW_WIN_RATE.png"))
 
 # Data Wrangle
 max_games <- max(role_stats$games)
@@ -664,17 +709,23 @@ win_rate <- ggplot(role_stats4 %>% distinct(role, win_rate, games), aes(x = win_
       color = "white"  # legend circle outlines in white
     ))
   )
-```
+win_rate
 
-### Edits Were made on Affinity
 
-```{r}
-#| fig-alt: "Bubble chart showing win rate across three roles: Vanguard, Duelist, and Strategist. Bubble size represents the number of games played. Strategists appear to have the highest win rate (around the mid-70% range), Duelists show moderate win rates around 50%, and Vanguards have lower win rates near 30%."
-#| fig-cap: "Win rate differences across roles. The chart compares average win rate for Vanguard, Duelist, and Strategist roles, with bubble size representing the number of matches played. Strategists show the highest win rates, while Duelists have moderate success and Vanguards show lower win rates overall. These patterns suggest that team support roles may have stronger influence on match outcomes."
-# Edits were made on Affinity
-knitr::include_graphics(here::here("blog_post","MarvelRivals_post","NEW_WIN_RATE.png"))
 
 ```
+
+# Findings
+::: {.darkgrey-text .center-text}
+*Hero Duration - Playtime distribution across heroes. The chart shows the number of hours played for each hero, with portrait fill indicating the proportion of maximum playtime. Moon Knight and Phoenix represent the most frequently played heroes, while several others have significantly lower playtime. This uneven distribution suggests player preference for specific characters during matches.*
+
+*Kill v Death Hero Comparison Percent Ratios across heroes. Donut charts show the proportion of kills (orange) and deaths (gray) for each hero. Most heroes achieve more kills than deaths, particularly Duelists who are designed for damage output. Some characters such as Winter Soldier and The Punisher have more balanced ratios, suggesting higher risk or frontline engagement during matches.*
+
+*Win rate differences across roles. The chart compares average win rate for Vanguard, Duelist, and Strategist roles, with bubble size representing the number of matches played. Strategists show the highest win rates, while Duelists have moderate success and Vanguards show lower win rates overall. These patterns suggest that team support roles may have stronger influence on match outcomes.*
+:::
+
+
+
 
 # Infographic
 

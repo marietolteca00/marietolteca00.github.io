@@ -14,10 +14,12 @@ $rosybrown: #C89F9C;
 $thistle: #CDB4DB;
 $powderblue: #93B6C6;
 $oceanblue: #0284B4;
+$darkgrey: #262626;
+
 
 // define Sass vars 
 
-$body-bg: $oceanblue;//previously vanilla
+$body-bg: $vanilla;//previously vanilla
 $navbar-bg: $midnightgreen;
 $navbar-fg: $powderblue;
 $navbar-hl: $thistle;
@@ -26,6 +28,12 @@ $link-color: $midnightgreen;
 /*--scss:rules --*/
 h1, h2, h3, h4 {
   font-family: "Nunito", sans-serif;
+}
+
+// Rule for text
+.darkgrey-text{
+  color: $darkgrey;
+  
 }
 
 
@@ -39,8 +47,9 @@ h1, h2 {
   color: $powderblue;
 }
 
-center-text {
+.center-text {
   text-align: center;
+  left: 50%;
 }
 
 .rosybrown-text {
@@ -49,7 +58,7 @@ center-text {
 
 // logo-size
 .navbar-brand img {
-  height: 100px !important;  /* make this value bigger or smaller as needed */
+  height: 40px !important;  /* make this value bigger or smaller as needed */
   width: auto !important;
   max-height: none !important;
 }
