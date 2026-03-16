@@ -19,7 +19,7 @@ website:
         href: https://github.com/marietolteca00 #how to change
       - blog_post.qmd
   page-footer:
-    left: Copyright 2025, Marie Tolteca
+    left: Copyright 2026, Marie Tolteca
     right:
       - href: https://github.com/marietolteca00
         icon: github
@@ -27,7 +27,8 @@ website:
 format:
   html:
     theme: 
-      - morph
+      # - morph
+      - styles.scss
     toc: true
     page-layout: full
     mainfont: Josefin Sans
