@@ -717,18 +717,28 @@ win_rate
 
 # Findings
 ::: {.darkgrey-text .center-text}
-*Hero Duration - Playtime distribution across heroes. The chart shows the number of hours played for each hero, with portrait fill indicating the proportion of maximum playtime. Moon Knight and Phoenix represent the most frequently played heroes, while several others have significantly lower playtime. This uneven distribution suggests player preference for specific characters during matches.*
+*`Hero Duration` - Playtime distribution across heroes. The chart shows the number of hours played for each hero, with portrait fill indicating the proportion of maximum playtime. Moon Knight and Phoenix represent the most frequently played heroes, while several others have significantly lower playtime. This uneven distribution suggests player preference for specific characters during matches.*
 
-*Kill v Death Hero Comparison Percent Ratios across heroes. Donut charts show the proportion of kills (orange) and deaths (gray) for each hero. Most heroes achieve more kills than deaths, particularly Duelists who are designed for damage output. Some characters such as Winter Soldier and The Punisher have more balanced ratios, suggesting higher risk or frontline engagement during matches.*
+*`Kill vs Death Hero Comparison Percent Ratios across heroes` - Donut charts show the proportion of kills (orange) and deaths (gray) for each hero. Most heroes achieve more kills than deaths, particularly Duelists who are designed for damage output. Some characters such as Winter Soldier and The Punisher have more balanced ratios, suggesting higher risk or frontline engagement during matches.*
 
-*Win rate differences across roles. The chart compares average win rate for Vanguard, Duelist, and Strategist roles, with bubble size representing the number of matches played. Strategists show the highest win rates, while Duelists have moderate success and Vanguards show lower win rates overall. These patterns suggest that team support roles may have stronger influence on match outcomes.*
+*`Win rate differences across roles` - The chart compares average win rate for Vanguard, Duelist, and Strategist roles, with bubble size representing the number of matches played. Strategists show the highest win rates, while Duelists have moderate success and Vanguards show lower win rates overall. These patterns suggest that team support roles may have stronger influence on match outcomes.*
 :::
-
-
 
 
 # Infographic
 
-![](info.png)
+![](final_info.png)
 
 Kill to death ratios are generally positive across heroes, particularly among Duelists. Despite this, win rates differ across roles, suggesting that success is not driven by damage alone. Strategic role changes based on team performance may be necessary to improve match outcomes
+
+# Special Note
+Thank you for sticking around, below I have provided a GIF that shows Jeff the Shark, Healer/ Strategist, show the dub of the century and took the dub for the game!
+
+::: {.darkgrey-text .center-text}
+*Jeff the Shark is shown using his ultimate ability. This ability allows him to swallow both allies and enemies. The ultimate charges over the course of the game.*
+*In this GIF, There is a blue shield that was added by invisible women (using her ultimate - Invisible Boundary) to protect her team from damage. Jeff can be seen swallowing two allies and four enemies. He spits out the allies before carrying the enemies into lava, eliminating them.*
+*Jeff is being attacked throughout this process, which is why the screen pulses red around the edges.*
+:::
+
+![](jeffdubtown.gif)
+
