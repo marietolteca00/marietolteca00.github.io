@@ -740,5 +740,5 @@ Thank you for sticking around, below I have provided a GIF that shows Jeff the S
 *Jeff is being attacked throughout this process, which is why the screen pulses red around the edges.*
 :::
 
-
+![](jefftheshark.gif)
 
