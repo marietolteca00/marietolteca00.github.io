@@ -727,7 +727,7 @@ win_rate
 
 # Infographic
 
-![](final_info.png)
+![](info.jpeg)
 
 Kill to death ratios are generally positive across heroes, particularly among Duelists. Despite this, win rates differ across roles, suggesting that success is not driven by damage alone. Strategic role changes based on team performance may be necessary to improve match outcomes
 
@@ -740,5 +740,5 @@ Thank you for sticking around, below I have provided a GIF that shows Jeff the S
 *Jeff is being attacked throughout this process, which is why the screen pulses red around the edges.*
 :::
 
-![](jeffdubtown.gif)
+
 
