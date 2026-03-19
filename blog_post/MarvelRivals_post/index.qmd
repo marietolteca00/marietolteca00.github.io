@@ -734,6 +734,8 @@ Kill to death ratios are generally positive across heroes, particularly among Du
 # Special Note
 Thank you for sticking around, below I have provided a GIF that shows Jeff the Shark, Healer/ Strategist, show the dub of the century and took the dub for the game!
 
+As well as, Squirrel girl and Starlord!
+
 ::: {.darkgrey-text .center-text}
 *Jeff the Shark is shown using his ultimate ability. This ability allows him to swallow both allies and enemies. The ultimate charges over the course of the game.*
 *In this GIF, There is a blue shield that was added by invisible women (using her ultimate - Invisible Boundary) to protect her team from damage. Jeff can be seen swallowing two allies and four enemies. He spits out the allies before carrying the enemies into lava, eliminating them.*
@@ -742,3 +744,13 @@ Thank you for sticking around, below I have provided a GIF that shows Jeff the S
 
 ![](jefftheshark.gif)
 
+::: {.darkgrey-text .center-text}
+*Following Jeff the shark, I wanted to show a snippet of Squirrel Girl since she was my top Kills when comparing with other heroes. In this image, it is showing the highlight of a gameplay that was done in the match of domination. She is shown throwing her acorns at enemies to make damage and received a five player kill streak.*
+:::
+![](GIF_Squirrelgirl.gif)
+
+::: {.darkgrey-text .center-text}
+*Lastly, we have Star-Lord giving his goodbye dance for staying until this point.*
+:::
+
+![](GIF_Starlord.gif)
