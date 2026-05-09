@@ -747,10 +747,10 @@ As well as, Squirrel girl and Starlord!
 ::: {.darkgrey-text .center-text}
 *Following Jeff the shark, I wanted to show a snippet of Squirrel Girl since she was my top Kills when comparing with other heroes. In this image, it is showing the highlight of a gameplay that was done in the match of domination. She is shown throwing her acorns at enemies to make damage and received a five player kill streak.*
 :::
-![](GIF_Squirrelgirl.gif)
+![](squirrel_girl.gif)
 
 ::: {.darkgrey-text .center-text}
 *Lastly, we have Star-Lord giving his goodbye dance for staying until this point.*
 :::
 
-![](GIF_Starlord.gif)
+![](star_lord.gif)
