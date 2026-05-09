@@ -2,12 +2,68 @@
 title: "About"
 ---
 
-About this site
+# Who Am I?
 
-## What I do for work
+![Vintage Car Undergrad Celebration](/images/aboutme/myself_car.jpeg){width=50%, height=300px}
 
-This is what i do for work....
 
-## What I do for fun
+Hi! My name is Marie Tolteca, and I am currently pursuing a Master of Environmental Data Science at the University of California, Santa Barbara. My interests sit at the intersection of data science, visualization, environmental analytics, and storytelling through data. I enjoy building projects that combine technical workflows with creative communication and design.
 
-Give the people what they want, something fun!
+---
+
+## Work & Technical Experience
+
+My work focuses on developing reproducible data science workflows using Python, R, SQL, GIS, and remote sensing tools. I have experience working with environmental datasets, statistical modeling, data visualization, and spatial analysis through both academic and research-based projects.
+
+Some of my recent work includes:
+
+- Developing a SQL database project analyzing WWE superstar engagement and streaming platform performance
+- Building API-based visual analytics projects using RStudio and Python
+- Conducting eddy covariance analysis using a Gamma Generalized Linear Model (GLM) to evaluate environmental drivers influencing evapotranspiration
+- Working with geospatial and remote sensing datasets through collaborations involving NASA Ames Research Center and environmental monitoring research
+
+I am especially interested in finding ways to translate complex datasets into clear and effective visual communication.
+
+![California State Parks - Nisene Marks State Park](/images/aboutme/state_parks.png){width=50%, height=300px}
+![Research Technician with NASA ARC-Crest - Big Sur Land Trust](/images/aboutme/nasa.png){width=50%, height=300px}
+![Garrapata State Park](/images/aboutme/tree_hike.png){width=50%, height=300px}
+
+---
+
+## Basketball & Sports Analytics
+
+Basketball has always been a major part of my life. I grew up playing basketball and became a huge Lakers fan during the Kobe Bryant championship era alongside players like Derek Fisher, Lamar Odom, and Pau Gasol. That passion for the game naturally evolved into an interest in sports analytics and data storytelling.
+
+Although my background is rooted in environmental data science rather than traditional sports analytics, I enjoy applying analytical workflows and visualization techniques across different domains. I am particularly interested in how data can support decision-making, player evaluation, and fan engagement within sports organizations.
+
+---
+
+## GIS Maps & Visualization
+
+One of my favorite aspects of data science is visualization. I enjoy creating maps, dashboards, and infographic-style graphics that make data more accessible and engaging. GIS and spatial analysis allow me to combine technical analysis with creativity, especially when working with environmental and geographic datasets.
+
+I frequently work with:
+- ArcGIS Pro
+- Remote sensing imagery
+- Spatial data visualization
+- Cartographic design
+- Infographic refinement and visual storytelling
+
+![Steen Ankle Creek - Steens Mountain Bureau Land Managment](/images/aboutme/AnkleCreekFence.png){width=50%, height=500px}
+
+---
+
+## Music & Creative Interests
+
+Outside of data science, I enjoy listening to music, editing visuals, photography, and exploring creative design workflows. Music and sports have both influenced how I approach storytelling and presentation in my projects. I enjoy blending technical analysis with aesthetics to create projects that are both informative and visually engaging.
+
+![Tamolitch Falls (Blue Pool) - Oregon](/images/aboutme/hike.jpeg){width=50%, height=250px}
+![Cabrillo Beach Cove - Monterey Bay, CA](/images/aboutme/marina_beach.png){width=50%, height=250px}
+![White Egret at the beach](/images/aboutme/WhiteEgret.png){width=50%, height=250px}
+![Marina State Beach](/images/aboutme/beach.png){width=30%, height=250px}
+
+---
+
+## Current Goals
+
+Right now, I am continuing to expand my background in machine learning, statistical modeling, and data engineering workflows. I am especially interested in opportunities that allow me to combine analytics, visualization, and real-world problem solving across environmental science, sports, and emerging data-driven industries.
