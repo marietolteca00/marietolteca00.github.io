@@ -70,13 +70,15 @@ font_add(family = "fa-brands",
 ```
 
 # Import Data
+Creating these CSV's can be found in `drafting_viz` in the repository `Tolteca-eds240-infographic`.
 
 ```{r, warning=FALSE,message=FALSE, eval=TRUE, echo=TRUE}
 hero_kd_summary <- read.csv(here("/Users/marietolteca/Documents/MEDS/personal_website/marietolteca00.github.io/blog_post/MarvelRivals_post/data/hero_kd_summary.csv"))
-hero_polar <- read.csv(here("/Users/marietolteca/Documents/MEDS/personal_website/marietolteca00.github.io/blog_post/MarvelRivals_post/data/hero_polar.csv"))
 role_stats <- read.csv(here("/Users/marietolteca/Documents/MEDS/personal_website/marietolteca00.github.io/blog_post/MarvelRivals_post/data/role_stats.csv"))
 clean_season <- read.csv(here("/Users/marietolteca/Documents/MEDS/personal_website/marietolteca00.github.io/blog_post/MarvelRivals_post/data/clean_season.csv"))
 ```
+
+> Create an API via Marvel Rivals API Website
 
 # Data Wrangle
 
@@ -214,20 +216,22 @@ role_stats <- clean_season %>%
 
 # Kills/ Death Percent Ratios
 hero_polar <- hero_kd_summary %>%
-  mutate(hero_name = str_to_title(hero_name)) %>% 
-  mutate(hero_name = reorder(hero_name, -avg_kills)) %>%
+  mutate(
+    hero_name = str_to_title(hero_name),
+    hero_name = reorder(hero_name, -avg_kills)
+  ) %>%
   select(hero_name, avg_kills, avg_deaths, role, image_url) %>%
   pivot_longer(cols = c(avg_kills, avg_deaths),
-               names_to = "stat",
+               names_to  = "stat",
                values_to = "value") %>%
   mutate(stat_label = ifelse(stat == "avg_kills", "Kills", "Deaths")) %>%
-  mutate(hero_name = reorder(hero_name, -value[stat == "avg_kills"][match(hero_name, hero_name[stat == "avg_kills"])])) %>%
   group_by(hero_name) %>%
   mutate(
     # Percent Ratio
-    pct = value / sum(value),
+    pct   = value / sum(value),
     y_pos = cumsum(pct) - 0.5 * pct
-  )
+  ) %>%
+  ungroup()
 ```
 
 # Type of Visualizations:
@@ -241,31 +245,43 @@ For this plot, I want to compare the number of kills and deaths across the heroe
 This plot looks at my average win rate across the different roles. It also shows which roles I have played the most games in, helping me understand whether playtime or role choice influences my success in matches.
 ```{r,warning=FALSE, message=FALSE ,eval=FALSE, echo=TRUE}
 #| fig-width: 15
-#| fig-height: 10
+#| fig-height: 8
 #| out-width: "100%"
 #| fig-alt: "Scatter plot showing hours played for each hero, with portrait icons indicating the proportion of total playtime used. Moon Knight has the highest playtime at approximately 9.4 hours, followed by Phoenix at about 6.1 hours. Several heroes such as Angela, Gambit, and Squirrel Girl show minimal playtime of around 0.3 hours."
 
 
+# ── Role colors ──────────────────────────────────────────────
+
+role_colors_hex <- c(
+  "Duelist"    = "#C58D12",
+  "Vanguard"   = "#D55E00",
+  "Strategist" = "#5AA6D4"
+)
+
 hero_usage <- clean_season %>%
-  group_by(hero_name, hero_type, role) %>%
+  group_by(hero_name, role) %>%
   summarise(
-    total_duration_min = sum(duration, na.rm = TRUE),
+    total_duration_min   = sum(duration, na.rm = TRUE),
     total_duration_hours = round(sum(duration, na.rm = TRUE) / 60, 2),
     .groups = "drop"
   ) %>%
   arrange(desc(total_duration_min))
 
 top_heroes <- hero_usage %>%
-  slice_max(order_by = total_duration_min, n = 10) %>% 
-  mutate(hero_name = str_to_title(hero_name)) 
+  slice_max(order_by = total_duration_min, n = 10) %>%
+  mutate(hero_name = str_to_title(hero_name))
+
 # ── Data ──────────────────────────────────────────────────────
+
 max_hours_scalar <- max(top_heroes$total_duration_hours, na.rm = TRUE)
 
+# Join image URLs from hero_kd_summary (title-cased to match)
+hero_images <- hero_kd_summary %>%
+  mutate(hero_name = str_to_title(hero_name)) %>%
+  distinct(hero_name, image_url)
+
 plot_df <- top_heroes %>%
-  left_join(
-    hero_polar %>% distinct(hero_name, image_url),
-    by = "hero_name"
-  ) %>%
+  left_join(hero_images, by = "hero_name") %>%
   mutate(fraction = total_duration_hours / max_hours_scalar) %>%
   arrange(desc(total_duration_hours))
 
@@ -273,11 +289,6 @@ hero_order <- plot_df$hero_name
 
 # ── Portrait maker ────────────────────────────────────────────
 SIZE <- 160L
-
-role_colors_hex <- c(
-  "Duelist"    = "#C58D12",
-  "Vanguard"   = "#D55E00",
-  "Strategist" = "#5AA6D4")
 
 make_composite_portrait <- function(image_url, fraction, role, hero_name) {
   col       <- role_colors_hex[[role]]
@@ -324,115 +335,88 @@ plot_df <- plot_df %>%
   rowwise() %>%
   mutate(bubble_img = make_composite_portrait(image_url, fraction, role, hero_name)) %>%
   ungroup()
-
 message("Done.")
 
-
 # ── Enable showtext (correct function name) ───────────────────
+
 showtext_auto(enable = TRUE)
 showtext_opts(dpi = 300)
 
-# ── Role colours ──────────────────────────────────────────────
-role_colors_hex <- c(
-  "Duelist"    = "#C58D12",
-  "Vanguard"   = "#D55E00",
-  "Strategist" = "#5AA6D4"
+title_dur <- glue::glue(
+  "<span style='font-family:noto-sans; font-weight:bold;'>Where Did My Time Go? A Hero Usage Breakdown (Hours)</span>"
 )
 
+#.........................plot.........................
 
-
-# ── Title & caption ───────────────────────────────────────────
-github_icon     <- "\uf09b"
-github_username <- "marietolteca00"
-
-title <- glue::glue(
-  "<span style='font-family:noto-sans; font-weight:bold;'>Most  Used  Hero  Duration  (Hours)</span>"
-)
-
-
-caption <- glue::glue(
-  "Data Source: \u00a92026 MARVEL<br>
-   <span style='font-family:fa-brands;'>{github_icon}</span> {github_username}"
-)
-
-# ── Plot ──────────────────────────────────────────────────────
 max_h <- max_hours_scalar
 
+y_offset <- (max_h + 2.0 - (-1.0)) * 0.14
+
+# Plot Starts
+
 duration <- ggplot(plot_df, aes(x = hero_name, y = total_duration_hours)) +
-
-  geom_image(
-    aes(image = bubble_img),
-    size = 0.07,
-    asp  = 12 / 9
-  ) +
-
-  # Hero name above the bubble — wrapped to avoid overflow
+  
+  # Size of bubble
+  geom_image(aes(image = bubble_img), size = 0.09, asp = 12 / 9) +
+  
+   # Name label — push further above the larger bubble
   geom_text(
-    aes(y     = total_duration_hours + 0.99,
-        label = stringr::str_wrap(hero_name, width = 10),
+    aes(y     = total_duration_hours + y_offset,  # was 0.99
+        label = stringr::str_wrap(hero_name, width = 12),
         color = role),
-    family    = "sarala",
-    size      = 5.6,
-    fontface  = "bold",
-    hjust     = 0.5,
-    lineheight = 0.85
+    family = "sarala", size = 6.5, fontface = "bold",
+    hjust = 0.5, lineheight = 0.90        # hjust 0.5 centers it properly
   ) +
 
-  # Hours label below the bubble
+  # Hours label — push further below
   geom_text(
-    aes(y     = total_duration_hours - 0.75,
+    aes(y     = total_duration_hours - y_offset * 0.7,  # was -0.75
         label = sprintf("%.1fh", total_duration_hours),
         color = role),
-    family   = "red",
-    size     = 5,
-    fontface = "bold"
+    family = "red", size = 6, fontface = "bold"
   ) +
-
+  
+  
   scale_color_manual(values = role_colors_hex, guide = "none") +
   scale_x_discrete(limits = hero_order) +
   scale_y_continuous(
-    limits = c(-1.0, max_h + 2.0),
+    limits = c(-2.5, max_h + 3.5),
     breaks = seq(0, ceiling(max_h), by = 2),
     expand = expansion(mult = c(0, 0))
   ) +
-
   labs(
-    title    = title,
-    subtitle = "Portrait fill shows Proportion of Max Playtime  \u2022  Dark Grey = Unused Portion",
+    #title    = title_dur,
+    subtitle = "Portrait fill shows Proportion of Max Playtime \u2022 Dark Grey = Unused Portion",
     x        = NULL,
     y        = NULL,
-    caption  = caption
+    caption  = make_caption()
   ) +
-
   theme_minimal(base_family = "noto-sans", base_size = 13) +
   theme(
-    plot.background    = element_rect(fill = "lightgrey", color = "#BCC7AA", linewidth = 3),
-    panel.background   = element_rect(fill = "azure2"),
+    #plot.background    = element_rect(fill = "lightgrey", color = "#BCC7AA", linewidth = 3),
+    #panel.background   = element_rect(fill = "azure2"),
     axis.text.x        = element_blank(),
     axis.text.y        = element_blank(),
     axis.title.x       = element_blank(),
     axis.title.y       = element_blank(),
     axis.ticks         = element_blank(),
     panel.grid.major.x = element_blank(),
-    panel.grid.major.y = element_line(color = "#cccccc80", linewidth = 0.4),
+    #panel.grid.major.y = element_line(color = "#cccccc80", linewidth = 0.4),
     panel.grid.minor   = element_blank(),
     legend.position    = "none",
     plot.margin        = margin(t = 0.5, r = 0.5, b = 0.5, l = 0.5, unit = "cm"),
-    
-    # Title
-    plot.title         = ggtext::element_markdown(
-      family = "noto-sans", face = "bold", size = 26,
-      hjust = 0.5, color = "#333333", margin = margin(b = 8)),
-    
-    # Subtitle
-    plot.subtitle      = element_text(
+    #plot.title         = ggtext::element_markdown(
+     # family = "noto-sans", face = "bold", size = 24,
+      #hjust = 0.5, color = "#333333", margin = margin(b = 8)
+    #),
+    plot.subtitle = element_text(
       family = "sarala", hjust = 0.5, size = 15,
-      color = "#666666", margin = margin(b = 15)),
-    
-    # Github and Data Source
-    plot.caption       = ggtext::element_markdown(
+      color = "#666666", margin = margin(b = 15)
+    ),
+    plot.caption = ggtext::element_markdown(
       family = "noto-sans", face = "italic", size = 10,
-      hjust = 1, margin = margin(t = 15), lineheight = 1.5, color = "#888888")
+      hjust = 1, margin = margin(t = 15), lineheight = 1.5, color = "#888888"
+    )
   )
 
 duration
@@ -465,8 +449,7 @@ caption <- glue::glue(
 
 #.........................data prep.........................
 hero_polar <- hero_kd_summary %>%
-  # Remove Angela
-  filter(str_to_title(hero_name) != "Angela") %>% 
+  filter(str_to_title(hero_name) != "Angela") %>%
   mutate(
     hero_name   = str_to_title(hero_name),
     death_ratio = avg_deaths / (avg_kills + avg_deaths),
@@ -479,19 +462,29 @@ hero_polar <- hero_kd_summary %>%
   ) %>%
   select(hero_name, avg_kills, avg_deaths, role, role_color, image_url) %>%
   pivot_longer(cols = c(avg_kills, avg_deaths),
-               names_to = "stat", values_to = "value") %>%
+               names_to  = "stat",
+               values_to = "value") %>%
   mutate(stat_label = ifelse(stat == "avg_kills", "Kills", "Deaths")) %>%
   group_by(hero_name) %>%
   mutate(
     pct   = value / sum(value),
     y_pos = cumsum(pct) - 0.5 * pct
-  )
-
+  ) %>%
+  ungroup()
 # Recreate bg_data AFTER filtering
 bg_data <- hero_polar %>%
   distinct(hero_name, role_color)
 
 #.........................plot.........................
+showtext_auto(enable = TRUE)
+
+title_kd <- glue::glue(
+  "<span style='color:#99381E;'>Kill</span>
+   <span style='color:#000000;'>vs</span>
+   <span style='color:#4E5472;'>Death</span>
+   <span style='color:#000000;'>Hero Comparison</span>"
+)
+
 kd_plot1 <- hero_polar %>%
   ggplot() +
   geom_rect(
@@ -504,21 +497,21 @@ kd_plot1 <- hero_polar %>%
   geom_from_path(
     data = hero_polar %>% distinct(hero_name, .keep_all = TRUE),
     aes(x = 0, y = 0, path = image_url),
-    width = 0.36,
-    vjust = 0.54
+    width = 0.36, vjust = 0.54
   ) +
   # Size of Columns
   geom_col(
     aes(x = 5, y = pct,
         fill = ifelse(stat_label == "Kills", "#99381E", "#4E5472")),
     width = 4.2, alpha = 0.8,
-    color = "#4D4E40", linewidth = 0.6    # outline
+    color = "#4D4E40", linewidth = 0.6
   ) +
   # Percent Ratios
   geom_text(
     data = . %>% filter(value > 0),
-    aes(x = 4.8, y = y_pos, label = paste0(round(pct * 100, 1), "%")),
-    size = 4.5, fontface = "bold", color = "black"
+    aes(x = 4.8, y = y_pos,
+        label = paste0(round(pct * 100, 1), "%")),
+    size = 4.5, fontface = "bold", color = "white"
   ) +
   geom_text(
     data = hero_polar %>% distinct(hero_name, role, .keep_all = TRUE),
@@ -528,12 +521,12 @@ kd_plot1 <- hero_polar %>%
   facet_wrap(~hero_name, ncol = 4) +
   scale_fill_identity() +
   coord_polar("y") +
-  # Background of heroes
+  # Background of Heroes
   xlim(-1, 8) +
-  labs(title = title, caption = caption) +
+  labs(title = title_kd, caption = make_caption()) +
   theme_void() +
   theme(
-    plot.background  = element_rect(fill = "lightgrey", color = "aliceblue", linewidth = 3),
+    #plot.background  = element_rect(fill = "lightgrey", color = "aliceblue", linewidth = 3),
     panel.background = element_blank(),
     strip.text       = element_blank(),
     strip.background = element_blank(),
@@ -550,8 +543,8 @@ kd_plot1 <- hero_polar %>%
   )
 
 kd_plot1
-#showtext.auto(enable = FALSE)
-
+#showtext_auto(enable = FALSE)
+---
 # Win Rate Plot
 ### Edits Were made on Affinity
 ##| fig-alt: "Bubble chart showing win rate across three roles: Vanguard, Duelist, and Strategist. Bubble size represents the number of games played. Strategists appear to have the highest win rate (around the mid-70% range), Duelists show moderate win rates around 50%, and Vanguards have lower win rates near 30%."
@@ -560,25 +553,34 @@ kd_plot1
 #knitr::include_graphics(here::here("blog_post","MarvelRivals_post","NEW_WIN_RATE.png"))
 
 # Data Wrangle
-max_games <- max(role_stats$games)
-radius_scale <- 0.06  # tweak this to change overall circle sizes
+# Pull one image_url per role from hero_kd_summary
+role_image <- hero_kd_summary %>%
+  filter(!is.na(image_url)) %>%
+  group_by(role) %>%
+  slice(1) %>%
+  ungroup() %>%
+  select(role, image_url)
 
 role_stats4 <- role_stats %>%
+  left_join(role_image, by = "role")
+
+max_games  <- max(role_stats4$games)
+size_range <- c(20, 60)
+x_range    <- 1
+y_range    <- 0.4
+
+role_stats4 <- role_stats4 %>%
   group_by(role) %>%
   mutate(
     hero_index = row_number(),
-    n_heroes = n(),
-    r = games / max_games * radius_scale,
-    angle = 2 * pi * (hero_index - 1) / n_heroes,
-    # position images at ~60% of radius so they stay inside the circle
-    image_x = win_rate + (r * 0.6) * cos(angle),
-    image_y = 1 + (r * 0.6) * sin(angle)
+    n_heroes   = n(),
+    pt_size    = size_range[1] + (games / max_games) * (size_range[2] - size_range[1]),
+    r          = pt_size * 0.0008,
+    angle      = 2 * pi * (hero_index - 1) / n_heroes,
+    image_x    = win_rate + r * cos(angle),
+    image_y    = 1 + (r * (x_range / y_range) * 0.15) * sin(angle)
   ) %>%
   ungroup()
-
-
-size_range <- c(20, 60)
-max_games <- max(role_stats4$games)
 
 # Plot dimensions to correct aspect ratio
 x_range <- 1       # 0 to 1 (0% to 100%)
@@ -613,104 +615,113 @@ caption <- glue::glue(
   {github_username}"
 )
 
-# Plot
-win_rate <- ggplot(role_stats4 %>% distinct(role, win_rate, games), aes(x = win_rate, y = 1)) +
-  
-  # black to dark red Marvel gradient
-  annotation_custom(
-    grid::rasterGrob(
-      matrix(c("#0a0a0a", "#1a0a0a", "#2d0a0a", "#8b0000"), nrow = 1),
-      width = unit(1, "npc"), height = unit(1, "npc"),
-      interpolate = TRUE
-    ),
-    xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf
-  ) +
-  
-  geom_point(aes(size = games, fill = role), shape = 21, alpha = 0.8) +
-  
-  geom_image(
-    data = role_stats4,
-    aes(x = image_x, y = image_y, image = image_url),
-    size = 0.080
-  ) +
-  
-  # role label below each bubble
-  geom_text(
-    data = role_stats4 %>% distinct(role, win_rate, games),
-    aes(x = win_rate, y = 0.91, label = role, color = role),
-    fontface = "bold", size = 4.5
-  ) +
-  
-  scale_size_continuous(range = size_range) +
-  scale_fill_manual(values = c(
-    "Duelist"    = "#E69F00",   # orange
-    "Strategist" = "#56B4E9",   # sky blue
-    "Vanguard"   = "#D55E00"    # vermillion
-  )) +
-  scale_color_manual(values = c(
-    "Duelist"    = "#E69F00",
-    "Strategist" = "#56B4E9",
-    "Vanguard"   = "#D55E00"
-  ))+
-  
-  scale_x_continuous(labels = scales::percent, limits = c(0, 1)) +
-  scale_y_continuous(limits = c(0.88, 1.15)) +
+#.........................plot.........................
+#| fig-width: 10
+#| fig-height: 5
+#| out-width: "100%"
 
-  
-  labs(
-    title = title,
-    subtitle = "Bubble size represents games played",
-    x = "Win Rate",
-    y = "",
-    caption = caption,
-    size = "Games Played"
+#showtext_auto(enable = TRUE)
+
+role_colors_wr <- c(
+  "Duelist"    = "#E69F00",
+  "Strategist" = "#56B4E9",
+  "Vanguard"   = "#D55E00"
+)
+
+# Hero images arranged in a circle inside each role bubble
+max_games  <- max(role_stats4$games)
+#size_range <- c(20, 60)
+size_range <- c(40, 100)
+
+hero_positions <- role_stats4 %>%
+  group_by(role) %>%
+  mutate(
+    n         = n(),
+    angle     = 2 * pi * (row_number() - 1) / n,
+    r         = 0.04,                          # radius of hero orbit; tweak as needed
+    img_x     = win_rate + r * cos(angle),
+    img_y     = 1       + r * 0.4 * sin(angle) # 0.4 squishes vertically for aspect ratio
+  ) %>%
+  ungroup()
+
+# Role Labels 
+role_labels <- role_stats4 %>%
+  distinct(role, win_rate, games) %>%
+  mutate(x_pos = c(0.25, 0.50, 0.75))  # evenly spaced; reorder if needed
+
+
+# Start Plotting
+
+win_rate <- ggplot(role_labels, aes(x = x_pos, y = 1)) +
+
+  # Main role bubble
+  geom_point(aes(size = games, fill = role), shape = 21, alpha = 0.85, color = "black", stroke = 1) +
+
+  # Hero images inside bubble
+  geom_image(
+    data = hero_positions,
+    aes(x = img_x, y = img_y, image = image_url),
+    size = 0.055
   ) +
-  
+
+  # Role label below bubble
+  geom_text(
+    aes(y = 0.92, label = role, color = role),
+    fontface = "bold", size = 5
+  ) +
+
+  # Win rate % below role label
+  geom_text(
+    aes(y = 0.895, label = scales::percent(win_rate, accuracy = 1)),
+    color = "white", size = 4
+  ) +
+
+  # Games played above bubble
+  geom_text(
+    aes(y = 1.1, label = paste0(games, " games")),
+    color = "white", size = 3.5, fontface = "italic"
+  ) +
+
+  scale_size_continuous(range = size_range) +
+  scale_fill_manual(values  = role_colors_wr) +
+  scale_color_manual(values = role_colors_wr) +
+  #scale_x_continuous(labels = scales::percent, limits = c(0, 1)) +
+  scale_x_continuous(
+  breaks = c(0.25, 0.50, 0.75),
+  labels = c("Vanguard", "Duelist", "Strategist"),  # match your role order
+  limits = c(0, 1)
+) +
+  scale_y_continuous(limits = c(0.87, 1.15)) +
+
+  labs(
+    #title    = title_wr,
+    #subtitle = "Bubble size represents games played",
+    x        = "Win Rate",
+    y        = "",
+    caption  = make_caption()
+  ) +
+
   theme_void() +
   theme(
-    plot.background  = element_rect(fill = "#343A51", color = "#8b0000", linewidth = 4),
-    panel.background = element_rect(fill = NA),
+    plot.background    = element_rect(fill = "#343A51", color = "#8b0000", linewidth = 4),
+    panel.background   = element_rect(fill = NA),
+    panel.grid.major.x = element_line(color = "#ffffff30", linewidth = 0.4, linetype = "dashed"),
+    axis.text.x        = element_text(size = 13, color = "#c0c0c0", margin = margin(t = 8)),
+    axis.title.x       = element_text(size = 14, color = "#ffffff", face = "bold", margin = margin(t = 8)),
+    legend.position    = "none",
     
-    # subtle red-tinted gridlines
-    panel.grid.major.x = element_line(color = "#3d0000", linewidth = 0.4, linetype = "dashed"),
-    panel.grid.minor.x = element_line(color = "#1f0000", linewidth = 0.2, linetype = "dotted"),
-    
-    # x-axis in silver/white
-    axis.text.x  = element_text(size = 15, color = "#c0c0c0", margin = margin(t = 8)),
-    axis.ticks.x = element_line(color = "#c0c0c0", size = 2, margin = margin(t=8)),
-    axis.title.x = element_text(size = 15, color = "#ffffff", face = "bold", margin = margin(t = 8)),
-    
-    axis.text.y  = element_blank(),
-    axis.ticks.y = element_blank(),
-    panel.grid.major.y = element_blank(),
-    
-    # legend in silver/white
-    legend.title    = element_text(size = 12, face = "bold", color = "#ffffff"),
-    legend.text     = element_text(size = 12, color = "#ffffff"),
-    legend.position = "top",
-    
-    plot.title = ggtext::element_markdown(
-      family = "noto-sans", face = "bold", size = 30,
-      hjust = 0.5, color = "#ffffff", margin = margin(b = 5, t=15)),
-    plot.subtitle = ggtext::element_markdown(
-      size = 18, hjust = 0.5, color = "#c0c0c0",
-      family = "bold.italic",
-      margin = margin(b = 10)),
+    # Github and Data Source
     plot.caption = ggtext::element_markdown(
       face = "italic", size = 10, color = "#c0c0c0",
-      margin = margin(t = 5), lineheight = 1.5, hjust = 0.98)
+      margin = margin(t = 20), lineheight = 1.5, hjust = 0.98
+    )
+    
   ) +
-  
-  guides(
-    fill  = "none",
-    color = "none",
-    size  = guide_legend(override.aes = list(
-      size = c(2, 4, 6),
-      color = "white"  # legend circle outlines in white
-    ))
-  )
+  guides(fill = "none", color = "none", size = "none")
+
 win_rate
 
+#showtext_auto(enable = FALSE)
 
 
 ```
@@ -727,9 +738,11 @@ win_rate
 
 # Infographic
 
-![](info.jpeg)
+![Am I Optimizing Marvel Rivals (Using my Personal Gaming Account)](mr_info.png)
 
-Kill to death ratios are generally positive across heroes, particularly among Duelists. Despite this, win rates differ across roles, suggesting that success is not driven by damage alone. Strategic role changes based on team performance may be necessary to improve match outcomes
+> *Kill to death ratios are generally positive across heroes, particularly among Duelists. Despite this, win rates differ across roles, suggesting that success is not driven by damage alone. Strategic role changes based on team performance may be necessary to improve match outcomes*
+
+
 
 # Special Note
 Thank you for sticking around, below I have provided a GIF that shows Jeff the Shark, Healer/ Strategist, show the dub of the century and took the dub for the game!
