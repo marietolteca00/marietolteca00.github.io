@@ -738,7 +738,7 @@ win_rate
 
 # Infographic
 
-![Am I Optimizing Marvel Rivals (Using my Personal Gaming Account)](mr_info.png)
+![Am I Optimizing Marvel Rivals (Using my Personal Gaming Account)](Final_mr_info.png)
 
 > *Kill to death ratios are generally positive across heroes, particularly among Duelists. Despite this, win rates differ across roles, suggesting that success is not driven by damage alone. Strategic role changes based on team performance may be necessary to improve match outcomes*
 
