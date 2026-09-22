@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marie Tolteca">
-<meta name="dcterms.date" content="2026-09-16">
+<meta name="dcterms.date" content="2026-09-22">
 
 <title>WWE SQL Database – Marie Tolteca</title>
 <style>
@@ -27,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -129,18 +164,19 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
+    <div class="quarto-title column-page-left">
       <h1 class="title">WWE SQL Database</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Quarto</div>
+                <div class="quarto-category">R</div>
                 <div class="quarto-category">SQL</div>
                 <div class="quarto-category">Python</div>
+                <div class="quarto-category">Quarto</div>
                 <div class="quarto-category">MEDS</div>
               </div>
                   </div>
   </div>
     
-  <div class="quarto-title-meta-author column-page">
+  <div class="quarto-title-meta-author column-page-left">
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-heading">Affiliation</div>
     
@@ -156,13 +192,13 @@ ul.task-list li input[type="checkbox"] {
         </div>
     </div>
 
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta column-page-left">
 
         
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 16, 2026</p>
+        <p class="date">September 22, 2026</p>
       </div>
     </div>
     
@@ -173,18 +209,238 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#wwe-events-match-ratings-database-20152025" id="toc-wwe-events-match-ratings-database-20152025" class="nav-link active" data-scroll-target="#wwe-events-match-ratings-database-20152025">WWE Events &amp; Match Ratings Database (2015–2025)</a>
+  <ul class="collapse">
+  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link" data-scroll-target="#table-of-contents">Table of Contents</a></li>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a>
+  <ul class="collapse">
+  <li><a href="#table-definitions" id="toc-table-definitions" class="nav-link" data-scroll-target="#table-definitions">Table Definitions</a></li>
+  </ul></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a>
+  <ul class="collapse">
+  <li><a href="#tag-teams-table-r-code" id="toc-tag-teams-table-r-code" class="nav-link" data-scroll-target="#tag-teams-table-r-code">Tag Teams Table (R Code)</a></li>
+  </ul></li>
+  <li><a href="#analysis-questions" id="toc-analysis-questions" class="nav-link" data-scroll-target="#analysis-questions">Analysis Questions</a>
+  <ul class="collapse">
+  <li><a href="#q1-how-has-fan-engagement-varied-across-wwe-event-types-from-2015-to-2025" id="toc-q1-how-has-fan-engagement-varied-across-wwe-event-types-from-2015-to-2025" class="nav-link" data-scroll-target="#q1-how-has-fan-engagement-varied-across-wwe-event-types-from-2015-to-2025">Q1 — How has fan engagement varied across WWE event types from 2015 to 2025?</a></li>
+  <li><a href="#q2-who-are-the-top-20-highest-rated-wrestlemania-superstars-20152025" id="toc-q2-who-are-the-top-20-highest-rated-wrestlemania-superstars-20152025" class="nav-link" data-scroll-target="#q2-who-are-the-top-20-highest-rated-wrestlemania-superstars-20152025">Q2 — Who are the top 20 highest rated WrestleMania superstars (2015–2025)?</a></li>
+  <li><a href="#q3-how-did-john-cenas-performance-vary-across-career-eras" id="toc-q3-how-did-john-cenas-performance-vary-across-career-eras" class="nav-link" data-scroll-target="#q3-how-did-john-cenas-performance-vary-across-career-eras">Q3 — How did John Cena’s performance vary across career eras?</a></li>
+  </ul></li>
+  <li><a href="#tech-stack" id="toc-tech-stack" class="nav-link" data-scroll-target="#tech-stack">Tech Stack</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
 
+<section id="wwe-events-match-ratings-database-20152025" class="level1">
+<h1>WWE Events &amp; Match Ratings Database (2015–2025)</h1>
+<p><img src="images/WWE_intro.png" class="img-fluid"></p>
+<p>A structured SQL database built from real WWE event and match rating data sourced from <a href="https://www.cagematch.net">Cagematch.net</a> and the Wrestling Observer Newsletter (WON).</p>
+<p>This project demonstrates end-to-end data engineering and analytics skills from schema design and data ingestion to SQL querying and Python visualization.</p>
+<hr>
+<section id="table-of-contents" class="level2">
+<h2 class="anchored" data-anchor-id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#project-overview">Project Overview</a></li>
+<li><a href="#dataset">Dataset</a></li>
+<li><a href="#schema-design">Schema Design</a></li>
+<li><a href="#data-cleaning">Data Cleaning</a></li>
+<li><a href="#analysis-questions">Analysis Questions</a></li>
+<li><a href="#visualizations">Visualizations</a></li>
+<li><a href="#tech-stack">Tech Stack</a></li>
+<li><a href="#how-to-run">How to Run</a></li>
+<li><a href="#limitations--future-work">Limitations &amp; Future Work</a></li>
+</ul>
+<hr>
+</section>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p>This project was built over 7 weeks as part of a database design course. The goal was to:</p>
+<ol type="1">
+<li>Choose a real-world dataset</li>
+<li>Design a relational schema</li>
+<li>Clean and ingest data into a SQL database</li>
+<li>Write analytical SQL queries</li>
+<li>Visualize results in Python</li>
+<li>Document and present findings</li>
+</ol>
+<p>The dataset covers <strong>10 years of WWE programming</strong> (2015–2025), including televised shows, non-televised live events, and premium live events (PLEs/PPVs).</p>
+<hr>
+</section>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<p><strong>Source:</strong> <a href="https://www.kaggle.com/datasets/franchise403/wwe-events-and-match-ratings-20152025">Kaggle — WWE Events &amp; Match Ratings (2015–2025)</a></p>
+<pre><code>| File | Rows | Description |
+|------|------|-------------|
+| `wwe_events.csv` | 5,970 | Event-level data (show name, type, location) |
+| `wwe_match_rating.csv` | 8,101 | Match-level data with fan and critic ratings |</code></pre>
+<p><strong>Rating Sources:</strong> - <strong>CageMatch Rating</strong> — crowdsourced fan ratings from <strong>cagematch.net</strong> (6,235 matches rated) - <strong>WON Star Rating</strong> — critic ratings from Dave Meltzer’s Wrestling Observer Newsletter (2,171 matches rated)</p>
+<p><strong>Event Types:</strong></p>
+<pre><code>| Type | Count |
+|------|-------|
+| Televised | 3,261 |
+| Non-Televised | 2,421 |
+| PLE/PPV | 288 |</code></pre>
+<section id="table-definitions" class="level3">
+<h3 class="anchored" data-anchor-id="table-definitions">Table Definitions</h3>
+<pre><code>wwe_events — Event-level fact table
+| Column | Type | Key |
+|--------|------|-----|
+| Date | DATE | PK |
+| Promotion | TEXT | PK |
+| Event | TEXT | |
+| EventName | TEXT | |
+| EventType | TEXT | |
+| CityTown | TEXT | |
+| StateProvince | TEXT | |
+| Country | TEXT | |
+
+wwe_match_rating — Match-level fact table
+| Column | Type | Key |
+|--------|------|-----|
+| Index | INTEGER | PK |
+| Date | DATE | FK → wwe_events |
+| Promotion | TEXT | FK → wwe_events |
+| Match | TEXT | |
+| CageMatchRating | DECIMAL | |
+| CageMatchRatingVotes | INTEGER | |
+| WONStarRating | DECIMAL | |
+| Opponent1 | TEXT | |
+| Opponent2 | TEXT | |
+
+tag_teams — Unpivoted tag team opponents
+| Column | Type | Key |
+|--------|------|-----|
+| OpponentID | INTEGER | PK |
+| MatchIndex | INTEGER | FK → wwe_match_rating |
+| Team | TEXT | |
+
+superstars — Unique superstar lookup table
+| Column | Type | Key |
+|--------|------|-----|
+| SuperstarID | INTEGER | PK |
+| SuperstarName | TEXT | |</code></pre>
+<hr>
+</section>
+</section>
+<section id="data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
+<p>Cleaning was performed in R using the <code>tidyverse</code> package.</p>
+<p><strong>Steps taken:</strong></p>
+<ul>
+<li>Dates were already in <code>YYYY-MM-DD</code> format and loaded as proper date types, no reformatting needed</li>
+<li>Numeric columns (<code>CageMatchRating</code>, <code>WONStarRating</code>, <code>CageMatchRatingVotes</code>) contained no text or mixed values</li>
+<li>Missing ratings represented as <code>NA</code> (expected: not every match is rated by both sources)</li>
+<li>Trailing commas removed from opponent strings (e.g.&nbsp;<code>"Raquel Rodriguez, Stephanie Vaquer,"</code>)</li>
+<li>Tag teams extracted by detecting <code>&amp;</code> in opponent columns and pivoting to long format</li>
+<li>515 duplicates looking rows in <code>wwe_events</code> are legitimate. WWE runs multiple house shows in different cities under the same event name on the same date</li>
+</ul>
+<p><strong>Known limitation:</strong> 81 match dates in <code>wwe_match_rating</code> have no corresponding row in <code>wwe_events</code>. These matches are excluded from any query that joins both tables.</p>
+<section id="tag-teams-table-r-code" class="level3">
+<h3 class="anchored" data-anchor-id="tag-teams-table-r-code">Tag Teams Table (R Code)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tag_teams <span class="ot">&lt;-</span> match_rating <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Index, Opponent<span class="fl">.1</span>, Opponent<span class="fl">.2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(Opponent<span class="fl">.1</span>, Opponent<span class="fl">.2</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Side"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"Team"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Team =</span> <span class="fu">str_trim</span>(<span class="fu">str_replace_all</span>(Team, <span class="st">",</span><span class="sc">\\</span><span class="st">s*$"</span>, <span class="st">""</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Team, <span class="st">"&amp;"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">MatchIndex =</span> Index, Team) <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OpponentID =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(OpponentID, MatchIndex, Team)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="analysis-questions" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-questions">Analysis Questions</h2>
+<section id="q1-how-has-fan-engagement-varied-across-wwe-event-types-from-2015-to-2025" class="level3">
+<h3 class="anchored" data-anchor-id="q1-how-has-fan-engagement-varied-across-wwe-event-types-from-2015-to-2025">Q1 — How has fan engagement varied across WWE event types from 2015 to 2025?</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">YEAR</span>(m.<span class="dt">Date</span>) <span class="kw">AS</span> <span class="dt">Year</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    e.EventType,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">SUM</span>(m.CageMatchRatingVotes) <span class="kw">AS</span> TotalVotes</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> match_rating m</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> <span class="kw">events</span> e <span class="kw">ON</span> e.<span class="dt">Date</span> <span class="op">=</span> m.<span class="dt">Date</span> <span class="kw">AND</span> e.Promotion <span class="op">=</span> m.Promotion</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">Year</span>, e.EventType</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">Year</span> <span class="kw">ASC</span>, TotalVotes <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="images/WWE_FanEng.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="q2-who-are-the-top-20-highest-rated-wrestlemania-superstars-20152025" class="level3">
+<h3 class="anchored" data-anchor-id="q2-who-are-the-top-20-highest-rated-wrestlemania-superstars-20152025">Q2 — Who are the top 20 highest rated WrestleMania superstars (2015–2025)?</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> s.SuperstarName,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ROUND</span>(<span class="fu">AVG</span>(m.CageMatchRating), <span class="dv">2</span>) <span class="kw">AS</span> AvgRating,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> MatchCount</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> superstars s</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> wwe_match_rating m <span class="kw">ON</span> s.MatchIndex <span class="op">=</span> m.<span class="kw">Index</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> wwe_events e <span class="kw">ON</span> e.<span class="dt">Date</span> <span class="op">=</span> m.<span class="dt">Date</span> <span class="kw">AND</span> e.Promotion <span class="op">=</span> m.Promotion</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> e.Event <span class="op">=</span> <span class="st">'WWE WrestleMania'</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> s.SuperstarName</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> AvgRating <span class="kw">DESC</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">20</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="q3-how-did-john-cenas-performance-vary-across-career-eras" class="level3">
+<h3 class="anchored" data-anchor-id="q3-how-did-john-cenas-performance-vary-across-career-eras">Q3 — How did John Cena’s performance vary across career eras?</h3>
+<p>📓 <a href="https://github.com/marietolteca00/WWE-database/tree/main/notebooks/johncena_timeline.ipynb"><code>johncena_timeline.ipynb</code></a></p>
+<p><img src="images/JohnCena.png" class="img-fluid"></p>
+<hr>
+</section>
+</section>
+<section id="tech-stack" class="level2">
+<h2 class="anchored" data-anchor-id="tech-stack">Tech Stack</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R / tidyverse</td>
+<td>Data cleaning and ingestion</td>
+</tr>
+<tr class="even">
+<td>SQLite</td>
+<td>Relational database</td>
+</tr>
+<tr class="odd">
+<td>Python / pandas</td>
+<td>Data manipulation</td>
+</tr>
+<tr class="even">
+<td>Python / matplotlib</td>
+<td>Visualization</td>
+</tr>
+<tr class="odd">
+<td>Kaggle</td>
+<td>Data source</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
