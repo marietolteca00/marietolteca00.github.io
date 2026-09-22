@@ -30,7 +30,9 @@ Using the website [Marvel Rivals Tracker](https://rivalsmeta.com/), I set up an 
 The top image is a map called Yggsgard, known from the stories of Thor, Loki, and Asgard. The bottom image is a map called Shin-Shibuya, inspired by technology and cyberpunk aesthetics often associated with the Marvel hero Spider-Man Island storyline. While the middle highlights four playable heroes. From left to right: Cloak, Invisible Woman, Moon Knight, and The Punisher. On the background we can see a skyline and buildings from the cities.
 
 ![](MarvelRivals_BG.png)
-
+::: {.darkgrey-text .center-text}
+*PS - I made this using the three seasons that marvel released between 2024-2026*
+:::
 
 # Main Question:
 ## Am I optimizing my Marvel Rivals gameplay?
