@@ -1,6 +1,6 @@
 ---
 title: "First Blog Post!"
-description: " A short description of this blog post."
+description: " Trail Run: This is my dog Buddy."
 author: 
   - name: Marie Tolteca
     url: 
@@ -17,7 +17,10 @@ draft: false
 bibliography: references.bib
 ---
 
-This is where the body of my blog post begins! I'm going to add a footnote here [^1]. Here's an inline footnote^\[here's my inline note\]^.
+This is where the body of my blog post begins! I'm going to add a footnote here [^1]. Here's an inline footnote^\[here's my inline note\]^. Here is Buddy, aka - Buddy Boi sending holiday greetings!
+
+![](christmas_joy.jpeg)
+
 
 [^1]: Here is some additional context that might be helpful.
 
