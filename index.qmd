@@ -2,21 +2,23 @@
 title: "Marie Tolteca"
 image: images/Profile-Pic.jpg 
 about: 
-  template: jolla
+  template: trestles
   image-shape: round
   image-width: 17em
   links: 
     - text: LinkedIn
       icon: linkedin
-      href: www.linkedin.com/in/marietolteca
-      target: _blank
+      href: https://www.linkedin.com/in/marietolteca/
+
+      target: _blank # ensures that link is opened in a new browser tab
     - text: GitHub
       icon: github
       href: https://github.com/marietolteca00
+      
       target: _blank
     - text: Email
       icon: envelope
-      href: marietolteca@umail.ucsb.edu
+      href: mailto:marietolteca@gmail.com
 
 # format: 
 #   navbar: 
@@ -35,6 +37,41 @@ about:
 #     toc: true
 #     page_layout: full
 ---
-**Changes in real time**
+:::{#hero-heading}
+## Oh Hey! I'm Marie
 
-Hi this is Marie Tolteca, a current Master's in Environmental Data Science at Bren in the University of Santa Barbara.
+Welcome to my page 🤠 🎮!!
+
+I'm an early-career data scientist who enjoys exploring datasets, spatial data, and creating visualizations that communicate findings so everyone can understand them. I recently completed my Master's in Environmental Data Science at the Bren School, University of California, Santa Barbara.
+:::
+
+::: {.panel-tabset}
+
+## Experience
+
+**Wildscape Restoration** | Biologist and Assistant Project Manager  
+*December 2024 – July 2025*
+
+**CSUMB WATRS Lab & NASA Ames Research Center** | Research Technician  
+*May 2023 – May 2024*
+
+## Education
+
+**Bren School of Environmental Science & Management, UCSB**  
+Master of Environmental Data Science | July 2025 – June 2026
+
+**California State University, Monterey Bay** | Seaside, CA  
+B.S. Environmental Science Technology and Policy | August 2021 – May 2023
+
+**Oxnard Community College** | Oxnard, CA  
+AA in Physical Science | August 2018 – May 2021
+
+## Fun Facts
+
+🌭 - I grew up with a Dachshund aka wiener dog. His name is Buddy, he is my childhood dog and bestfriend. Hint: He is on my logo on the top left corner.
+
+🎮 - I love to play video games, recently I have been playing Marvel Rivals (from the Marvels franchise) and I even made a blog post about it. Another game I've been playing is Call of Duty- Black Ops, now that Activision brought it back to PS5 and Xbox. I used to play this when I was younger.
+
+🍿 - I love to watch a good film - Recently I watched Resident Evil, Buddy, and Project Hail Mary. All great films. I am a Marvel Fan myself, always looking forward to the next Marvel Movie.
+
+:::
